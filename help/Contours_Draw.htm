@@ -1,0 +1,35 @@
+<a name="Contours_Draw"></a>
+<a href="Contours_Draw"></a>
+<h1>Contours_Draw</h1>
+<h2>Using of command</h2>
+Function draw contour to tested picture.
+
+
+<h2>Commands parameters</h2>
+Command has 3 parameters:
+<ol>
+<li>Source picture: You need select source picture.Contours will be draw to this picture. Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Contours: You need select contours array where contours which we want to draw are stored. You can select Contour_0 to Contour_19. </li>
+<li>External color: You need select color of external contours.Left click on this parameter line opens color selection dialog</li>
+<li>Hole color: You need select color of internal contours. Left click on this parameter line opens color selection dialog. </li>
+<li>Max level: Maximal level for drawn contours. If 0, only contour is drawn. If 1, the contour and all contours following it on the same level are drawn. If 2, all contours following and all contours one level below the contours are drawn, and so forth. If the value is negative, the function does not draw the contours following after contour but draws the child contours of contour up to the (max level)-1 level.</li>
+<li>Tickness: Thickness of lines the contours are drawn with. If it is negative the contour interiors are drawn. </li>
+<li>Line type: Type of the contour segments:
+<ol>
+<li> <b>8</b> - (or omitted) 8-connected line.</li>
+<li> <b>4</b> - 4-connected line.</li>
+<li> <b>CV_AA</b> - antialiased line.</li>
+</ol>
+ </li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad position of source picture in picture array. Position of source picture is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -12:Bad position of contour in contours array. Position of contour is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -13:Bad  external contour color code. Check test program file if command has correct format. </li>
+<li>Error code -14:Bad hole contour color code. Check test program if command has correct format. </li>
+<li>Error code -15:Source picture is not alocated. Source picture must be alocated before use of this function. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

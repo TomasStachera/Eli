@@ -1,0 +1,36 @@
+<a name="Conversion_AddWeighted"></a>
+<a href="Conversion_AddWeighted"></a>
+<h1>Conversion_AddWeighted</h1>
+<h2>Using of command</h2>
+This command add each pixels in one image with each pixel in the second image.Each image has own weight which is multiplied with each pixels.
+<br><br><b>destination image= image_A*weight_A+image_B*weight_B</b>
+<br><br>Both images must have same number of channels,same width and height or ROI with same weight and height must be select.
+<h2>Commands parameters</h2>
+Command has 7 parameters:
+<ol>
+<li>Destination picture: You can select destination picture where result picture of this command will be same. Result picture must have same number of channel, same width and height as source pictures (or ROI must have same dimensions).One of the source images can be use as destination picture. You can select from Picture_0 to Picture_19.</li>
+<li>Source picture A: You need select source image A from image array (Picture_0 to Picture_19).</li>
+<li>Weight of picture A from: Select from where you will read weight of Picture A. You can select Variable_0 to Variable_99 or Number. If you select one of variables, weight of image A will be read from this variable. If you use option Number, you need select weight number in the next parameter.</li>
+<li>Weight of picture A number:This parameter is use only if option Number in previous parameter is selected. You need select weight number from the range 0 to 1.</li>
+<li>Source picture B: You need select source image B from image array (Picture_0 to Picture_19).</li>
+<li>Weight of picture B from:Weight of picture B from: Select from where you will read weight of Picture B. You can select Variable_0 to Variable_99 or Number. If you select one of variables, weight of image B will be read from this variable. If you use option Number, you need select weight number in the next parameter. </li>
+<li>Weight of picture B number:This parameter is use only if option Number in previous parameter is selected. You need select weight number from the range 0 to 1. <li>
+</ol>
+<h2>Edit mode </h2>
+You can set weight parameters in edit window dirrectlly in the running test program. You need set break to the line with Conversion_AddWeighted command. Then run program in debug mode. When program stops on the line with Conversion_AddWeighted command select option "Run one step" from toolbar or menu. Then edit window with tested image will display.You can select Weight of picture A or Weight of picture B by sliders or write weight value directly to the parameter line and click enter. Each change will updated displayed image.  When you press Exit you can select if you want to use new parameters in the test program. If you select "Yes" option, test program will update with new values. If you use weight A or weight B parameters from variable, option "Yes" change those parameters to Number.
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11:Bad position of destination picture in the picture array. This error means that destination picture is not from range Picture_0 to Picture_19. Check test program file if command has proper format.</li>
+<li>Error code -12:Bad position of source picture A in picture array.This error means that source picture A is not from range Picture_0 to Picture_19.Check test program file if command has proper format.</li>
+<li>Error code -13: Bad variable position in variable array.This error means that variable which is using to weight calculation is not from range Variable_0 to Variable_99. Check test program file if command has proper format.</li>
+<li>Error code -14: Bad position of source picture B in picture array.This error means that source picture B is not from range Picture_0 to Picture_19.Check test program file if command has proper format.</li>
+<li>Error code -15:Weight of picture A is out of range. Weight of picture A must be from range 0 to 1.</li>
+<li>Error code -16:Weight of picture B is out of range. Weight of picture B must be from range 0 to 1.</li>
+<li>Error code -17:Source picture A was not alocated.Selected picture for picture A must be alocated before use of this command.</li>
+<li>Error code -18: Destination picture was not alocated. Selected picture for destination picture must be alocated before use of this command.</li>
+<li>Error code -19:Source picture B was not alocated.Selected picture for picture B must be alocated before use of this command.</li>
+<li>Error code -20:Number of channels of source pictures are not same. Check number of channels in both source images.</li>
+<li>Error code -21:Number of channels of destination picture and source picture are not same.Check number of channels in both source images and destination image. Must be same.</li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.OpenCV error is reported also when width or height of source or destination picture are not same.</li>
+  </ol>

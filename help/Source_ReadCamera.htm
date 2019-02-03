@@ -1,0 +1,27 @@
+<a name="Command Source_ReadCamera"></a>
+<a href="Command Source_ReadCamera"></a>
+<h1>Command Source_ReadCamera</h1>
+<h2>Using of command</h2>
+This command is use for  read video stream from camera. Function open selected camera and save capture to one of selected capture array.
+Command use OpenCv function cvCaptureFromCAM for read camera.
+<h2>Commands parameters</h2>
+Function has 2 parameters:
+<ol>
+<li> Select camera: This parameter is use for selection of camera.It can be select camera number from 0 to 19. Camera number is according your operating system.  </li>
+<li> Select capture: This parameter is use for select capture array where video stream from camera will be save. It can be select Capture_0 to Capture_9. </li>
+<li> Get undistortion chan: This parameter sets if we want to use undistortion image according calibration file. It can be used 20 channels for undistortion file.If you select option none, calibration file will not be used and real image from camera will be used</li>
+<li> Calibration file: This parameter is for select calibration file if you select some channel in previous option. </li>
+<li> Focal length: This parameter is used if we select some calibration file. It is camera parameter and its used in dimension calculation. </li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11: Bad camera index. Error means that camera index in eli file is not correct. Check eli file.  </li>
+<li>Error code -12: Bad capture index. Capture index in eli file is not correct. It must be Capture_0 to Capture_9. Check eli file </li>
+<li>Error code -13: Cameras is not open. Selected camera was not found. Check if camera is connected or camera driver. </li>
+<li>Error code -14: Bad undistortion channel. There are channels number more than 19 </li>
+<li>Error code -15: Can not open calibration file </li>
+<li>Error code -100: OpenCv error. Error is generated in OpenCv function cvCaptureFromCAM.Explanation of this error is in result window. </li>
+</ol>
+
+

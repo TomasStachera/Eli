@@ -1,0 +1,35 @@
+<a name="Conversion_Scale"></a>
+<a href="Conversion_Scale"></a>
+<h1>Conversion_Scale</h1>
+<h2>Using of command</h2>
+This command is use for linear conversion pixels of image.  Source image is convert to destination image with scale factore (pixels are multiplied with scale number) and with shift number ( shift number are add to each pixel). Scale command using this formulla: <br><br>
+<b> Destination image=Source image * scale factore + shift number </b> <br><br>
+Destination image must have same width and height and number of channels are source image. Both image must be alocated before call of this function. It can be use same image for source and destination. In this case image source image will be convert according formulla above.  If scale factore is 1 and shift factor is 0, pixels of source image is just copied to destination image without conversion. Command use OpenCv function cvConvertScale.
+
+<h2>Commands parameters</h2>
+Command has 6 parameters:
+<ol>
+<li>Source picture: This parameter is use for select source picture. You can select Picture_0 to Picture_19 </li>
+<li>Destination picture: This command is use for select destination picture. You can select Picture_0 to Picture_19  </li>
+<li>Scale from: You can select from where you want to read scale factor. You can select Variable_0 to Variable_99. In this case scale number will be read from selected variable. You can select also option "Number". In this case fixted number in next parameter will be use as scale factor. </li>
+<li> Scale number: This parametr is active only if parameter before option "Number" was selected. Number write in this line will be use as scale factor</li>
+<li>Shift from:You can select from where you want to read shift factor. You can select Variable_0 to Variable_99. In this case shift number will be read from selected variable. You can select also option "Number". In this case fixted number in next parameter will be use as shift factor. </li>
+<li>Shift number:  This parametr is active only if parameter before, option "Number" was selected. Number write in this line will be use as shift factor</li>
+
+</ol>
+<h2>Edit mode </h2>
+You can set scale or shift parameters in edit window dirrectlly in the running test program. You need set break to the line with Conversion_Scale command. Then run program in debug mode. When program stops on the line with Conversion_Scale command select option "Run one step" from toolbar or menu. Then edit window with tested image will display. You can set shift or scale number to the line and when you press enter displayed picture will updated with new shift or scale value. You can use olso slider for change shift or scale number. When you change value on one of the sliders displayed picture will updated with new parameters. When you press Exit you can select if you want to use new parameters in the test program. If you select "Yes" option test program will update with new values. If you use shift or scale parameters from variable, option "Yes" change those parameters to Number.
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11:Bad scale number variable index. This error means that variable index in scale number is not in range 0 to 99. Check test program file if this command has correct format. </li>
+<li> Error code -12: Bad shift number variable index. This error means that variable index in shift number is not in range 0 to 99. Check test program file if this command has correct format.  </li>
+<li>Error code -13:Bad source picture index. This error means that picture index in source picture is not in range 0 to 19. Check test program file if this command has correct format.  </li>
+<li>Error code -14:Bad destination picture index. This error means that picture index in destination picture is not in range 0 to 19. Check test program file if this command has correct format. </li>
+<li>Error code -15: Source picture is not alocated. This error means that source picture was not alocated with some source commands before this command. Alocate source picture with some source commands. </li>
+<li>Error code -16: Destination picture is not alocated. This error means that destination picture was not alocated with some source commands before this command. Alocate destination picture with some source commands.   </li>
+<li>Error code -17:Number of channels between source and destination image is not same. NUmber of channels in source and destination picture must be same.  </li>
+<li>Error code -18:Width of source image is not same as destination image. Width in source and destination image must be same.  </li>
+<li>Error code -19:Height of source image is not same as destination image. Height in source and destination image must be same.  </li>
+<li>Error code -100:OpenCv error. Error is activated with OpenCv function cvConverScale. Explanation of this error will be display in result window.     </li>
+    </ol>

@@ -1,0 +1,36 @@
+<a name="Conversion_Resize"></a>
+<a href="Conversion_Resize"></a>
+<h1>Conversion_Resize</h1>
+<h2>Using of command</h2>
+Function resize source image to destination image dimension. Function could be use for zoom of source image. Source and destination image must have same number of channels. Resize function use one of follow interpolation method:
+<ol>
+<li>CV_INTER_NN - nearest-neigbor interpolation </li>
+<li> CV_INTER_LINEAR - bilinear interpolation</li>
+<li> CV_INTER_AREA - resampling using pixel area relation. It is the preferred method for image decimation that gives moire-free results. In terms of zooming it is similar to the CV_INTER_NN method</li>
+<li>CV_INTER_CUBIC - bicubic interpolation </li>
+</ol>
+
+
+<h2>Commands parameters</h2>
+Command has 3 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture. Destination picture must be activated before use of this function.  You can select Picture_0 to Picture_19. </li>
+<li> Interpolation method: You can select interpolation method</li>
+<li> X scale from: It can be selected from where X scale number will be. It can be fixed number (number will be write in the next parameter) or system variable </li>
+<li>X scale number: If option number was selected in previous parameter it can be write x-scale number more than 0</li>
+<li> Y scale from: It can be selected from where Y scale number will be. It can be fixed number (number will be write in the next parameter) or system variable </li>
+<li>Y scale number: If option number was selected in previous parameter it can be write x-scale number more than 0</li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad source picture position in picture array. Source picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -12: Bad destination picture position in picture array. Destination picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -13: X scale is less or equal 0. X scale must be more than 0</li>
+<li>Error code -14: Y scale is less or equal 0. Y scale must be more than 0</li>
+<li>Error code -15: Number of channels in source and destination image is not same. NUmber of channels of source and destination image must be same. </li>
+<li>Error code -16: Bad variable position.Variable number must be from range 0 to 99 </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

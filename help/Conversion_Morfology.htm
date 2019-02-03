@@ -1,0 +1,65 @@
+<a name="Conversion_Morfology"></a>
+<a href="Conversion_Morfology"></a>
+<h1>Conversion_Morfology</h1>
+<h2>Using of command</h2>
+Command aplied morfological operation to source image. Follow morfological operations are supported:
+<ol>
+<li> <b>Erode</b> :The function erodes the source image using the specified structuring element that determines the shape of a pixel neighborhood over which the minimum is taken:<br><br>
+min src(x+x_a,y+y_a)<br><br>
+where x_a,y_a are dimensions in element <br>
+ Erosion can be applied several (iterations) times. For color images, each channel is processed independently.
+</li>
+<li><b>Dilate</b>:The function dilates the source image using the specified structuring element that determines the shape of a pixel neighborhood over which the maximum is taken: <br><br>
+max src(x+x_a,y+y_a)<br><br>
+where x_a,y_a are dimensions in element <br>
+Dilation can be applied several (iterations) times. For color images, each channel is processed independently.
+</li>
+<li><b>Opening</b>:Function combine Erode and Dilate operation according formula:<br><br>
+dst=open(src,element)=dilate(erode(src,element),element)
+</li>
+<li><b>Closing</b>:Function combine Erode and Dilate operation according formula:<br><br>
+dst=close(src,element)=erode(dilate(src,element),element)
+</li>
+<li><b>Morfological gradient</b>:Function combine Erode and Dilate operation according formula:<br><br>
+dst=morph_ grad(src,element)=dilate(src,element)-erode(src,element)
+</li>
+<li><b>Top hat</b>:Function use formula:<br><br>
+dst=tophat(src,element)=src-open(src,element)
+</li>
+<li><b>Black hat</b>:Function use formula:<br><br>
+dst=blackhat(src,element)=close(src,element)-src
+</li>
+</ol>
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture. Destination picture must be activated before use of this function. Source and destination picture can be same. You can select Picture_0 to Picture_19. </li>
+<li>Morfology type: You can selec one of morfological operation. </li>
+<li>Iteration: You can set number of iteration. </li>
+<li>Element shape:You need select shape of structuring element:
+<ol>
+<li>RECT:A rectangular element </li>
+<li>ELLIPSE:an elliptic element </li>
+<li>CROSS:a cross-shaped element </li>
+</ol>
+ </li>
+<li>Element width: you can set element width as number in pixels  </li>
+<li>Element height: you can set element height as a number in pixels </li>
+<li>Anchor x:You need set relative horizontal offset of the anchor point </li>
+<li>Anchor y: You need set relative vertical offset of the anchor point </li>
+</ol>
+
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad position of source picture in picture array. Error means that source picture is not in range 0 to 19. Check test program file if command has proper format.</li>
+<li>Error code -12:Bad position of destination picture in picture array.Error means than destination picture is not in range 0 to 19.Check test program file if command has proper format.</li>
+<li>Error code -13:Bad morfology type.Check test program file if command has proper format. </li>
+<li>Error code -14: Bad iteration number. Iteration number must be more or equal than 1.</li>
+<li>Error code -15: Bad element shape.Check test program file if command has proper format.</li>
+<li>Error code -16:Bad elementh width. Element width must be more or equal than 1. </li>
+<li>Error code -17:Bad element height. Element height must be more or equal than 1. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

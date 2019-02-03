@@ -1,0 +1,53 @@
+<a name="Object_CharToString"></a>
+<a href="Object_CharToString"></a>
+<h1>Object_CharToString</h1>
+<h2>Using of command</h2>
+Function create string form characters sets  in function Object_ToChar. Result of this function can be string variable String_0 to String _9 or 
+floating number in Variale_0 to Variable_99.
+
+<h2>Example picture </h2>
+ <img src="pictures/char2string.jpg" width="150" height="100" alt="Example picture">
+<br> Example picture displays numbers. We will used it in explaination of this function.
+ We expect that each number was read as object and character of each number is same as 
+character represented of each number.
+
+
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>String direction: You need select direction of characters reading to string.
+It can be select:
+<ol>
+ <li> <B>Left->Right </B> : If you select this option characters will be read from left to right line started from
+ top line ended in bottom line. In our example result string will be: <h3> 1234567890<br>11823111</h3> </li>
+
+  <li> <B>Right->Left </B> : If you select this option characters will be read from right to left line started from
+ top line ended in bottom line. In our example result string will be: <h3> 0987654321<br>11132811</h3> </li>
+ 
+   <li> <B>Top->Bottom </B> : If you select this option characters will be read from top to bottom column started from
+ left column and end to right column. In our example result string will be: <h3> 11<br>21<br>38<br>42<br>53<br>61<br>71<br>81<br>9<br>0</h3> </li>
+
+   <li> <B>Bottom->Top </B> : If you select this option characters will be read from bottom to top column started from
+ left column and end to right column. In our example result string will be: <h3> 11<br>12<br>83<br>24<br>35<br>16<br>17<br>18<br>9<br>0</h3> </li>
+ 
+</ol>
+ </li>
+
+<li>Line width: Number describe width of line.It means that object will be in same line if y-coordinates (in direction Left->Right or Right->Left)
+or x-cordinates (in direction Top->Bottom or Bottom->Top)of objects has maximal deviation sets in this number .</li>
+
+<li>Space size: This number sets space character to string if x-coordinates between 2 objects are more than this number    </li>
+<li>Space object: It defines space object. If this object is found function add space instead of this object to output string</li>
+<li>result to: It can be select where result will be saved. If yo select option Variable_0 to Variable_99 string will be transfered to floating number</li>
+ </ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Line width is negative. It must be positive number </li>
+<li>Error code -12:Space size is negative. It must be positive number </li>
+<li>Error code -13:Bad array position in String variable </li>
+<li>Error code -14:Bad array position in Variable. </li>
+<li>Error code -15:Error in function SortObjectFunction. </li>
+
+  </ol>

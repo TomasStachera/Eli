@@ -1,0 +1,48 @@
+<a name="Contours_Find"></a>
+<a href="Contours_Find"></a>
+<h1>Contours_Find</h1>
+<h2>Using of command</h2>
+Function find contours in the source image. Source image must be single channel 8-bit image. Source image is calculated as binary image.Non-zero pixels are treated as 1, zero pixels remain 0.Binary image is converted from grayscale image by functions Conversion_AdaptiveThreshold, Conversion_Threshold,Conversion_Canny. Contours find by this function can be use in the objects description.
+
+
+<h2>Commands parameters</h2>
+Command has 3 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function.Source picture must be single channel binary image. You can select Picture_0 to Picture_19.</li>
+<li>Contours: You need select contour block where pointers for finded contour will be stored. You can select Contour_0 to Contour_19. </li>
+<li>Mode: You need select retrieval mode:
+<ol>
+<li><b>CV_RETR_EXTERNAL: </b>retrives only the extreme outer contours </li>
+<li><b>CV_RETR_LIST: </b>retrieves all of the contours and puts them in the list</li>
+<li><b>CV_RETR_CCOMP: </b>retrieves all of the contours and organizes them into a two-level hierarchy: on the top level are the external boundaries of the components, on the second level are the boundaries of the holes </li>
+<li><b>CV_RETR_TREE: </b>retrieves all of the contours and reconstructs the full hierarchy of nested contours </li>
+</ol>
+ </li>
+<li>Method: You need select approximation method:
+<ol>
+<li><b>CV_CHAIN_APPROX_NONE: </b>translates all of the points from the chain code into points </li>
+<li><b>CV_CHAIN_APPROX_SIMPLE: </b>compresses horizontal, vertical, and diagonal segments and leaves only their end points. </li>
+<li><b>CV_CHAIN_APPROX_TC89_L1: </b>applies one of the flavors of the Teh-Chin chain approximation algorithm </li>
+<li><b>CV_CHAIN_APPROX_TC89_KCOS: </b>applies one of the flavors of the Teh-Chin chain approximation algorithm </li>
+</ol>
+ </li>
+<li>X ofset from: You can select from where x-ofset will be use. You can select Variable_0 to Variable_99 (in this case x-ofset will be read from this variable) or Number (in this case x-ofset will be use from next parameter). Ofset is pixel number by which every contour point is shifted.This is useful if the contours are extracted from the image ROI and then they should be analyzed in the whole image context. </li>
+<li>X ofset number: This option is active only when option "Number" was selected in previous parameter. You can write pixels number for x-ofset. </li>
+<li>Y ofset from: You can select from where y-ofset will be use. You can select Variable_0 to Variable_99 (in this case y-ofset will be read from this variable) or Number (in this case y-ofset will be use from next parameter). Ofset is pixel number by which every contour point is shifted.This is useful if the contours are extracted from the image ROI and then they should be analyzed in the whole image context. </li>
+<li>Y ofset number: This option is active only when option "Number" was selected in previous parameter. You can write pixels number for y-ofset. </li>
+<li>Results to: You can select where number of finded contours will be save. You can select option "None" (in this case number of finded contours will not be stored) or Variable_0 to Variable_99 (in this case number of finded contours will be stored in selected variable). </li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad x-ofset number variable index. X-ofset variable is not from range Variable_0 to Variable_99. Check test program file if command has correct format. </li>
+<li>Error code -12:Bad y-offset number variable index. Y-ofset is not from range Variable_0 to Variable_99.Check test program file if command has correct format. </li>
+<li>Error code -13:Bad position in result variable index. Result to variable is not form range Variable_0 to Variable_99. Check test program file if command has correct format. </li>
+<li>Error code -14: Bad source picture position in picture array. Source picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -15: Bad contour position index. Contour position is not from range Contour_0 to Contour_99. Check test program file if command has correct format. </li>
+<li>Error code -16: Bad x-ofset number. X-offset can not be  higher that image width. </li>
+<li>Error code -17: Bad y-ofset number. Y-offset can not be higher than image height.</li>
+<li>Error code -18: Source picture must be single channel. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

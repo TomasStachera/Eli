@@ -1,0 +1,40 @@
+<a name="Conversion_Threshold"></a>
+<a href="Conversion_Threshold"></a>
+<h1>Conversion_Threshold</h1>
+<h2>Using of command</h2>
+Command is use for apply treshold value to selected image.Destination pixture could be binary in treshold type TRESH_BINARY or TRESH_BINARY_INV or
+grayscale according treshold type description.Source and destination image must be single channel and source or destination image must have same width and height. Destination image could be same as source image. 
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture must be single channel and must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture:You need select destination picture where result of threshold function will be stored.Destination picture must be single channel and must be activated before use of this function.Dimension of destination picture (width, height) must be same as in source picture.You can select Picture_0 to Picture_19. Destination picture can be same as source picture </li>
+<li>Treshold from: You can select from where you can set threshol value. You can select Variable_0 to Variable_99 (in this case threshold value will be read from this variable) or Number. When you select Number you need write threshold value in the next parameter.</li>
+<li>Threshold value:This option is use only when you select option Number in previous parameter. You need set threshold value which will be use in threshold function. Threshol number must be from the range 0 to 255. </li>
+<li>Threshold type: You can select threshold function: 
+<ol>
+<li> <b> THRESH_BINARY</b><br>if (src > threshold value) then dest=255<br>else dest=0</li>
+<li> <b> THRESH_BINARY_INV</b><br> if(src > threshold value) then dest=0<br> else dest=255</li>
+<li> <b> THRESH_TRUNC</b><br> if(src > threshold value) then dest=threshold value<br>else dest=src</li>
+<li> <b> THRESH_TOZERO</b><br> if(src >threshold value) then dest=src<br>else dest=0</li>
+<li> <b> THRESH_TOZERO_INV</b><br> if(src > threshold value) then dest=0 <br> else dest=src</li>
+</ol>
+ <img src="pictures/threshold.png" width="500" height="600" alt="obrázek">
+ </li>
+</ol>
+
+<h2>Edit mode </h2>
+You can set  parameters(threshold value and treshold type) in edit window dirrectlly in the running test program. You need set break to the line with Conversion_Threshold command. Then run program in debug mode. When program stops on the line with Conversion_Threshold command select option "Run one step" from toolbar or menu. Then edit window with tested image will display.You can select threshold value and threshold type by sliders or write it directly to the parameter line and click enter. Each change will updated displayed image.Threshold type is select as number:0-THRESH_BINARY, 1-THRESH_BINARY_INV,2-THRESH_TRUNC, 3-THRESH_TOZERO, 4-THRESH_TOZERO_INV. When you press Exit you can select if you want to use new parameters in the test program. If you select "Yes" option, test program will update with new values. If you use threshold value from variable, option "Yes" change those parameters to Number.
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad position in variable array in threshold value variable. Error means that variable in threshold value is not in range 0 to 99. Check test program file if command has correct format. </li>
+<li>Error code -12:Bad position of source picture in picture array. Error means that source picture is not in range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -13:Bad position of destination picture in picture array. Error means that destination picture is not in range 0 to 19.Check test program file if command has correct format. </li>
+<li>Error code -14:Bad threshold value. Error means that threshold value is not in range 0 to 255. </li>
+<li>Error code -15:Source image is not alocated. Error means that source image was not alocated before this function. </li>
+<li>Error code -16:Destination image is not alocated. Error means that destination image was not alocated before this function. </li>
+<li>Error code -17:Bad channel number in source image.Source image must be single channel. </li>
+<li>Error code -18:Bad channel number in destination image. Destination image must be single channel. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.OpenCV error is reported also when width or height of source or destination picture are not same.</li>
+  </ol>

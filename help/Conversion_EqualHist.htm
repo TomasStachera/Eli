@@ -1,0 +1,31 @@
+<a name="Conversion_EqualHist"></a>
+<a href="Conversion_EqualHist"></a>
+<h1>Conversion_EqualHist</h1>
+<h2>Using of command</h2>
+Function equalizes the histogram of a grayscale image.Function normalizes the brightness and increases the contrast of the image.
+Equalize of histogram use following algorithm:
+<ol>
+<li> Calculate the histogram H of source image. </li>
+<li> Normalize the histogram so that the sum of histogram bins is 255.</li>
+<li> Compute the integral of the histogram </li>
+<li> Transform the image using computes integral as a look-up table to the destination image</li>
+</ol>
+
+<h2>Commands parameters</h2>
+Command has 2 parameters:
+<ol>
+<li>Source picture: You need select source picture. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture. Source and destination picture can be same. You can select Picture_0 to Picture_19. </li>
+
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad source picture position in picture array. Source picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -12: Bad destination picture position in picture array. Destination picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -13: Dimension source and destination image are not same. Width of source and destination image must be same.</li>
+<li>Error code -14: Source image must be single channel.</li>
+<li>Error code -15: Destination image must be single channel.</li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

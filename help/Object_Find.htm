@@ -1,0 +1,42 @@
+<a name="Command Object_Find"></a>
+<a href="Command Object Find"></a>
+<h1>Command Object Find</h1>
+<h2>Using of command</h2>
+This command is use for find object in contours.Before this command you need call function Contours_Find. Object find algirithm is done be program in edit window.
+Create or edit object program is done in Edit window. For run edit window you need:
+<ol>
+  <li>Put break on line with Object_Find command</li>
+  <li>Run debug mode clict on button Debug</li>
+  <li>When program stop on line with Object_Find command click  on button Run One Step</li>
+</ol>
+Edit window for this command will display.Documentation for Edit window is <a href="EditObjectFind.htm">here </a>
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li> 
+Source picture: You can select picture from where objects will find. It can be select Picture_0 to Picture_19 </li>
+<li>
+Contours: Contours block. You must select block of contours frome where objects will find. Thic block must be activated before this command in function Contours_Find .
+It can be select Contour_0 to Contour_19
+</li>
+<li> Object block number. You can select number of object blocks where object find algoriths will be stored. It can be select Block_1 to Block_20
+ </li>
+ <li>Object read mode. You can select if you want to read all Object parameters ,mode <b>All</b>  or if you want to read only some parameters mode <b> Basic</b>
+ Basic mode has parameters: Bounding rect height,Bounding rect width,Bounding rect x, Bounding rect y, contour area and perimeter</li>
+ <li>Result to. You can select where you want to store result of number of found objects. If you do mot want store this result select option <b>none</b>
+ If you want to store number of found objects to some variable you can choose Variable_0 to Variable_99</li>
+<li>List of Objects. You can select if List of objects will be cleared and new object found on this command will be add on the start of list:Option:<b>New</b> If you select option <b>Append</b> new object will be append to object list</li>
+</ol>
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11:Bad position in picture array. Picture number is not from range 0 to 19 </li>
+   <li>Error code -12:Bad position in contour array. Contour number is not from range 0 to 19 </li>
+   <li>Error code -13:Bad position in result variable index. Variable number is not from range 0 to 99 </li>
+   <li>Error code -14:Bad object block number. Object number is not from range 1 to 20 </li>
+    <li>Error code -15:Filter aplication error. Look on filter command in Edet window </li>
+    <li>Error code -16:Find object execution error. Look on object commands in Edit window </li>
+    <li>Error code -17:No object found in function. Look on object find commands </li>
+    <li>Error code -18:Object found structure is not alocated </li>
+    <li>Error code -19:Input Object found structure is not alocated </li>
+    </ol>

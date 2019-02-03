@@ -1,0 +1,28 @@
+<a name="Command System_Math"></a>
+<a href="Command System_Math"></a>
+<h1>Command System_Math</h1>
+<h2>Using of command</h2>
+This command is use for mathematical operations between variables or between variables and fixted number.
+<h2>Commands parameters</h2>
+<ol>
+<li>Variable A: This parameter is use for select variable for first operand. It can be select variable 0-99.</li>
+<li>Operator:It can be select mathematical operator.Operator is same as in c functions in math.h. Variable A is use in all operators.
+Variable B is use in some operators.Operators "+" "-" "*" "/" use Variable A and Variable B. Operator sin(A) use only Variable A as a parameter 
+of function,function atan2(A,B) use Variable A as first parameter and variable B as a second parameter etc.</li>
+<li>Variable B:This parameter is use for select variable for second operand if it is use.It can be select variable 0-99 or Number. Selection
+Number means that second operand is use fixted number which is set in the next parameter.</li>
+<li>Variable B constant number: This parameter is use if Variable B is select "Number". Number select in this parameter is use as second operand.</li>
+<li>Result to: Parameter select variable where is stored result of mathematical operation. It can be select variable 0-99.</li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11: Bad variable A. This error means that first operand is not in range variable0-99.</li>
+ <li>Error code -12:Bad operator: Operator is not in list of operators</li>
+<li> Error code -13:Bad variable B. Second operand is not in range variable0-99 or Number </li>
+<li> Error code -14:Bad result variable: Result variable is not in range variable0-99</li>
+<li>Error code -15:Devided by 0. Variable B in devided operation is 0.</li>
+<li>Error code -16:Variable A out of range. Check variable range in selected operator.</li>
+
+    </ol>

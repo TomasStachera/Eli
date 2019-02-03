@@ -1,0 +1,33 @@
+<a name="Command Source_ReadVideo"></a>
+<a href="Command Source_ReadVideo"></a>
+<h1>Command Source_ReadVideo</h1>
+<h2>Using of command</h2>
+This command is use for  read video from video file or  from url adress .Command use OpenCv function cvCreateFileCapture. Function
+alocate CVCapture structure for reading video stream from specified file. Than you should use command Source_QueryFrame from reading each frame from capture.
+Eli program use OpenCV with FFmpeg libraries.With this library you can use various video codecs, so various video files you can use. See ffmpeg documentation which kind of video files you can use.Basic codecs which works in eli program are: MPEG-1,motion-jpeg, MPEG-4.2, MPEG-4.3,MPEG-4,H263, H263I, FLV1. 
+<h2>Commands parameters</h2>
+Function has 4 parameters:
+<ol>
+<li>Select source: This parameter select if we use video file or url adress .If we select option "File", next parameter
+will be use fro set video file path. If we select  option "Url", parameter Url adress will be use for set url adress. </li>
+<li>
+Path to video file: This parameter is use only when option "File" in the first parameter was selected. Click on line with this parameter display
+Open file dialiog, where we can select video file. Path to video file will be display in this parameter. 
+</li>
+<li>
+Url adress: This parameter is use only whe option "Url" in first parameter is select. You need write url adress to ip camera to this line. This option was not tested in actual version !!
+</li>
+<li>
+Select capture: This option is use for select capture structure for reading video stream. Selected capture will be use in command Source_QueryFrame for reading video frame. You can select Capture_0 to Capture_9.
+</li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11:Bad capture position: This error means that select capture is not in range 0-9. Check eli test program if command Source_ReadVideo has  correct format. </li>
+<li>Error code -12: Capture is null: This error means that selected capture could not read video file. Check video file if exist, or if video codec of selected file is suported. </li>
+<li>Error code -100: OpenCV error: This error means that opencv function cvCreateFileCapture generated error. Explanation of this error will be display in result window.</li>
+
+</ol>
+
+

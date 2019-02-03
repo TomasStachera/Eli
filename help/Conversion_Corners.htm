@@ -1,0 +1,36 @@
+<a name="Conversion_Corners"></a>
+<a href="Conversion_Corners"></a>
+<h1>Conversion_Corners</h1>
+<h2>Using of command</h2>
+Command is use for find corners in the tested image.There are 3 functions for corners finding:
+<ol>
+<li><b>CornerHarris</b>. Function calculates for each pixel 2x2 gradient covariation matrix M over a blockSize x blockSize. Than it stores to the destination image. Corners in the image can be found as the local maxima of the destination image. </li>
+<li> <b> CornerMinEigenVal.</b>Calculates the minimal eigen value of gradient matrices for corner detection. Function calculates and stores only the minimal eigen value of derivative covariation matrix for every pixel.</li>
+<li><b>PreCornerDetect.</b>Function calculates the feature map for corner detection. </li>
+</ol>
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture must be single channel and must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture.Destination picture must be single channel   Source and destination picture can be same.You can select Picture_0 to Picture_19.</li>
+<li>Type of detector: You can select corner detection function. It can be CornerHarris,CornerMinEigenVal or PreCornerDetect.  </li>
+<li> Aperture size: You can select size of kernel. It must be odd number between 3 and 31. </li>
+<li> Block size: Neighborhood size. This parameter is active only when CornerHarris or CornerMinEigenVal  function was select in parameter Type of detector.</li>
+<li>Harris detector. This parameter is only active when option CornerHarris in parameter Type of detector was selected. It is Harris detector free parameter. </li>
+</ol>
+
+
+<h2>Edit mode </h2>
+You can set  parameters(Aperture size, Block size or Haris detector) in edit window dirrectlly in the running test program. You need set break to the line with Conversion_Corners command. Then run program in debug mode. When program stops on the line with Conversion_Corners command select option "Run one step" from toolbar or menu. Then edit window with tested image will display. You can set parameters number to the line, when you press enter new picture with updated parameters will display. When you click Exit, you can select if you want save new parameters.If you select "Yes" option, test program will update with new values.
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad source picture position on picture array. Source Picture is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -12: Bad destination picture position on picture array. Destination picture is not from range 0 to 19. Check test program file if command has correct format.</li>
+<li>Error code -13: Bad aperture size number.Aperture size must be odd number, between 3 and 31.  </li>
+<li>Error code -14: Bad block size number. Block size must be higher than 0. </li>
+<li>Error code -15: Dimension source and destination image are not same. Dimensions (height, width) source and destination picture must be same </li>
+<li>Error code -16: Channel number of source image must be 1 </li>
+<li>Error code -17: Channel number of destination image must be 1 </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+ </ol>

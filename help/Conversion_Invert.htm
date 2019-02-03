@@ -1,0 +1,22 @@
+<a name="Conversion_Invert"></a>
+<a href="Conversion_Invert"></a>
+<h1>Conversion_Invert</h1>
+<h2>Using of command</h2>
+Function is use for invert tested image. Function invert each pixel in tested image according formulla: <br><br>
+destination(x,y)=255-source(x,y) <br><br>
+<h2>Commands parameters</h2>
+Command has 2 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture.  Source and destination picture can be same.You can select Picture_0 to Picture_19.</li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad source picture position on picture array. Source Picture is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -12: Bad destination picture position on picture array. Destination picture is not from range 0 to 19. Check test program file if command has correct format.</li>
+<li>Error code -13: Dimension source and destination image are not same. Dimensions (height, width) source and destination picture must be same </li>
+
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+ </ol>

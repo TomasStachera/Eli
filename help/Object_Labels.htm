@@ -1,0 +1,50 @@
+<a name="Object_Labels"></a>
+<a href="Object_Labels"></a>
+<h1>Object_Labels</h1>
+<h2>Using of command</h2>
+Function draw objects parameters to the picture.Parameters can be in pixels or milimeters. In case of milimeters must be used undistortion 
+picture with selected undistortion channel. It can be draw:
+<ol>
+ <li> Bounding rectangle X-coordinate (Top left corner)</li>
+ <li> Bounding rectangle Y-coordinates (Top left corner)</li>
+ <li> Bounding rectangle height</li>
+ <li>Bounding rectangle width</li>
+ <li> Perimeter of object</li>
+ <li> Object area </li>
+ <li>Minimal area rectangle X-coordinate</li>
+  <li>Minimal area rectangle Y-coordinate</li>
+  <li>Minimal area rectangle height</li>
+  <li>Minimal area rectangle width</li>
+  <li>Minimal area rectange angle </li>
+  <li>Minimal enclosing circle X-coordinate</li>
+  <li>Minimal enclosing circle Y-coordinate</li>
+  <li>Minimal circle radius</li>
+</ol>
+
+
+<h2>Commands parameters</h2>
+Command has 11 parameters:
+<ol>
+<li>Source picture: You need select source picture.Labels will be draw to this picture. Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Object name: You need write object name, which object parameters will be draw </li>
+<li>Position: Position of labels according to selected oblect.</li>
+<li>Dimension from object: It can be write dimesion between object edge and start of label.This parameter is in pixels.</li>
+<li>Parameter: Select parameter which should be drawn</li>
+<li>Label color: You need select color of external contours.Left click on this parameter line opens color selection dialog </li>
+<li>Unit: It can be select if drawn parameter will be in pixels or milimeters. In case of milimeters it must be used undistortion image with proper undistortion channel</li>
+<li>Line Tickness: Thickness of letter on label.  </li>
+<li>Scale:Scale of letters on label.</li>
+<li>Font: Select labels font</li>
+ <li>Get undistortion channel: Select undistortion channel where unditortion matrix is stored. This option is used  when you select option milimeters in Unit poarameter</li>
+ </ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad position of source picture in picture array. Position of source picture is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -12:Bad  external contour color code. Check test program file if command has correct format. </li>
+<li>Error code -13: No undistorion channel was selected </li>
+<li>Error code -14: Bad undistorion channel was selected (It is not from range 0 to 19)</li>
+<li>Error code -15:Pixeles in milimeters in undistortion channel is close 0. Check if you select correct undistortion channel or make again camera calibration. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

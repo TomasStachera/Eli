@@ -1,0 +1,18 @@
+<a name="Command System_Macro"></a>
+<a href="Command System_Macro"></a>
+<h1>Command System_Macro</h1>
+<h2>Using of command</h2>
+This command is use for execute number of commands inside one commands.Macro command has one parameter. It is normal test program file with .eli extension.This program can have all commands. Only one exception is that macro file can not include Macro commands. 
+<h2>Commands parameters</h2>
+Command has only one parameter. It is file name with path of eli file which will be executed as macro. This parameter is selected in open file dialog window.
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11: Test program class for macro is already open.This error can not be display in normal condition.This error means error in test program class</li>
+<li>Error code -12: Error open macro file. This error means error durring open macro file. Check if file exist or file permision. </li>
+<li>Error codee -13: Command not found  in test program class. This error means that some command in macro file is not recognize in eli program. Check if all commands in macro file are correct.</li>
+<li>Error code -14: Command parameter is not found in test program class. Error means bad command parameter or parameters in some command in macro file.Check all commands parameters in macro file.</li>
+<li>Error code -15: Command not found in test program class. Same as error code -13. </li>
+<li>Error code -16: Macro inside macro command. Macro command was found inside macro.Macro command is prohibeted in macro file </li>
+<li>Error code -17: Macro command error. Error in some command in macro. Run macro as separate test program for check which command has a error.</li>
+    </ol>

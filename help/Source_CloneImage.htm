@@ -1,0 +1,24 @@
+<a name="Command Source_CloneImage"></a>
+<a href="Command Source_CloneImage"></a>
+<h1>Command Source_CloneImage</h1>
+<h2>Using of command</h2>
+This command is use for creation new image from another image.New image has same parameters and datas as a original image
+<h2>Commands parameters</h2>
+Function has 2 parameters:
+<ol>
+<li>Destination picture: This parameter sets  destination picture  which will be result of this command and new image will be save in this picture.
+You can select Picture_0 to Picture_19.</li>
+<li> Source picture: This parameter is use as a source picture which parameters will be cloned to Destination picture You can not select same image as in parameter Destination image.Image selected in this parameter should
+be already alocated in previous commands. </li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11: Bad destination picture. THis error means that destination picture is not in range Picture_0 to Picture_19. Check test program if option destination picture is sets correctly.</li>
+<li>Error code -12: Bad source image.Error means that source picture for clone image is not in range Picture_0 to Picture_19. Check test program if option source picture for clone image is sets correctlly.</li>
+<li>Error code -13: Source and destination image is same. Source and destination image can not be same.</li>
+<li>Error code -100: Open Cv error: This error is generated in Open Cv function  and explanation of this error will be display in result window.</li>
+
+</ol>
+
+

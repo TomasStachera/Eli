@@ -1,0 +1,24 @@
+<a name="Command System_Jump"></a>
+<a href="Command System_Jump"></a>
+<h1>Command System_Jump</h1>
+<h2>Using of command</h2>
+This command is use for jump to some line in test program. Test program run step by step from first line to the last.Command System_Jump can jump to some line before executed command or some line after executed command. Jump command can be use as cycle.It can be program all types of cycle.
+<p>
+If you use jump before , it can be use fixted number of jumps (cycle for) or cycle jump before according condition in logical expresion.If logical expresion is false  program jump to line before.If logical expresion is true program continue to the next line after jump command. In you use fixted number jumps,program jumps to selected line before till number jumps is not same as maximal jump number.Than program continue to the next line after jump command<p>
+If you use jump after, condition in logical expresion is true, program jump to selected line after executed command System_jump. Lines between executed command and jump line are skiped.If condition in logical expresion is false program continue in next line after executed command.
+
+<h2>Logical expresion</h2>
+<center>(<font size=+2 color="#0000FF">Condition 1 left</font> <font size=+2 color="#FF0000"> Condition 1 sign </font><font size=+2 color="#0000FF"> Condition 1 right )</font><br><b> Condition 2</b> <br>(<font size=+2 color="#0000FF"> Condition 2 left</font><font size=+2 color="#FF0000">  Condition 2 sign </font><font size=+2 color="#0000FF"> Condition 2 right)</font></center>
+<h2>Commands parameters</h2>
+<ol>
+<li> Jump direction:You can select in 2 option Before or After. If option Before is select program jumps to specified line before executed command. If option After is select, program jumps to specified line after executed command. </li>
+<li> Jump line from command: You need select number of line before (after) executed System_Jump command where program will jump. <br>
+Example: System_Jump is in line 12. We want to jump to line 9. You need select direction Before and Jump line from command to <b>3</b> (12-3 =9).</li>
+<li> Maximal jumps: This number set maximal number of jumps which can be executed . This parameter is use only if you use direction Before.If Jumps end number is fixted , Maximal jumps number sets number of jumps from executed System_Jump command.If JUmps end number is End_condition, this numberset maximal number of cycle. If this number is same asreal number of jumps, program will continue to the next line after executed System_Jump command even if edn condition is false.
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+  <li>
+    </ol>

@@ -1,0 +1,24 @@
+<a name="Object_Draw"></a>
+<a href="Object_Draw"></a>
+<h1>Object_Draw</h1>
+<h2>Using of command</h2>
+Function draw area of selected object to tested picture. Before this function, must be called function Object_Find.
+Function draw all objects with specified name.
+
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>Source picture: You need select source picture.Contours will be draw to this picture. Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Object name: You need write object name, which object will be draw </li>
+<li>Object draw mode: It can be select draw area type. It can be select rectangle (draw area will be rectangle) or circle (draw area will be circle)</li>
+<li>Object color: You need select color of external contours.Left click on this parameter line opens color selection dialog </li>
+<li>Line Tickness: Thickness of lines the contours are drawn with.  </li>
+ </ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad position of source picture in picture array. Position of source picture is not from range 0 to 19. Check test program file if command has correct format. </li>
+<li>Error code -13:Bad  external contour color code. Check test program file if command has correct format. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

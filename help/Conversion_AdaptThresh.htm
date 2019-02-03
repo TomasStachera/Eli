@@ -1,0 +1,49 @@
+<a name="Conversion_AdaptThresh"></a>
+<a href="Conversion_AdaptThresh"></a>
+<h1>Conversion_AdaptThresh</h1>
+<h2>Using of command</h2>
+Command is use for apply treshold value to selected image.Threshold is calculated individually for each pixel according adaptive method. Adaptive method is explained in command parameters. Source picture must be grayscale.Destination pixture is binary.
+<h2>Commands parameters</h2>
+Command has 8 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture must be single channel and must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture:You need select destination picture where result of threshold function will be stored.Destination picture must be single channel and must be activated before use of this function.Dimension of destination picture (width, height) must be same as in source picture.You can select Picture_0 to Picture_19. Destination picture can be same as source picture </li>
+<li>Adaptive method:You need select adaptive threshold algoritm.
+<ol>
+<li><b>ADAPTIVE_THRESH_MEAN_C: </b>Threshold value T(x,y) is calculated:<br>
+T(x,y) is the mean of blockSize x blockSize neighborhood of (x, y) , minus C constant
+ </li>
+<li><b>ADAPTIVE_THRESH_GAUSSIAN_C: </b>Threshold value T(x,y) is calculated:<br>
+T(x,y) is the weighted sum (i.e. cross-correlation with a Gaussian window) of of blockSize x blockSize neighborhood of (x, y) , minus C constant
+ </li>
+</ol>
+  </li>
+<li>Threshold type: You need select threshold type:
+<ol>
+<li><b>THRESH_BINARY: </b>destination pixels dest(x,y) are calculated:<br>
+if(src(x,y)>T(x,y)) dest(x,y)=255 <br>
+else dest(x,y)=0
+</li>
+<li><b>THRESH_BINARY_INV: </b>destination pixels dest(x,y) are calculated:<br>
+if(src(x,y)>T(x,y)) dest(x,y)=0 <br>
+else dest(x,y)=255
+</li>
+</ol>
+  </li>
+<li> Block size from: You can select from where you will read block size number. You can select Variable_0 to Variable_99 (in this case Block size number will be read from selected variable) or Number. If you select option "Number" you will select Block size number in the next parameter.</li>
+<li>Block size number: This parameter is active only when you select onption "Number" in previous command. You can set Block size number to this line</li>
+<li> C constant from: You can select from where you will read C constant number. You can select Variable_0 to Variable_99 (in this case C constant number will be read from selected variable) or Number. If you select option "Number" you will select C constant number in the next parameter.</li>
+<li>C constant number: This parameter is active only when you select onption "Number" in previous command.You can set C constant number to this line. </li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11: Bad position in variable array in block size or c constant value variable. Error means that variable for BlockSize number or c constant is not from range 0 to 99. Check  command format in test program file.</li>
+<li>Error code -12:Bad position of source picture in picture array.Error means that source picture is not from range 0 to 19. Check command format in test program file. </li>
+<li>Error code -13:Bad position of destination picture in picture array. Error means that destination picture is not from range 0 to 19. Check command format in the test program file. </li>
+<li>Error code -14:Source image is not alocated. Source image must be alocated before this command. </li>
+<li>Error code -15:Destination image is not alocated. Destination image must be alocated before this command. </li>
+<li>Error code -16:Bad channel number in source image. Source image must be single channel. </li>
+<li>Error code -17: Bad channel number in destination image.DEstination image must be single channel.</li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.OpenCV error is reported also when width or height of source or destination picture are not same.</li>
+  </ol>

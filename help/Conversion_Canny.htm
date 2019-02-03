@@ -1,0 +1,33 @@
+<a name="Conversion_Canny"></a>
+<a href="Conversion_Canny"></a>
+<h1>Conversion_Canny</h1>
+<h2>Using of command</h2>
+Function finds the edges on the source image and marks them in the destination image using the Canny algorithm.Canny algorithm tries to assemble the individual edge  candidate pixels into countours. These countours are formed by applying an hysteresis threshold to the pixels.There are 2 threshold. If a pixel has a gradient  larger than upper threshold (threshold 2), then it is accepted as an edge pixel; if a pixel is  bellow then lower threshold (Threshold 1), it is rejected. If the pixels gradient is between  the thresholds, then it will be accepted only if it is connected to a pixel that is above the high threshold. Canny recomended a  ratio of high:low threshold between 2:1 and 3:1.
+
+<h2>Commands parameters</h2>
+Command has 7 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Destination picture: You need select destination picture.Destination picture  must be activated before use of this function. You can select Picture_0 to Picture_19.Destinationpicture can be same as source picture.</li>
+<li>Threshold 1 from: You can select from where Threshold 1 number (lower threshold) will be read. You can select Variable_0 to Variable_99, in this case threshold 1 number will be read from selected variable. You can select option "Number", in this case threshold 1 number will be write in the next parameter. </li>
+<li>Threshold 1 number: This parameter is use only when option "Number" in previous parameter was selected. You need write fixted number of Threshold 1 (lower threshold). Number must be from range 0 to 255. </li>
+<li>Threshold 2 from: You can select from where Threshold 2 number (upper threshold) will be read. You can select Variable_0 to Variable_99, in this case threshold 2 number will be read from selected variable. You can select option "Number", in this case threshold 2 number will be write in the next parameter. </li>
+<li>Threshold 2 number: This parameter is use only when option "Number" in previous parameter was selected. You need write fixted number of Threshold 2 (upper threshold). Number must be from range 0 to 255. </li>
+<li>Aperture size: You can select aperture size, size of Sobel kernel. This number must be 3,5 or 7. </li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad threshold 1  variable index. Variable index in threshold 1 is not from range 0 to 99. Check test program file if this command has correct format</li>
+<li>Error code -12: Bad threshold 2  variable index. Variable index in threshold 2 is not from range 0 to 99. Check test program file if this command has correct format.</li>
+<li>Error code -13:Bad source picture position in picture array. Source picture index is not from range 0 to 19. Check test program file if this command has correct format. </li>
+<li>Error code -14:/Bad destination picture position in picture array. Destination picture index is not from range 0 to 19. Check test program file if this command has correct format.</li>
+<li>Error code -15:Threshold 1 number must be from range 0-255 </li>
+<li>Error code -16: Threshold 2 number must be from range 0-255 </li>
+<li>Error code -17: Aperture size must be 3,5 or 7</li>
+<li>Error code -18: Dimension source and destination image are not same, </li>
+<li>Error code -19: Channel number of source image must be 1. It can be use only single channel grayscale image</li>
+<li>Error code -20: Channel number of destination image must be 1. It can be use only single channel grayscale image.</li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

@@ -1,0 +1,69 @@
+<a name="Command Conversion_Color"></a>
+<a href="Command Conversion_Color"></a>
+<h1>Command Conversion_Color</h1>
+<h2>Using of command</h2>
+This command is use for color conversion of source image
+<h2>Commands parameters</h2>
+Function has 3 parameters:
+<ol>
+<li>Source picture:You can select one of used picture which is use as source picture for color conversion.You can select Picture_0 to Picture_19.</li>
+<li>Destination picture:You can select one of used picture which is use as destination picture for color conversion.You can select Picture_0 to Picture_19.</li>
+<li>Conversion code:You can select which type of conversion will be use. You can select:
+<ol>
+   <li> RGB2GRAY: This option convert source colour image 3 channel RGB  to 1 channel grayscale image. RGB[A]->Gray: Y<-0.299*R + 0.587*G + 0.114*B
+</li>
+  <li>GRAY2RGB:This option conver source grayscale 1 channel image to  3 channel image. All channel in destination image has same value as in grayscale image.   Gray->RGB[A]: R<-Y G<-Y B<-Y A<-0
+  </li>
+ <li>RGB2XYZ:Option covert source 3 channel RBG image to CIE XYZ format  </li>
+<li>XYZ2RGB: Option convert CIE XYZ format to 3 channel RGB image  </li>
+<li>RGB2YCrCb: Option convert 3 channel RGB format to YCrCb JPEG format.<br>Y <- 0.299*R + 0.587*G + 0.114*B<br>
+Cr <- (R-Y)*0.713 + delta<br>
+Cb <- (B-Y)*0.564 + delta<br>
+  </li>
+<li>YCrCb2RGB: Option convert YCrCb JPEG format to 3 channel RGB format<br>
+R <- Y + 1.403*(Cr - delta)<br>
+G <- Y - 0.344*(Cr - delta) - 0.714*(Cb - delta)<br>
+B <- Y + 1.773*(Cb - delta),<br>
+ </li>
+<li>RGB2HSV:Option convert source RGB format to HSV format:<br>
+V <- max(R,G,B)<br>
+S <- (V-min(R,G,B))/V   if V≠0, 0 otherwise<br>
+
+         (G - B)*60/S,  if V=R<br>
+H <- 180+(B - R)*60/S,  if V=G<br>
+     240+(R - G)*60/S,  if V=B<br>
+ 
+</li>
+<li>HSV2RGB: Option convert source HSV format to destination RGB format
+  </li>
+<li>RGB2HLS: Option convert source 3 channel RGB image to HLS format: <br>
+  Vmax <- max(R,G,B)<br>
+Vmin <- min(R,G,B)<br>
+
+L <- (Vmax + Vmin)/2<br>
+
+S <- (Vmax - Vmin)/(Vmax + Vmin)  if L < 0.5<br>
+     (Vmax - Vmin)/(2 - (Vmax + Vmin))  if L >= 0.5<br>
+
+         (G - B)*60/S,  if Vmax=R<br>
+H <- 180+(B - R)*60/S,  if Vmax=G<br>
+     240+(R - G)*60/S,  if Vmax=B<br>
+
+  </li>
+<li> HLS2RGB: Option convert HLS format to RGB format</li>
+<li>RGB2Lab:Option convert source RGB format to Lab format </li>
+<li> Lab2RGB: Option convert Lab format to RGB format </li>
+<li>RGB2Luv:Option conver RGB format to Luv format  </li>
+<li> Luv2RGB:Option convert Luv format to RGB format</li>
+<li><b>There is also conversion from BGR format to other. Function is same as in RGB format</b> </li>
+</ol> </li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11:Bad source picture position. This error means error in first parameter. Picture is not in range Picture_0 to Picture_19.</li>
+<li>Error code -12:Bad destination picture position. This error means error in second parameter. Picture is not in range Picture_0 to Picture_19.</li>
+<li>Error code -100: OpenCV error. Excplanation of this error is in result window </li>
+</ol>
+
+

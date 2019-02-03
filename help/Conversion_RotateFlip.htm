@@ -1,0 +1,32 @@
+<a name="Conversion_RotateFlip"></a>
+<a href="Conversion_RotateFlip"></a>
+<h1>Conversion_RotateFlip</h1>
+<h2>Using of command</h2>
+Function is use for rotate or flip tested image. Source image could be rotate in the all scale -360 degrees to 360 degrees.
+Image could be flip over x-axis, y-axis or both-axis.
+
+<h2>Commands parameters</h2>
+Command has 3 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture  must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Mode: You can select command mode.
+<ol>
+<li>Rotate:Source image will be rotate to angle sets in the next parameters. </li>
+<li> Flip_x-axis: Source image is flip over x-axis</li>
+<li> Flip_y-axis: Source image is flip over y-axis</li>
+<li> Flip_both_axis: Source image is flip over both axis (x,y).</li>
+</ol>
+ </li>
+<li>Rotate angle from: You can select from where angle number will be read. This parameter is use only if Rotate mode was selected in previous command.
+You can select Variable_0 to Variable_99, in this case angle number will be read from selected variable, or Number, in this case angle number will be read from the next parameter. </li>
+<li>Rotate angle number: This parameter is use only if option Number was selected in previous command. You can write angle number in degrees to this line. </li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad variable index in angle number. Error means that Variable for angle number is not from range 0 to 99.Check test program file if this command has correct format. </li>
+<li>Error code -12: Bad source picture position in picture array. Error means that source picture is not from range 0 to 19. Check test program file if this command has correct format.</li>
+<li>Error code -13: Bad source picture position in picture array. Source picture is not in range 0-19. Check test program file if command has correct format. </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

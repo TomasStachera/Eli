@@ -1,0 +1,49 @@
+<a name="Conversion_FloodFill"></a>
+<a href="Conversion_FloodFill"></a>
+<h1>Conversion_FloodFill</h1>
+<h2>Using of command</h2>
+Command aplied flood fill aloritm to source image. Function fill a connected component starting from the seed point with the specified color. The connectivity is determined by the color/brightness closeness of the neighbor pixels. The pixel at (x,y) is considered to belong to the repainted domain if: <br>
+<ol>
+<li>Grayscale image:<br> 
+<b>src(x1,y1)-loDiff <= src(x,y) <= src(x1,y1) +upDiff </b>
+ </li>
+<li>
+Color image: <br>
+<b>src(x1,y1)_R-loDiff_R <= src(x,y)_R <= src(x1,y1)_R +upDiff_R </b><br>
+<b>src(x1,y1)_G-loDiff_G <= src(x,y)_G <= src(x1,y1)_G +upDiff_G </b><br>
+<b>src(x1,y1)_B-loDiff_B <= src(x,y)_B <= src(x1,y1)_B +upDiff_B </b>
+</li>
+</ol>
+where src(x1,y1) is the value of one of pixel neighbors that is already known to belong to the component. That is, to be added to the connected component, a pixels color/brightness should be close enough to the color/brightness of one of its neighbors that are already referred to the connected component.
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li>Source picture: You need select source picture.Source picture must be single channel and must be activated before use of this function. You can select Picture_0 to Picture_19.</li>
+<li>Flood fill colour:Click on this line open color selection dialog, where you can select color which is use for connected component. </li>
+<li>X coordinate from: You can select from where x_coordinate of the seed point  will be read. You can select Variable_0 to Variable_99, in this case x-coordinate value will be read from selected variable. You can select also option Number, in this case x coordinate will be set as number in the next parameter.</li>
+<li>X coordinate number: This parameter is active only when option Number is select in previous command. You need set x-coordinate of seed point (started point of flood fill algoritm) </li>
+<li>Y coordinate from: You can select from where y_coordinate of the seed point  will be read. You can select Variable_0 to Variable_99, in this case y-coordinate value will be read from selected variable. You can select also option Number, in this case y coordinate will be set as number in the next parameter.</li>
+<li>Y coordinate number: This parameter is active only when option Number is select in previous command. You need set y-coordinate of seed point (started point of flood fill algoritm) </li>
+<li>Lo diff from: You can select from where Lo diff  will be read. You can select Variable_0 to Variable_99, in this case Lo diff value will be read from selected variable. You can select also option Number, in this case Lo diff will be set as number in the next parameter.</li>
+<li>Lo diff number: This parameter is active only when option Number is select in previous command. You need set Lo diff number.Lo diff is maximal lower brightness/color difference between the currently observed pixel and one of its neighbors belonging to the component, or a seed pixel being added to the component </li>
+<li>Up diff from: You can select from where Up diff  will be read. You can select Variable_0 to Variable_99, in this case Up diff value will be read from selected variable. You can select also option Number, in this case Up diff will be set as number in the next parameter.</li>
+<li>Up diff number: This parameter is active only when option Number is select in previous command. You need set Up diff number.Up diff is maximal upper brightness/color difference between the currently observed pixel and one of its neighbors belonging to the component, or a seed pixel being added to the component </li>
+<li>Flags: This parameter controls conectivity.If set to 4 only horizontal and vertical neighbors to the current pixel are considered in the filling process, if set to 8 flood fill will aditionally include diagonal neighbors. </li>
+</ol>
+
+<h2>Edit mode </h2>
+You can set  parameters(x-coordinate, y-coordinate, Lo diff and Up diff) in edit window dirrectlly in the running test program. You need set break to the line with Conversion_FloodFill command. Then run program in debug mode. When program stops on the line with Conversion_FloodFill command select option "Run one step" from toolbar or menu. Then edit window with tested image will display. When you left click on picture area x and y coordinate will be recalculate according current cursor position and updated picture with new parameters will display. You can set x and y coordinate as a number in parameters line. When you press enter dispalyed picture will update. Also paramaters Up diff and LO diff is set as number in parameters line and after press enter displayed picture will update. When you click Exit, you can select if you want save new parameters.If you select "Yes" option, test program will update with new values. If you use parameters from variable, option "Yes" change those parameters to Number.
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11: Bad variable position in variable array. Error means that variable in some parameter is not in range 0 to 99. Check test program file if command has right format.</li>
+<li>Error code -12:Bad flag number. Flag number is not 4 or 8. Check test program file if command has correct format. </li>
+<li>Error code -13:Bad source picture position in picture array. Error means that source picture number is not from range 0 to 19. Check test program file if command has right format. </li>
+<li>Error code -14: Bad colour code. Color code must be in format R,G,B. R,G,B must be from range 0-255. Check test program file if command has right format.</li>
+<li>Error code -15:Bad x_position value . x-coordinate of seed point must be from range 1 to (widht of picture-1).</li>
+<li>Error code -16:Bad y_position value . y-coordinate of seed point must be from range 1 to (height of picture-1).</li>
+<li>Error code -17:Bad loDiff value: Lo diff value must be greater than 0.</li>
+<li>Error code -18:Bad upDiff value: Up diff value must be greater than 0 </li>
+<li>Error code -19:Source image is not alocated. Source image must be alocated before use of this function </li>
+<li>Error code -100: OpenCV error. Explanation of this error will be displayed in result window.</li>
+  </ol>

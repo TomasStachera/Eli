@@ -1,0 +1,21 @@
+<a name="Source_WriteVideoFrame"></a>
+<a href="Source_WriteVideoFrame"></a>
+<h1>Source_WriteVideoFrame</h1>
+<h2>Using of command</h2>
+This command is use for write picture frame to video file.  Video file is represented Video writer structure. THe first call of this command write first frame, second call this command write second frame and so on. Command Source_CreateVideoFile must be call before this command.
+
+<h2>Commands parameters</h2>
+Command has 2 parameters:
+<ol>
+<li> Select Video writer: Click on line with this option open combobox with video writer selection. Selected video writer represented video file where we want write frame. You can select VideoWriter_0 to VideoWriter_9.</li>
+<li> Frame as picture: This parameter select  picture which we want to write as video frame to video file. You can select Picture_0 to Picture_19. </li>
+
+</ol>
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11: Bad video writer structure position. This error means that selected video writer index is not in range 0 to 9. Check test program file if command has correct format.</li>
+<li> Error code -12:Bad position in picture structure. The error means taht selected picture index is not in range 0 to 19. Chack test program file if command has correct format.   </li>
+<li>Error code -13: Video writer is not inicialize. Error means that video writer was not inicialize before this command. Check if command  Source_CreateVideoFile was call before this command, and check if video writer index is same as in Source_CreateVideoFile command. </li>
+<li>Error code -100: OpenCv error. This error reported OpenCv function cvWriteFrame. Explanation of this error will be display in result window.  </li>
+    </ol>

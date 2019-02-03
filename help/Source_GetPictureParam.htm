@@ -1,0 +1,23 @@
+<a name="Source_GetPictureParam"></a>
+<a href="Source_GetPictureParam"></a>
+<h1>Source_GetPictureParam</h1>
+<h2>Using of command</h2>
+This command is use for read picture parameters (width,height,channels,element size, number of pixels, depth)
+
+<h2>Commands parameters</h2>
+Command has 3 parameters:
+<ol>
+<li> <b>Select picture:</b> It can be selected picture which parameters will be read. It can be select from Picture_0 to Picture_19</li>
+<li><b>Picture parameters:</b>It can be select parameter which will be read (width,height,channels,element size, number of pixels, depth)</li>
+<li><b>Value to</b> It can be select where readed value will be stored. It can be selected Variable_0 to Variable_99</li>
+
+</ol>
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11: Bad picture position. Input picture is not from range Picture_0 to Picture_19</li>
+
+<li>Error code -12: Bad variable position. Selected variable for stor parameters is not from range Variable_0 to Variable_99</li>
+
+<li>Error code -100: OpenCv error. Explanation of this error will be display in result window.  </li>
+    </ol>

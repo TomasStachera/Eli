@@ -1,0 +1,27 @@
+<a name="Source_QueryFrame"></a>
+<a href="Source_QueryFrame"></a>
+<h1>Source_QueryFrame</h1>
+<h2>Using of command</h2>
+This command is use for read picture frame from video(camera) capture.Frame is store in picture array and you can work with this picture. Capture must be open
+before call this command. After call this command capture pointer is move to the next frame. So the first call of this command read first frame (or actual frame from camera), second call of this command call second frame and so on.. If you want read all frames from video file, number of call of this command is same as frame number in video file.
+
+<h2>Commands parameters</h2>
+Command has 2 parameters:
+<ol>
+<li> Select capture: This option is use for select capture from which we want read frame. Click on line with this parameter display combobox 
+with all possible captures. You can select Capture_0 to Capture_9. Selected capture must be open with command Source_ReadCamera  or Source_ReadVideo before
+read of this command.
+</li>
+<li>Frame as picture: This option select picture  from picture array. Selected picture could be modified in the next program steps. You can select Picture_0 to Picture_19.  </li>
+<li>Get undistortion chan:Select undistortion channel where calibration data is stored. If you select option none real image from camera will be used without undistortion coeficients  </li>
+</ol>
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11:Bad capture index.This error means that selected capture has bad index (not in range 0 to 9). Check test program file if command Source_QueryFrame has correct format. </li>
+<li>Error code -12:Bad picture index. This error means that selected picture has bad index (not in range 0 to 19). Check test program file if this command has correct format.   </li>
+<li>Error code -13: Input capture is not opened.  </li>
+<li>Error code -14: Bad undistortion channel. Channel number is more than 19</li>
+<li>Error code -15: Error get undistortion image </li>
+<li>Error code -100: OpenCV error. This error means OpenCV error in  OPenCV function in this command. Command use OpenCV function: cvQueryFrame and cvCloneImage. Explanation of this error is in Result window.  </li>
+    </ol>

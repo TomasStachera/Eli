@@ -1,0 +1,38 @@
+<a name="Command System_Jump"></a>
+<a href="Command System_Jump"></a>
+<h1>Command System_Jump</h1>
+<h2>Using of command</h2>
+This command is use for jump to some line in test program. Test program run step by step from first line to the last.Command System_Jump can jump to some line before executed command or some line after executed command. Jump command can be use as cycle.It can be program all types of cycle.
+<p>
+If you use jump before , it can be use fixted number of jumps (cycle for) or cycle jump before according condition in logical expresion.If logical expresion is false  program jump to line before.If logical expresion is true program continue to the next line after jump command. In you use fixted number jumps,program jumps to selected line before till number jumps is not same as maximal jump number.Than program continue to the next line after jump command<p>
+If you use jump after, condition in logical expresion is true, program jump to selected line after executed command System_jump. Lines between executed command and jump line are skiped.If condition in logical expresion is false program continue in next line after executed command.
+
+<h2>Logical expresion</h2>
+<center>(<font size=+2 color="#0000FF">Condition 1 left</font> <font size=+2 color="#FF0000"> Condition 1 sign </font><font size=+2 color="#0000FF"> Condition 1 right )</font><br><b> Condition 2</b> <br>(<font size=+2 color="#0000FF"> Condition 2 left</font><font size=+2 color="#FF0000">  Condition 2 sign </font><font size=+2 color="#0000FF"> Condition 2 right)</font></center>
+<h2>Commands parameters</h2>
+<ol>
+<li> Jump direction:You can select in 2 option Before or After. If option Before is select program jumps to specified line before executed command. If option After is select, program jumps to specified line after executed command. </li>
+<li> Jump line from command: You need select number of line before (after) executed System_Jump command where program will jump. <br>
+Example: System_Jump is in line 12. We want to jump to line 9. You need select direction Before and Jump line from command to <b>3</b> (12-3 =9).</li>
+<li> Maximal jumps: This number set maximal number of jumps which can be executed . This parameter is use only if you use direction Before.If Jumps end number is fixted , Maximal jumps number sets number of jumps from executed System_Jump command.If JUmps end number is End_condition, this number sets maximal number of cycle. If this number is same as real number of jumps, program will continue to the next line after executed System_Jump command even if edn condition is false.</li>
+<li> Jumps end number: There is 2 option Fixted and End condition. If option fixted is selected and jump direction is "Before", number of jumps is fixted and this number is same as Maximal jumps number.If jump direction is "After" program always jump to specified line. If option "End condition" is use, program jump according logical expresion.</li>
+<li>Condition 1 left: You can select Variable 0-99 which will be in the left side of Condition 1.</li>
+<li>Condition 1 sign: You can select 3 types of sign on Condition 1.If use option less, condition 1 is true if left variable is less as right variable.If use option more, condition 1 is true if left variable is more than right. If use option equal, condition 1 is true if left variable is equal as right.</li>
+<li>Condition 1 right: You can select Variable 0-99 or Number. which will be in the right side of Condition 1. If option Number is select right side of condition will be fixted number sets in next parameter</li>
+<li>Condition 1 right number: This parameter is use for set fixted number in left side of condition 1.This parameter is use only when option "Number" is select is parameter Condition 1 right. </li>
+<li>Condition 2: This parameter is use for select if in expresion will be use also Condition 2 and if yes which type of logical operation will be use.The first parameter is "Not_used". If this parameter is selected, only Condition 1 will be use in logical expresion.Option "And" means than Condition 1 and Condition 2 will be use in logical expresion. LOgical operation between Condition 1 and Condition 2 is AND.Option "Or" means that Condition 1 and Condition 2 will be use in logical expresion. LOgical operation between Condition 1 and Condition 2 is OR.</li>
+<li>Condition 2 left: You can select Variable 0-99 which will be in the left side of Condition 2.</li>
+<li>Condition 2 sign: You can select 3 types of sign on Condition 2.If use option less, condition 2 is true if left variable is less as right variable.If use option more, condition 2 is true if left variable is more than right. If use option equal, condition 2 is true if left variable is equal as right.</li>
+<li>Condition 2 right: You can select Variable 0-99 or Number. which will be in the right side of Condition 2. If option Number is select right side of condition will be fixted number sets in next parameter</li>
+<li>Condition 2 right number: This parameter is use for set fixted number in left side of condition 2.This parameter is use only when option "Number" is select is parameter Condition 2 right. </li>
+</ol>
+
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -21:Jump line is less than 0. This error means that jump before line is less than first line in the test program.</li>
+<li>Error code -22:JUmp line is more than maximal number lines. This error means that jump after line is more than maximal line in the test program.</li>
+<li> Error code -12: More than 30 active jumps.It means than there are more than 30 active jumps in the test program.</li>
+<li>Error code -13: JUmp position field error. It means error in field index in System_jump class</li>
+<li>Error code -20: JUmp command error> This error means that is error in test program parameters.</li>
+  </ol>

@@ -1,0 +1,53 @@
+<a name="Source_CaptureProperty"></a>
+<a href="Source_CaptureProperty"></a>
+<h1>Source_CaptureProperty</h1>
+<h2>Using of command</h2>
+This command is use for set or get video file or camera parameters.Option Set setup video file or camera parameters. Option Get read video file or camera parameters and store it in some variables.
+
+<h2>Commands parameters</h2>
+Command has 5 parameters:
+<ol>
+<li> Properties: You can select 2 option. The first is Set and the second is Get. If you select option "Set" you will be able set camera or video properties. If yoy compile OPenCV with ffmpeg library (prefered option for eli project), <b>Set option does not work</b> in video files !!! If you select option "Get" you will be able read video or camera parameters and store it in some system variables.
+</li>
+<li>
+Select capture: You can select capture from parameters will be read or set. You can select Capture_0 to Capture_9.
+</li>
+<li>
+Property ID: You can select parameter which is read or set from video capture. 
+   <ol>
+     <li>CV_CAP_PROP_POS_MSEC:Get option- Film current position in miliseconds or video capture timestamp. Set option-position in miliseconds from video file beginning.  </li>
+     <li>CV_CAP_PROP_POS_FRAMES: Get option-Frame number which will be decode next. Set option-Set position in video file (in number frames).(only for video files)  </li>
+<li> CV_CAP_PROP_POS_AVI_RATIO: Relative position of video file.(0-start, 1=end of film) </li>
+<li>CV_CAP_PROP_FRAME_WIDTH: Width of frame in video file or camera frame. Set option is available only for cameras.  </li>
+<li> CV_CAP_PROP_FRAME_HEIGHT:Height of frame in video file or camera frame. Set option is available only for cameras. </li>
+<li> CV_CAP_PROP_FPS: Frame rate. Number frame per seconds. Set option is available only for cameras. </li>
+<li>CV_CAP_PROP_FOURCC: 4-character code of codec. See ffmpeg manual. Set option is available only for cameras. </li>
+<li> CV_CAP_PROP_FRAME_COUNT: Available only in "Get" option. Function read total frame count in video file. Vaule depend of using codec. See ffmpeg manual. </li>
+<li>CV_CAP_PROP_FORMAT: Format of the Mat objects  </li>
+<li>CV_CAP_PROP_MODE: Backend-specific value indicating the current capture mode. </li>
+<li> CV_CAP_PROP_BRIGHTNESS :Brightness of the image (only for cameras).</li>
+<li> CV_CAP_PROP_CONTRAST: Contrast of the image (only for cameras).</li>
+<li>CV_CAP_PROP_SATURATION: Saturation of the image (only for cameras).</li>
+<li>CV_CAP_PROP_HUE: Hue of the image (only for cameras).</li>
+<li>CV_CAP_PROP_GAIN: Gain of the image (only for cameras).</li>
+<li>CV_CAP_PROP_EXPOSURE: Exposure (only for cameras).</li>
+<li>CV_CAP_PROP_CONVERT_RGB: Boolean flags indicating whether images should be converted to RGB.</li>
+<li>CV_CAP_PROP_WHITE_BALANCE_U: The U value of the whitebalance setting (note: only supported by DC1394 v 2.x backend currently)</li>
+<li>CV_CAP_PROP_WHITE_BALANCE_V: The V value of the whitebalance setting (note: only supported by DC1394 v 2.x backend currently)</li>
+<li>CV_CAP_PROP_RECTIFICATION: Rectification flag for stereo cameras (note: only supported by DC1394 v 2.x backend currently)</li>
+<li>CV_CAP_PROP_ISO_SPEED : The ISO speed of the camera (note: only supported by DC1394 v 2.x backend currently)</li>
+<li>CV_CAP_PROP_BUFFERSIZE : Amount of frames stored in internal buffer memory (note: only supported by DC1394 v 2.x backend currently)</li>
+   </ol>
+</li>
+<li>Value From/To: You can celect which Variable is use for set or read capture parameters. For "Set" option you can select parameter "Number".
+It can be select Variable_0 to Variable_99 or Number. </li>
+<li>Value ID number: Available only in "Set" option. This parameter can be use only if parameter "Value From/To" is set to "Number". You can write number which will be set to video capture.  </li>
+</ol>
+<h2>Error codes</h2>
+
+<ol>
+  <li>Error code -11: Bad capture index.Capture has bad index. Index must be 0 to 9. Check test program file if command has correct format </li>
+  <li>Error code -12: Bad variable index. Variable index is bad. Index must be 0 to 99. Check test program file if command has correct format.  </li>
+ <li> Error code -13: Selected capture is null. Error means that selected capture was not open before this command.</li>
+<li> Error code -100: OpenCV error. Used OpenCV function generated error. Explanation of error will be display in result window. Command use those OPenCV functions:cvSetCaptureProperty and cvGetCaptureProperty. 
+    </ol>

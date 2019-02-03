@@ -1,0 +1,32 @@
+<a name="Command Source_SaveImage"></a>
+<a href="Command Source_SaveImage"></a>
+<h1>Command Source_SaveImage</h1>
+<h2>Using of command</h2>
+This command is use for save picture to picture file. Command use OpenCv function cvSaveImage.Selected picture  will be save 
+to picture file.
+<br>Following file formats are suported:
+<ol>
+<li>Windows bitmaps - BMP, DIB </li>
+<li>JPEG files - JPEG, JPG, JPE </li>
+<li>Portable Network Graphics - PNG</li>
+<li>Portable image format - PBM, PGM, PPM</li>
+<li>Sun rasters - SR, RAS</li>
+<li>TIFF files - TIFF, TIF</li>
+<li>OpenEXR HDR images - EXR</li>
+<li>JPEG 2000 images - jp2</li>
+</ol>
+<h2>Commands parameters</h2>
+Function has 2 parameters:
+<ol>
+<li>Source picture:You can select one of used picture from where picture will be saved.You can select Picture_0 to Picture_19.</li>
+<li>Path to picture file: This parameter sets path and file name for picture file which will be saved.Click on this parameter line
+open Save file dialog, where user can select picture file. Type of picture file depends on file extension, so extension must be one of suported format. </li>
+</ol>
+
+<h2>Error codes</h2>
+<ol>
+<li>Error code -11:Bad picture position. This error means error in first parameter. Picture is not in range Picture_0 to Picture_19.</li>
+<li>Error code -100:OpenCV error: This error is error inside OpenCv function cvSaveImage. Error decription is display in result window. Reason for this error can be bad picture extension,bad path, picture can not be save in selected directory (Check write permision for selected directory)</li>
+</ol>
+
+
