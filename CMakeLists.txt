@@ -4,12 +4,16 @@ cmake_minimum_required (VERSION 2.6)
 project(Eli)
 SET (VERSION_MAJOR 1)
 SET (VERSION_MINOR 0)
-SET(ELI_LIB OFF CACHE BOOL "Install eli lib?")
-SET(ELI_GUI ON CACHE BOOL "Install eli gui?")
+# Create shared library
+SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
+#Create gui application
+SET(ELI_GUI OFF CACHE BOOL "Create eli gui?")
 if(WIN32)
+# Set installation directory for Windows
 SET(INSTAL_DIR ${PROJECT_SOURCE_DIR}/install)
 else()
-SET(INSTAL_DIR /usr/local/Eli)
+# Set instalation directory for Linux
+SET(INSTAL_DIR /usr/local)
 ENDIF()
 # Declare wxWidgets directory
 IF(WIN32)
@@ -27,7 +31,7 @@ SET(wxWidgets_CONFIGURATION mswu)
 ENDIF()
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 # Set gui aplication files
-SET (TARGET_main_FILES 
+SET (TARGET_main_FILES
 ${PROJECT_SOURCE_DIR}/src/eliApp.cpp
   ${PROJECT_SOURCE_DIR}/src/eliMain.cpp
  ${PROJECT_SOURCE_DIR}/src/CameraCalibration.cpp
@@ -46,14 +50,15 @@ ${PROJECT_SOURCE_DIR}/src/CameraProperties.cpp
  ${PROJECT_SOURCE_DIR}/src/VariableWindow.cpp
 ${PROJECT_SOURCE_DIR}/src/LOGMES.cpp
   ${PROJECT_SOURCE_DIR}/src/resource.rc )
-  
+
  # Set export library files
  SET( LIBRARY_MAIN_FILES
  ${PROJECT_SOURCE_DIR}/src/commands_main.cpp
   ${PROJECT_SOURCE_DIR}/src/commands1.cpp
  ${PROJECT_SOURCE_DIR}/src/commands2.cpp
   ${PROJECT_SOURCE_DIR}/src/commands3.cpp
-  ${PROJECT_SOURCE_DIR}/src/ContourDescript.cpp 
+  ${PROJECT_SOURCE_DIR}/src/ContourDescript.cpp
+ ${PROJECT_SOURCE_DIR}/src/libmain.cpp
  )
 
 SET(wxWidgets_USE_LIBS)
@@ -73,6 +78,6 @@ IF(ELI_LIB)
  target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
 ENDIF(ELI_LIB)
 
-install(TARGETS Eli DESTINATION ${INSTAL_DIR})
-install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
-install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)
+#install(TARGETS Eli DESTINATION ${INSTAL_DIR})
+#install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
+#install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)
