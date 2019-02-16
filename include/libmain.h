@@ -8,6 +8,10 @@ class GLOB_ELI_CLASS: public INIT_CMD{
       GLOB_ELI_CLASS(){InitAll();}
       ~GLOB_ELI_CLASS(){CloseAll();}
 
+      void InitAll(void);
+       void CloseAll(void);
+       int GetInitNumber(void){return init_number;}
+
       //Function for open eli program
       int OpenProgram(wxString path);
       int OpenProgramCh(char *pathx);
@@ -37,8 +41,7 @@ class GLOB_ELI_CLASS: public INIT_CMD{
        int GetNumberObjectsNameCh(char *namex);
        int GetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
    private:
-       void InitAll(void);
-       void CloseAll(void);
+
        Mat result_img;
 
      TestProgram *tp_prg; //Pointer for TestProgram array

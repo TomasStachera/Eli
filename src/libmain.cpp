@@ -2,28 +2,193 @@
 
 GLOB_ELI_CLASS eli_class;
 
+
+#if defined(__UNIX__)
+#  define EXPORTIT
+
+#elif (__WINDOWS__)
+
+#  define EXPORTIT __declspec( dllexport )
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
+{
+    switch (fdwReason)
+    {
+        case DLL_PROCESS_ATTACH:
+
+            /* Init Code here */
+
+            break;
+        case DLL_THREAD_ATTACH:
+            break;
+        case DLL_THREAD_DETACH:
+
+            break;
+
+       case DLL_PROCESS_DETACH:
+
+            /* Cleanup code here */
+
+            break;
+
+    }
+
+    /* The return value is used for successful DLL_PROCESS_ATTACH */
+
+        return TRUE;
+
+}
+#endif
+
 extern "C"
 {
-    // A function adding two integers and returning the result
-    int SampleAddInt(int i1, int i2)
-    {
-        return i1 + i2;
-    }
+  EXPORTIT int OpenProgram(wxString path)
+  {
+      int ret=eli_class.OpenProgram(path);
 
-    // A function doing nothing ;)
-    void SampleFunction1()
-    {
-        // insert code here
-    }
+      return ret;
+  }
+  EXPORTIT int OpenProgramCh(char *pathx)
+  {
+      int ret=eli_class.OpenProgramCh(pathx);
 
-    // A function always returning zero
-    int SampleFunction2()
-    {
-        // insert code here
+      return ret;
+  }
 
-        return 0;
-    }
+  EXPORTIT int SetSystemVariable(int pos,float variabl)
+  {
+      int ret=eli_class.SetSystemVariable(pos,variabl);
+
+      return ret;
+  }
+
+  EXPORTIT int GetSystemVariable(int pos,float *fval)
+  {
+      float fv=0;
+      int ret=eli_class.GetSystemVariable(pos,fv);
+      fval=&fv;
+      return ret;
+  }
+
+  EXPORTIT int RunProgram(void)
+  {
+      int ret=eli_class.RunProgram();
+
+      return ret;
+  }
+
+  EXPORTIT int RunProgramFromLine(int line)
+  {
+      int ret=eli_class.RunProgramFromLine(line);
+
+      return ret;
+  }
+
+  EXPORTIT void EndRunFromLine(void)
+  {
+      eli_class.EndRunFromLine();
+  }
+
+  EXPORTIT wxString GetErrorString(void)
+  {
+      wxString retstr=eli_class.GetErrorString();
+      return retstr;
+  }
+
+  EXPORTIT int GetErrorStringCh(int max_len,char *er_str)
+  {
+      int ret=eli_class.GetErrorStringCh(max_len,er_str);
+      return ret;
+  }
+
+  EXPORTIT int GetStringVariable(int pos,wxString *sval)
+  {
+      wxString wxval;
+      int ret=eli_class.GetStringVariable(pos,wxval);
+      sval=&wxval;
+      return ret;
+  }
+
+  EXPORTIT int GetStringVariableCh(int pos,int max_len,char *valx)
+  {
+      int ret=eli_class.GetStringVariableCh(pos,max_len,valx);
+      return ret;
+  }
+
+  EXPORTIT int GetNumberOfAllObjects(void)
+  {
+      return eli_class.GetNumberOfAllObjects();
+  }
+
+  EXPORTIT int GetObjectsParametersName(int pos,wxString *namex)
+  {
+     wxString wxval;
+     int ret=eli_class.GetObjectsParametersName(pos,wxval);
+     namex=&wxval;
+     return ret;
+  }
+
+  EXPORTIT int GetObjectsParametersNameCh(int pos,int max_len,char *namex)
+  {
+      int ret=eli_class.GetObjectsParametersNameCh(pos,max_len,namex);
+      return ret;
+  }
+
+  EXPORTIT int GetNumberObjectsName(wxString namex)
+  {
+      int ret=eli_class.GetNumberObjectsName(namex);
+      return ret;
+  }
+
+  EXPORTIT int GetNumberObjectsNameCh(char *namex)
+  {
+      int ret=eli_class.GetNumberObjectsNameCh(namex);
+      return ret;
+  }
+
+  EXPORTIT int GetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval)
+  {
+      int ret=eli_class.GetObjectParameter(namex,pos,ival,dval);
+      return ret;
+  }
+/**
+Function for get object parameters which does not use vector (for C language)
+1.parameter: namex: object name
+2.parameter:max_len: maximal length size for alocation ival and dval pointer
+3.parameter: pos: position in object structure
+4.parameter: num_ival: number of integer values in ival
+5.parameter: ival: INTEGER value pointer
+6.parameter: num_dval: number og double values in dval
+7.parameter: dval: DOUBLE value pointer
+Function return 0 if not object with same name as 1.parameter as found
+         return -1 if 2.parameter is out of range
+         return -2 if Size returned vector is more than max_len
+        return 1 if type of returned parameters id INTEGER
+        return 2 if type of returned parameters ids double
+
+**/
+  EXPORTIT int GetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval)
+  {
+      std::vector<int> ixval;
+      std::vector<double> dxval;
+
+      wxString nam = wxString::FromUTF8(namex);
+
+      int ret=eli_class.GetObjectParameter(nam,pos,ixval,dxval);
+      if(ret < 0)
+      {
+        *num_ival=ixval.size();
+        *num_dval=dxval.size();
+        if(ixval.size()>max_len)return -2; //
+        if(dxval.size()>max_len)return -2; //Size returned vector is more than max_len
+        for(unsigned i=0;i<ixval.size();i++) ival[i]=ixval[i];
+        for(unsigned i=0;i<dxval.size();i++)dval[i]=dxval[i];
+      }
+
+      return ret;
+  }
 }
+
 
 /*
 Function must be called in loading library
