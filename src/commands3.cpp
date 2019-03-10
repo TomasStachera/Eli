@@ -448,18 +448,17 @@ int mode=0;
   pd->ival[0]=picture_pos;
   pd->ival[1]=contour_pos;
 
-
-
+#ifndef ELI_SHARED_LIB
   if(edit==1)
   {
 
-      ContourDescript *cont=new ContourDescript(0,wxID_ANY,wxDefaultPosition,wxDefaultSize,pd,obp,object_block);
+    ContourDescript *cont=new ContourDescript(0,wxID_ANY,wxDefaultPosition,wxDefaultSize,pd,obp,object_block);
 
     cont->ShowModal();
 
    delete cont;
   }
-
+#endif
 try
 {
   ContourCalculation *calc=new ContourCalculation(pd->contoursx[contour_pos],obp,object_block,mode);

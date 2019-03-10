@@ -257,6 +257,7 @@ Class for Scale conversion. Command add  or multiply some number to each pixels 
 
 try
 {
+     #ifndef ELI_SHARED_LIB
     if(edit==1)
     {
         Mat empt1,empt2;
@@ -264,6 +265,7 @@ try
         wxArrayString names;
         names.Add(_("Shift"));
         names.Add(_("Scale"));
+
         editPicture dlg(0,2,names,-255,255,0,20,shift_number,scale_number,pd->imgx[src_pic],empt1,empt2);
         if(dlg.ShowModal()==wxID_OK)
         {
@@ -272,7 +274,9 @@ try
             pd->updated_param.sprintf(_("Picture_%d#Picture%d#Number#%f#Number#%f"),src_pic,dest_pic,scale_number,shift_number);
             pd->update_param=true;
         }
+
     }
+    #endif
 
   pd->imgx[src_pic].convertTo(pd->imgx[dest_pic],-1,scale_number,shift_number);
 }
@@ -403,7 +407,7 @@ if(height<=0) return -9; // height is less or equal 0
 if((height+y_cor)>pd->imgx[pic_pos].rows) return -10; // height is more  tha picture height
 
 
-
+ #ifndef ELI_SHARED_LIB
    if(edit==1)
     {
         Mat empt1,empt2;
@@ -412,6 +416,7 @@ if((height+y_cor)>pd->imgx[pic_pos].rows) return -10; // height is more  tha pic
          names.Add(_("Width"));
          names.Add(_("y-position"));
          names.Add(_("Height"));
+
       editPicture dlg(0,1,names,x_cor,y_cor,width,height,0,0,pd->imgx[pic_pos],empt1,empt2);
         if(dlg.ShowModal()==wxID_OK)
         {
@@ -423,7 +428,9 @@ if((height+y_cor)>pd->imgx[pic_pos].rows) return -10; // height is more  tha pic
             pd->updated_param.sprintf(_("Picture_%d#Number#%d#Number#%d#Number#%d#Number#%d"),pic_pos,x_cor,y_cor,width,height);
             pd->update_param=true;
         }
+
     }
+    #endif
 
 pd->imgx[pic_pos]=pd->imgx[pic_pos](cvRect(x_cor,y_cor,width,height));
 
@@ -537,6 +544,7 @@ Each pixels is before add multiply with weight factor on image.
 
     try
     {
+        #ifndef ELI_SHARED_LIB
      if(edit==1)
      {
          Mat empt1;
@@ -545,6 +553,7 @@ Each pixels is before add multiply with weight factor on image.
          names.Add(_("A picture weight"));
          names.Add(_("B picture weight"));
          names.Add(_("Gama"));
+
        editPicture dlg(0,3,names,weight_A,weight_B,0,0,0,0,pd->imgx[sourc_pic_A],pd->imgx[sourc_pic_B],empt1);
         if(dlg.ShowModal()==wxID_OK)
         {
@@ -554,7 +563,9 @@ Each pixels is before add multiply with weight factor on image.
             pd->updated_param.sprintf(_("Picture_%d#Picture_%d#Number#%f#Picture_%d#Number#%f"),dest_pos,sourc_pic_A,weight_A,sourc_pic_B,weight_B);
             pd->update_param=true;
         }
+
     }
+    #endif
 
     addWeighted(pd->imgx[sourc_pic_A],weight_A,pd->imgx[sourc_pic_B],weight_B,0,pd->imgx[dest_pos]);
 
@@ -674,6 +685,7 @@ Class for image threshold. Function convert image according threshold value
       if(pd->imgx[sour_pic_pos].channels() !=1) return -7;// bad channel number in source image
       if(pd->imgx[dest_pic_pos].channels() != 1) return -8;// bad channel number in destination image
 
+      #ifndef ELI_SHARED_LIB
       if(edit==1)
       {
           Mat empt1;
@@ -685,6 +697,7 @@ Class for image threshold. Function convert image according threshold value
          if(threshold_type==THRESH_TRUNC)tp=2;
          if(threshold_type==THRESH_TOZERO)tp=3;
          if(threshold_type==THRESH_TOZERO_INV)tp=4;
+
      editPicture dlg(0,4,names,threshold_value,tp,0,0,0,0,pd->imgx[sour_pic_pos],empt1,empt1);
         if(dlg.ShowModal()==wxID_OK)
         {
@@ -709,8 +722,9 @@ Class for image threshold. Function convert image according threshold value
 
             pd->update_param=true;
         }
-      }
 
+      }
+#endif
 
       threshold(pd->imgx[sour_pic_pos],pd->imgx[dest_pic_pos],(double)threshold_value,255,threshold_type);
     }
@@ -994,7 +1008,7 @@ int Conversion_FloodFill::GetLineParam(int line,wxString &name,int &type,wxArray
      if((y_pos<1)||(y_pos>(pd->imgx[sour_pic_pos].rows-1))) return -6; // bad y position value
       if(loDiff<0) return -7; // bad loDiff value
       if(upDiff<0) return -8; //bad upDiff value
-
+#ifndef ELI_SHARED_LIB
     if(edit==1)
      {
           wxArrayString names;
@@ -1015,6 +1029,7 @@ int Conversion_FloodFill::GetLineParam(int line,wxString &name,int &type,wxArray
             pd->update_param=true;
         }
     }
+    #endif
 
     floodFill(pd->imgx[sour_pic_pos], Point(x_pos,y_pos), CV_RGB(r_colour,g_colour,b_colour),0, Scalar(loDiff,loDiff,loDiff), Scalar(upDiff,upDiff,upDiff),flags);
     }
@@ -1811,7 +1826,7 @@ Mat Conversion_RotateFlip::rotateImage(Mat src, int angleDegrees)
   if(pd->imgx[sour_pic_pos].rows != pd->imgx[dest_pic_pos].rows) return -8; //dimension source and destination image are not same
   if(pd->imgx[sour_pic_pos].channels()!= 1) return -9; // channel number of source image must be 1
    if(pd->imgx[dest_pic_pos].channels()!= 1) return -10; // channel number of destination image must be 1
-
+#ifndef ELI_SHARED_LIB
     if(edit==1)
      {
           wxArrayString names;
@@ -1829,6 +1844,7 @@ Mat Conversion_RotateFlip::rotateImage(Mat src, int angleDegrees)
             pd->update_param=true;
         }
     }
+    #endif
 
     Canny(pd->imgx[sour_pic_pos],pd->imgx[dest_pic_pos],(double)thres1,(double)thres2,aperture_size);
 
@@ -1933,6 +1949,7 @@ Mat Conversion_RotateFlip::rotateImage(Mat src, int angleDegrees)
   if(pd->imgx[sour_pic_pos].channels()!= 1) return -6; // channel number of source image must be 1
    if(pd->imgx[dest_pic_pos].channels()!= 1) return -7; // channel number of destination image must be 1
 
+   #ifndef ELI_SHARED_LIB
     if(edit==1)
      {
          Mat empt1,empt2,originx;
@@ -1979,6 +1996,7 @@ Mat Conversion_RotateFlip::rotateImage(Mat src, int angleDegrees)
           }
        pd->imgx[sour_pic_pos]=originx.clone();
     }
+    #endif
     Mat imgx;
 
     if(type==1)  preCornerDetect(pd->imgx[sour_pic_pos],imgx,aperture_size);

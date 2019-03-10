@@ -53,15 +53,17 @@ ${PROJECT_SOURCE_DIR}/src/LOGMES.cpp
 
  # Set export library files
  SET( LIBRARY_MAIN_FILES
+  ${PROJECT_SOURCE_DIR}/src/libmain.cpp
  ${PROJECT_SOURCE_DIR}/src/commands_main.cpp
   ${PROJECT_SOURCE_DIR}/src/commands1.cpp
  ${PROJECT_SOURCE_DIR}/src/commands2.cpp
   ${PROJECT_SOURCE_DIR}/src/commands3.cpp
-  ${PROJECT_SOURCE_DIR}/src/ContourDescript.cpp
- ${PROJECT_SOURCE_DIR}/src/libmain.cpp
+  ${PROJECT_SOURCE_DIR}/src/ContourDescript3.cpp
+  ${PROJECT_SOURCE_DIR}/src/CameraCalibration.cpp
  )
 
 SET(wxWidgets_USE_LIBS)
+add_definitions(-DELI_SHARED_LIB)
 find_package(wxWidgets REQUIRED net core base adv html)
 find_package( OpenCV REQUIRED )
 include(${wxWidgets_USE_FILE})

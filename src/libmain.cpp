@@ -1,7 +1,5 @@
 #include "libmain.h"
-
 GLOB_ELI_CLASS eli_class;
-
 
 #if defined(__UNIX__)
 #  define EXPORTIT
@@ -9,6 +7,7 @@ GLOB_ELI_CLASS eli_class;
 #elif (__WINDOWS__)
 
 #  define EXPORTIT __declspec( dllexport )
+
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 {
@@ -42,27 +41,27 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 
 extern "C"
 {
-  EXPORTIT int OpenProgram(wxString path)
+  EXPORTIT int EliOpenProgram(wxString path)
   {
       int ret=eli_class.OpenProgram(path);
 
       return ret;
   }
-  EXPORTIT int OpenProgramCh(char *pathx)
+  EXPORTIT int EliOpenProgramCh(char *pathx)
   {
       int ret=eli_class.OpenProgramCh(pathx);
 
       return ret;
   }
 
-  EXPORTIT int SetSystemVariable(int pos,float variabl)
+  EXPORTIT int EliSetSystemVariable(int pos,float variabl)
   {
       int ret=eli_class.SetSystemVariable(pos,variabl);
 
       return ret;
   }
 
-  EXPORTIT int GetSystemVariable(int pos,float *fval)
+  EXPORTIT int EliGetSystemVariable(int pos,float *fval)
   {
       float fv=0;
       int ret=eli_class.GetSystemVariable(pos,fv);
@@ -70,83 +69,83 @@ extern "C"
       return ret;
   }
 
-  EXPORTIT int RunProgram(void)
+  EXPORTIT int EliRunProgram(void)
   {
       int ret=eli_class.RunProgram();
 
       return ret;
   }
 
-  EXPORTIT int RunProgramFromLine(int line)
+  EXPORTIT int EliRunProgramFromLine(int line)
   {
       int ret=eli_class.RunProgramFromLine(line);
 
       return ret;
   }
 
-  EXPORTIT void EndRunFromLine(void)
+  EXPORTIT void EliEndRunFromLine(void)
   {
       eli_class.EndRunFromLine();
   }
 
-  EXPORTIT wxString GetErrorString(void)
+  EXPORTIT wxString EliGetErrorString(void)
   {
       wxString retstr=eli_class.GetErrorString();
       return retstr;
   }
 
-  EXPORTIT int GetErrorStringCh(int max_len,char *er_str)
+  EXPORTIT int EliGetErrorStringCh(int max_len,char *er_str)
   {
       int ret=eli_class.GetErrorStringCh(max_len,er_str);
       return ret;
   }
 
-  EXPORTIT int GetStringVariable(int pos,wxString *sval)
+  EXPORTIT int EliGetStringVariable(int pos,wxString *sval)
   {
       wxString wxval;
       int ret=eli_class.GetStringVariable(pos,wxval);
-      sval=&wxval;
+      *sval=wxval;
       return ret;
   }
 
-  EXPORTIT int GetStringVariableCh(int pos,int max_len,char *valx)
+  EXPORTIT int EliGetStringVariableCh(int pos,int max_len,char *valx)
   {
       int ret=eli_class.GetStringVariableCh(pos,max_len,valx);
       return ret;
   }
 
-  EXPORTIT int GetNumberOfAllObjects(void)
+  EXPORTIT int EliGetNumberOfAllObjects(void)
   {
       return eli_class.GetNumberOfAllObjects();
   }
 
-  EXPORTIT int GetObjectsParametersName(int pos,wxString *namex)
+  EXPORTIT int EliGetObjectsParametersName(int pos,wxString *namex)
   {
      wxString wxval;
      int ret=eli_class.GetObjectsParametersName(pos,wxval);
-     namex=&wxval;
+    *namex=wxval;
      return ret;
   }
 
-  EXPORTIT int GetObjectsParametersNameCh(int pos,int max_len,char *namex)
+  EXPORTIT int EliGetObjectsParametersNameCh(int pos,int max_len,char *namex)
   {
       int ret=eli_class.GetObjectsParametersNameCh(pos,max_len,namex);
       return ret;
   }
 
-  EXPORTIT int GetNumberObjectsName(wxString namex)
+  EXPORTIT int EliGetNumberObjectsName(wxString namex)
   {
       int ret=eli_class.GetNumberObjectsName(namex);
       return ret;
   }
 
-  EXPORTIT int GetNumberObjectsNameCh(char *namex)
+  EXPORTIT int EliGetNumberObjectsNameCh(char *namex)
   {
       int ret=eli_class.GetNumberObjectsNameCh(namex);
       return ret;
   }
 
-  EXPORTIT int GetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval)
+  EXPORTIT int EliGetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval)
   {
       int ret=eli_class.GetObjectParameter(namex,pos,ival,dval);
       return ret;
@@ -167,7 +166,7 @@ Function return 0 if not object with same name as 1.parameter as found
         return 2 if type of returned parameters ids double
 
 **/
-  EXPORTIT int GetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval)
+  EXPORTIT int EliGetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval)
   {
       std::vector<int> ixval;
       std::vector<double> dxval;

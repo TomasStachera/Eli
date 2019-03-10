@@ -1,11 +1,19 @@
 #ifndef ELILIB_H_INCLUDED
 #define ELILIB_H_INCLUDED
+#if defined(__UNIX__)
+#  define EXPORTIT
+
+#elif (__WINDOWS__)
+
+#  define EXPORTIT __declspec( dllexport )
+#endif
 /**
 Header file for library EliLib
 Author: Tomas Stachera
 mail: tomas.stachera@gmail.com
 **/
-
+extern "C"
+{
 /**
 Function:int OpenProgramCh
 Function opens test program from file in input parameters. This function must be called before
@@ -16,7 +24,7 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-int OpenProgramCh(char *pathx);
+EXPORTIT int EliOpenProgramCh(char *pathx);
 
 /**
 Function:OpenProgram. Needs use wxWidgets.
@@ -27,9 +35,9 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
 
-#ifdef wxUSE_STL
-int OpenProgram(wxString path);
-#endif
+
+EXPORTIT int EliOpenProgram(wxString path);
+
 
 /**
 Function: SetSystemVariable
@@ -40,7 +48,7 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-int SetSystemVariable(int pos,float variabl);
+EXPORTIT int EliSetSystemVariable(int pos,float variabl);
 
 /**
 Function:GetSystemVariable
@@ -51,7 +59,7 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-int GetSystemVariable(int pos,float *fval);
+EXPORTIT int EliGetSystemVariable(int pos,float *fval);
 
 /**
 Function: RunProgram
@@ -62,7 +70,7 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
 
 **/
-int RunProgram(void);
+EXPORTIT int EliRunProgram(void);
 
 /**
 Function: RunProgramFromLine
@@ -75,21 +83,21 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
 
 **/
-int RunProgramFromLine(int line);
+EXPORTIT int EliRunProgramFromLine(int line);
 
 /**
 Function:EndRunFromLine
 Function close test program which should be called
 in function RunProgramFromLine(int line)
 **/
-void EndRunFromLine(void);
+EXPORTIT void EliEndRunFromLine(void);
 
 /**
 Function:GetErrorString
 Function return ErrorString in case of error in some function
 Needs to be compiled with wxWidgets
 **/
-wxString GetErrorString(void);
+EXPORTIT wxString EliGetErrorString(void);
 
 /**
 Function:GetErrorStringCh
@@ -101,7 +109,7 @@ Returned string is in char format for user which does not use wxWidgets
 unction return 0 if all is ok
         return -1 if returned string variable has more characters as number in parameter 1
 **/
-int GetErrorStringCh(int max_len,char *er_str);
+EXPORTIT int EliGetErrorStringCh(int max_len,char *er_str);
 
 /**
 Function:GetStringVariable
@@ -112,9 +120,9 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-#ifdef wxUSE_STL
-int GetStringVariable(int pos,wxString *sval);
-#endif
+
+EXPORTIT int EliGetStringVariable(int pos,wxString *sval);
+
 
 /**
 Function:GetStringVariableCh
@@ -128,13 +136,13 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
          return -3 if returned string variable has more characters as number in parameter 2
 **/
-int GetStringVariableCh(int pos,int max_len,char *valx);
+EXPORTIT int EliGetStringVariableCh(int pos,int max_len,char *valx);
 
 /**
 Function:GetNumberOfAllObjects
 Function return number of all found objects
 **/
-int GetNumberOfAllObjects(void);
+EXPORTIT int EliGetNumberOfAllObjects(void);
 
 /**
 Function:GetObjectsParametersName . Needs wxWidgets
@@ -144,9 +152,9 @@ Function show name of object parameters according position number
 Function return o if all is ok
          return -1 if parameter 1 is not from range <1..29>
 **/
-#ifdef wxUSE_STL
-int GetObjectsParametersName(int pos,wxString *namex);
-#endif
+
+EXPORTIT int EliGetObjectsParametersName(int pos,wxString *namex);
+
 
 /**
 Function:GetObjectsParametersNameCh
@@ -158,7 +166,7 @@ Function return 0 if all is ok
          return -1 if parameter 1 is not from range <1..29>
          return -2 if number of characters in returned string is more than 2.parameter
 **/
-int GetObjectsParametersNameCh(int pos,int max_len,char *namex);
+EXPORTIT int EliGetObjectsParametersNameCh(int pos,int max_len,char *namex);
 
 /**
 Function:GetNumberObjectsName
@@ -166,17 +174,18 @@ Function return number of found objects according object name
 1.parameter: namex: name of object which number we want to count
 Function return number of found objects
 **/
-#ifdef wxUSE_STL
-int GetNumberObjectsName(wxString namex);
-#endif
+
+EXPORTIT int EliGetNumberObjectsName(wxString namex);
+
 
 /**
-Function:GetNumberObjectsNameCh
+Function:GetNumberObjectsNameChextern "C"
+{
 Function return number of found objects according name in char format
 1.parameter: namex: name of object which number
 **/
 
-int GetNumberObjectsNameCh(char *namex);
+EXPORTIT int EliGetNumberObjectsNameCh(char *namex);
 
 /**
 Function:GetObjectParameter (Only C++ function and wxWidgets)
@@ -191,9 +200,9 @@ Function return 0 if not object with same name as 1.parameter as found
         return 1 if type of returned parameters id INTEGER
         return 2 if type of returned parameters ids double
 **/
-#ifdef wxUSE_STL
-int GetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
-#endif
+
+EXPORTIT int EliGetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
+
 
 /**
 Function:GetObjectparameterC
@@ -212,8 +221,8 @@ Function return 0 if not object with same name as 1.parameter as found
         return 2 if type of returned parameters ids double
 
 **/
-int GetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval);
+EXPORTIT int EliGetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval);
 
 
-
+}
 #endif // ELILIB_H_INCLUDED

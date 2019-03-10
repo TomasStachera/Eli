@@ -1,5 +1,6 @@
-#ifndef MAIN_H_INCLUDED
-#define MAIN_H_INCLUDED
+#ifndef LIBMAIN_H_INCLUDED
+#define LIBMAIN_H_INCLUDED
+
 #include "../include/commands_main.h"
 
 
