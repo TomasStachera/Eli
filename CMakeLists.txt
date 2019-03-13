@@ -5,9 +5,9 @@ project(Eli)
 SET (VERSION_MAJOR 1)
 SET (VERSION_MINOR 0)
 # Create shared library
-SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
+SET(ELI_LIB OFF CACHE BOOL "Create eli lib?")
 #Create gui application
-SET(ELI_GUI OFF CACHE BOOL "Create eli gui?")
+SET(ELI_GUI ON CACHE BOOL "Create eli gui?")
 if(WIN32)
 # Set installation directory for Windows
 SET(INSTAL_DIR ${PROJECT_SOURCE_DIR}/install)
@@ -63,7 +63,9 @@ ${PROJECT_SOURCE_DIR}/src/LOGMES.cpp
  )
 
 SET(wxWidgets_USE_LIBS)
+IF(ELI_LIB)
 add_definitions(-DELI_SHARED_LIB)
+ENDIF(ELI_LIB)
 find_package(wxWidgets REQUIRED net core base adv html)
 find_package( OpenCV REQUIRED )
 include(${wxWidgets_USE_FILE})
@@ -80,6 +82,6 @@ IF(ELI_LIB)
  target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
 ENDIF(ELI_LIB)
 
-#install(TARGETS Eli DESTINATION ${INSTAL_DIR})
-#install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
-#install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)
+install(TARGETS Eli DESTINATION ${INSTAL_DIR})
+install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
+install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)

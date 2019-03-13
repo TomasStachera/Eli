@@ -3046,10 +3046,9 @@ public:
       wxGridCellStringRenderer::Draw(grid, attr, dc, rect, row, col, isSelected);
 
       wxImage cellImage;
-      wxString pic=wxGetCwd();
+wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+      wxString pic=f.GetPath()+_("/icons/break.png");
 
-
-             pic+=_("/icons/break.png");
 
         int xadd= grid.GetColSize(0)-20;
 
@@ -3075,10 +3074,8 @@ public:
       wxGridCellStringRenderer::Draw(grid, attr, dc, rect, row, col, isSelected);
 
       wxImage cellImage;
-      wxString pic=wxGetCwd();
-
-
-             pic+=_("/icons/empty.png");
+      wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+      wxString pic=f.GetPath()+_("/icons/empty.png");
 
         int xadd= grid.GetColSize(0)-20;
 

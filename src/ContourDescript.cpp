@@ -14,6 +14,9 @@
 #include <wx/msgdlg.h>
 #include <wx/settings.h>
 #include <wx/config.h>
+#include <wx/filefn.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 //#include "contourDMain.h"
 #include "ContourDescript.h"
 #include "ContourDescript2.h"
@@ -69,7 +72,9 @@ Input parameters:
 
 ContourDescript::ContourDescript(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size,PDAT *pd,ObjectPrograms *obprg,int numbobj)
 {
-	 wxString actual_dir=wxGetCwd();
+
+wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+wxString actual_dir=f.GetPath();
 
 //cvSetErrMode(CV_ErrModeParent);
 
