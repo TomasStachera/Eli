@@ -4,7 +4,7 @@ GLOB_ELI_CLASS eli_class;
 #if defined(__UNIX__)
 #  define EXPORTIT
 
-#elif (__WINDOWS__)
+#elif defined(__WXMSW__)
 
 #  define EXPORTIT __declspec( dllexport )
 

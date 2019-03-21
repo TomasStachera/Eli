@@ -5,7 +5,7 @@ project(Eli)
 SET (VERSION_MAJOR 1)
 SET (VERSION_MINOR 0)
 # Create shared library
-SET(ELI_LIB OFF CACHE BOOL "Create eli lib?")
+SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
 #Create gui application
 SET(ELI_GUI ON CACHE BOOL "Create eli gui?")
 if(WIN32)
