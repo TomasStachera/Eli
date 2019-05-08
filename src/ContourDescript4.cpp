@@ -474,6 +474,7 @@ int object::AddTestProgramToStruct(wxString name,ContourCalculation *calc,TestPr
 int lines=tpg->GetLineNumber(); // number of lines in object test program structure
 ContourCalculation::OBJECT_COMMAND  *objx;
 objx=new ContourCalculation::OBJECT_COMMAND[lines];
+double dxx;
 
 
 
@@ -512,7 +513,8 @@ for(int i=0;i<lines;i++)
         px=px.AfterFirst('#');
         objx[i].i_param1=wxAtoi(px.BeforeFirst('#'));
         px=px.AfterFirst('#');
-        objx[i].f_param1=wxAtof(px.BeforeFirst('#'));
+        px.BeforeFirst('#').ToCDouble(&dxx);
+        objx[i].f_param1=(float)dxx;
         px=px.AfterFirst('#');
         objx[i].s_param1=px.BeforeFirst('#');
         px=px.AfterFirst('#');
@@ -520,7 +522,8 @@ for(int i=0;i<lines;i++)
         px=px.AfterFirst('#');
         objx[i].i_param2=wxAtoi(px.BeforeFirst('#'));
         px=px.AfterFirst('#');
-        objx[i].f_param2=wxAtof(px.BeforeFirst('#'));
+        px.BeforeFirst('#').ToCDouble(&dxx);
+        objx[i].f_param2=(float)dxx;
         px=px.AfterFirst('#');
         objx[i].s_param2=px.BeforeFirst('#');
         px=px.AfterFirst('#');
@@ -1275,7 +1278,8 @@ MathSubModule::MathSubModule(wxWindow* parent,ContourCalculation *cont_calc,wxSt
      wxString pxc=prog_param.AfterFirst('#'); // rest of string
      int i_param1=wxAtoi(pxc.BeforeFirst('#')); // i_param1
      pxc=pxc.AfterFirst('#');
-     float f_param1=wxAtof(pxc.BeforeFirst('#')); // float param1
+     double f_param1;// float param1
+     pxc.BeforeFirst('#').ToCDouble(&f_param1);
      pxc=pxc.AfterFirst('#');
      wxString s_param1=pxc.BeforeFirst('#'); // string param1
      pxc=pxc.AfterFirst('#');
@@ -1283,7 +1287,9 @@ MathSubModule::MathSubModule(wxWindow* parent,ContourCalculation *cont_calc,wxSt
      pxc=pxc.AfterFirst('#');
      int i_param2=wxAtoi(pxc.BeforeFirst('#')); //integer param2
      pxc=pxc.AfterFirst('#');
-     float f_param2=wxAtof(pxc.BeforeFirst('#'));  //float param2
+     double f_param2;
+     pxc.BeforeFirst('#').ToCDouble(&f_param2);  //float param2
+
       pxc=pxc.AfterFirst('#');
       wxString s_param2=pxc.BeforeFirst('#'); // string param2
        pxc=pxc.AfterFirst('#');
@@ -1401,9 +1407,10 @@ wxString MathSubModule::GetCommandParameter(void)
      */
 int pos=Choice1->GetSelection()+1; //param1 type of parameter 1
 int i_param1=0;
-float f_param1=0;
+double f_param1=0;
 wxString s_param1=_(" ");
 wxString px=_("");
+wxString get_pom;
 
 switch (pos)
 {
@@ -1423,13 +1430,15 @@ switch (pos)
     }
     break;
    case 4:
-    f_param1=wxAtof(Param1_Option_text->GetValue());
+    get_pom=Param1_Option_text->GetValue();
+    get_pom.Replace(_(","),_("."));
+    get_pom.ToCDouble(&f_param1);
      break;
 }
 
 int pos2=Choice2->GetSelection()+1;
 int i_param2=0;
-float f_param2=0;
+double f_param2=0;
 wxString s_param2=_(" ");
 
 switch (pos2)
@@ -1450,7 +1459,9 @@ switch (pos2)
     }
     break;
    case 4:
-    f_param2=wxAtof(Param2_Option_text->GetValue());
+    get_pom=Param2_Option_text->GetValue();
+    get_pom.Replace(_(","),_("."));
+    get_pom.ToCDouble(&f_param2);
      break;
 }
 
@@ -1701,7 +1712,8 @@ ConditionSubModule::ConditionSubModule(wxWindow* parent,ContourCalculation *cont
      wxString pxc=prog_param.AfterFirst('#'); // rest of string
      int i_param1=wxAtoi(pxc.BeforeFirst('#')); // i_param1
      pxc=pxc.AfterFirst('#');
-     float f_param1=wxAtof(pxc.BeforeFirst('#')); // float param1
+     double f_param1; // float param1
+     pxc.BeforeFirst('#').ToCDouble(&f_param1);
      pxc=pxc.AfterFirst('#');
      wxString s_param1=pxc.BeforeFirst('#'); // string param1
      pxc=pxc.AfterFirst('#');
@@ -1709,7 +1721,8 @@ ConditionSubModule::ConditionSubModule(wxWindow* parent,ContourCalculation *cont
      pxc=pxc.AfterFirst('#');
      int i_param2=wxAtoi(pxc.BeforeFirst('#')); //integer param2
      pxc=pxc.AfterFirst('#');
-     float f_param2=wxAtof(pxc.BeforeFirst('#'));  //float param2
+     double f_param2;  //float param2
+     pxc.BeforeFirst('#').ToCDouble(&f_param2);
       pxc=pxc.AfterFirst('#');
       wxString s_param2=pxc.BeforeFirst('#'); // string param2
 
@@ -1887,9 +1900,10 @@ wxString ConditionSubModule::GetCommandParameter(void)
      */
 int pos=Param1->GetSelection()+1; //param1 type of parameter 1
 int i_param1=0;
-float f_param1=0;
+double f_param1=0;
 wxString s_param1=_(" ");
 wxString px=_("");
+wxString get_pom;
 
 switch (pos)
 {
@@ -1909,13 +1923,15 @@ switch (pos)
     }
     break;
    case 4:
-    f_param1=wxAtof(Param1_op_text->GetValue());
+    get_pom= Param1_op_text->GetValue();
+    get_pom.Replace(_(","),_("."));
+    get_pom.ToCDouble(&f_param1);
      break;
 }
 
 int pos2=Parameter2->GetSelection()+1;
 int i_param2=0;
-float f_param2=0;
+double f_param2=0;
 wxString s_param2=_(" ");
 
 switch (pos2)
@@ -1936,7 +1952,9 @@ switch (pos2)
     }
     break;
    case 4:
-    f_param2=wxAtof(Param2_option_text->GetValue());
+    get_pom=Param2_option_text->GetValue();
+    get_pom.Replace(_(","),_("."));
+    get_pom.ToCDouble(&f_param2);
      break;
 }
 

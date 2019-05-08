@@ -163,7 +163,9 @@ void CameraCalibration::OnSetPathClick(wxCommandEvent& event)
 
 void CameraCalibration::OnStartCalibrationClick(wxCommandEvent& event)
 {
-    	square_sz=wxAtof(SquareSize->GetValue());
+double dxx;
+SquareSize->GetValue().ToCDouble(&dxx);
+    	square_sz=(float)dxx;
 	     asp_rat=wxAtoi(AspectRatio->GetValue()); //aspect ratio
 		 num_fram=SpinCtrl1->GetValue(); //number frames
 		 camera_number=Camera->GetSelection();

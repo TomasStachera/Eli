@@ -217,6 +217,7 @@ Class for Scale conversion. Command add  or multiply some number to each pixels 
        dest_pic=destination picture, picture array index */
 
     wxString pom;
+    double dxx;
 
    int  src_pic=wxAtoi(param.BeforeFirst('#').AfterFirst('_'));// source picture  array index
    pom=param.AfterFirst('#');
@@ -226,7 +227,8 @@ Class for Scale conversion. Command add  or multiply some number to each pixels 
    if(pom.BeforeFirst('#')==_("Number"))
    {
       pom=pom.AfterFirst('#');
-       scale_number=  wxAtof(pom.BeforeFirst('#'));
+      pom.BeforeFirst('#').ToCDouble(&dxx);
+       scale_number=  (float)dxx;
    }
    else
    {
@@ -242,7 +244,8 @@ Class for Scale conversion. Command add  or multiply some number to each pixels 
     if(pom.BeforeFirst('#')==_("Number"))
    {
       pom=pom.AfterFirst('#');
-       shift_number= wxAtof(pom.BeforeFirst('#'));
+      pom.BeforeFirst('#').ToCDouble(&dxx);
+       shift_number= (float)dxx;
    }
    else
    {
@@ -515,13 +518,22 @@ Each pixels is before add multiply with weight factor on image.
     float weight_A=-1; // weight of pixels in picture A
      float weight_B=-1; // weight of pixels in picture B
      int sourc_pic_B=-1; //position of source picture B in picture array
+     double dxx;
     for(int i=0;i<2;i++)
     {
     if(pom.BeforeFirst('#')==_("Number"))
     {
         pom=pom.AfterFirst('#');
-        if(i==0)weight_A=wxAtof(pom.BeforeFirst('#'));
-        else weight_B=wxAtof(pom.BeforeFirst('#'));
+        if(i==0)
+        {
+        pom.BeforeFirst('#').ToCDouble(&dxx);
+        weight_A=(float)dxx;
+        }
+        else
+        {
+        pom.BeforeFirst('#').ToCDouble(&dxx);
+        weight_B=(float)dxx;
+        }
     }
     else
     {
@@ -973,6 +985,7 @@ int Conversion_FloodFill::GetLineParam(int line,wxString &name,int &type,wxArray
    int y_pos=0; //y position of seed value
    float loDiff=0; // loDiff value
    float upDiff=0; //upDiff value
+   double dxx;
   for(int i=0;i<4;i++)
     {
     if(pom.BeforeFirst('#')==_("Number"))
@@ -980,8 +993,16 @@ int Conversion_FloodFill::GetLineParam(int line,wxString &name,int &type,wxArray
         pom=pom.AfterFirst('#');
         if(i==0)x_pos=wxAtoi(pom.BeforeFirst('#'));
         if(i==1)y_pos=wxAtoi(pom.BeforeFirst('#'));
-        if(i==2)loDiff=wxAtof(pom.BeforeFirst('#'));
-        if(i==3)upDiff=wxAtof(pom.BeforeFirst('#'));
+        if(i==2)
+        {
+        pom.BeforeFirst('#').ToCDouble(&dxx);
+        loDiff=(float)dxx;
+        }
+        if(i==3)
+        {
+        pom.BeforeFirst('#').ToCDouble(&dxx);
+        upDiff=(float)dxx;
+        }
     }
     else
     {
@@ -1388,8 +1409,10 @@ Class for smooth tested image
   pom=pom.AfterFirst('#');
   int param2=wxAtoi(pom.BeforeFirst('#')); //aperture height
   pom=pom.AfterFirst('#');
-  double param3=wxAtof(pom.BeforeFirst('#')); // standard deviation
-  double param4=wxAtof(pom.AfterFirst('#')); //param4
+  double param3;
+  pom.BeforeFirst('#').ToCDouble(&param3); // standard deviation
+  double param4; //param4
+  pom.AfterFirst('#').ToDouble(&param4);
 
   if((sour_pic_pos<0)||(sour_pic_pos>19)) return -1; // bad source picture position in variable array
   if((dest_pic_pos<0)||(dest_pic_pos>19)) return -2; // bad destination picture position in variable array
@@ -1550,8 +1573,8 @@ Class for resize tested image
     if(pom.BeforeFirst('#')==_("Number"))
     {
         pom=pom.AfterFirst('#');
-        if(i==0)x_scale=wxAtof(pom.BeforeFirst('#'));
-        if(i==1)y_scale=wxAtof(pom.BeforeFirst('#'));
+        if(i==0)pom.BeforeFirst('#').ToCDouble(&x_scale);
+        if(i==1)pom.BeforeFirst('#').ToCDouble(&y_scale);
 
     }
     else
@@ -1929,8 +1952,9 @@ Mat Conversion_RotateFlip::rotateImage(Mat src, int angleDegrees)
   int aperture_size=wxAtoi(pom.BeforeFirst('#')); //aperture size
   pom=pom.AfterFirst('#');
   int block_size=wxAtoi(pom.BeforeFirst('#')); //block size
-  double haris_det=wxAtof(pom.AfterFirst('#')); //haris detector k parameter
 
+  double haris_det; //haris detector k parameter
+  pom.AfterFirst('#').ToCDouble(&haris_det);
   if((sour_pic_pos<0)||(sour_pic_pos>19)) return -1; //bad source picture position on picture array
   if((dest_pic_pos<0)||(dest_pic_pos>19)) return -2; //bad destination picture position on picture array
 

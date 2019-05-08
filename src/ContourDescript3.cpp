@@ -94,7 +94,7 @@ try{
               pom=pom.AfterFirst('#');
               comp_option=wxAtoi(pom.BeforeFirst('#'));
                pom=pom.AfterFirst('#');
-               number=wxAtof(pom.BeforeFirst('#'));
+               pom.BeforeFirst('#').ToCDouble(&number);
                number_from=wxAtoi(pom.AfterFirst('#'));
              InserFilterLine(result,input_from,contour_param,comp_option,number,number_from);
          }
@@ -147,12 +147,15 @@ try{
          else if(px.BeforeFirst('#')==_("RB")) objx[j].type=6;
          else objx[j].type=0;
 
+         double dxx;
+
                 px=px.AfterFirst('#');
           objx[j].param1=wxAtoi(px.BeforeFirst('#'));
           px=px.AfterFirst('#');
           objx[j].i_param1=wxAtoi(px.BeforeFirst('#'));
           px=px.AfterFirst('#');
-          objx[j].f_param1=wxAtof(px.BeforeFirst('#'));
+          px.BeforeFirst('#').ToCDouble(&dxx);
+          objx[j].f_param1=(float)dxx;
           px=px.AfterFirst('#');
           objx[j].s_param1=px.BeforeFirst('#');
           px=px.AfterFirst('#');
@@ -160,7 +163,8 @@ try{
           px=px.AfterFirst('#');
           objx[j].i_param2=wxAtoi(px.BeforeFirst('#'));
           px=px.AfterFirst('#');
-          objx[j].f_param2=wxAtof(px.BeforeFirst('#'));
+          px.BeforeFirst('#').ToCDouble(&dxx);
+          objx[j].f_param2=(float)dxx;
           px=px.AfterFirst('#');
           objx[j].s_param2=px.BeforeFirst('#');
            px=px.AfterFirst('#');
@@ -245,7 +249,7 @@ if(obj_prg->ReturnFilterParam(ind,filter_lines,lines_string))  //Filter was foun
       par1=par1.AfterFirst('#');
       comp_option=wxAtoi(par1.BeforeFirst('#'));
       par1=par1.AfterFirst('#');
-      number=wxAtof(par1.BeforeFirst('#'));
+      par1.BeforeFirst('#').ToCDouble(&number);
       number_from=wxAtoi(par1.AfterFirst('#'));
 
 
@@ -2325,6 +2329,8 @@ Function return 0 if all is ok
 **/
 int ContourCalculation::CheckLine(wxString line_str,int &typex,wxString &decs,int &param1,int &iparam1,float &fparam1,wxString &s_param1,int &param2,int &iparam2,float &fparam2,wxString &s_param2,int &operand,int &iresult,wxString &sresult)
 {
+double dxx;
+
  typex=wxAtoi(line_str.BeforeFirst('#'));
  if((typex<1)||(typex>5))return -1; //Bad type
  wxString pom=line_str.AfterFirst('#');
@@ -2335,7 +2341,8 @@ int ContourCalculation::CheckLine(wxString line_str,int &typex,wxString &decs,in
  pom=pom.AfterFirst('#');
  iparam1=wxAtoi(pom.BeforeFirst('#'));
  pom=pom.AfterFirst('#');
- fparam1=wxAtof(pom.BeforeFirst('#'));
+ pom.BeforeFirst('#').ToCDouble(&dxx);
+ fparam1=(float)dxx;
  pom=pom.AfterFirst('#');
  s_param1=pom.BeforeFirst('#');
   pom=pom.AfterFirst('#');
@@ -2344,7 +2351,8 @@ int ContourCalculation::CheckLine(wxString line_str,int &typex,wxString &decs,in
    pom=pom.AfterFirst('#');
   iparam2=wxAtoi(pom.BeforeFirst('#'));
  pom=pom.AfterFirst('#');
- fparam2=wxAtof(pom.BeforeFirst('#'));
+ pom.BeforeFirst('#').ToCDouble(&dxx);
+ fparam2=(float)dxx;
  pom=pom.AfterFirst('#');
  s_param2=pom.BeforeFirst('#');
   pom=pom.AfterFirst('#');

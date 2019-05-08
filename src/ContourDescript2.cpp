@@ -274,6 +274,8 @@ void ContourDescript2::OnUpdateModuleClick(wxCommandEvent& event)
 
 
         int comparison_option=1;
+        double fxxval;
+
 
         if(Grid1->GetCellValue(i,3)==_("=")) comparison_option=1;
         else if (Grid1->GetCellValue(i,3)==_(">")) comparison_option=2;
@@ -283,7 +285,8 @@ void ContourDescript2::OnUpdateModuleClick(wxCommandEvent& event)
         else comparison_option=6;
         int var_from=-1;
         if(Grid1->GetCellValue(i,4)!=_("Number")) var_from=wxAtoi(Grid1->GetCellValue(i,4).AfterFirst('_'));
-        cont_calcx->InserFilterLine(result,input_from,contour_parameter,comparison_option,wxAtof(Grid1->GetCellValue(i,5)),var_from);
+        Grid1->GetCellValue(i,5).ToCDouble(&fxxval);
+        cont_calcx->InserFilterLine(result,input_from,contour_parameter,comparison_option,(float)fxxval,var_from);
 
 
 

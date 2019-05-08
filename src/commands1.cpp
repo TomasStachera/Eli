@@ -269,6 +269,7 @@ Function return -2 if maximal number jumps was set . Maximal number active jumps
      cond2_number= left number in condition 2
      */
      float cond1_number=0,cond2_number=0;
+     double dxx;
       // pd->text1+=_("Execute System_Jump\n");
 
        wxString pom=_("");
@@ -287,7 +288,8 @@ Function return -2 if maximal number jumps was set . Maximal number active jumps
        pom=pom.AfterFirst('#');
        cond1_r=pom.BeforeFirst('#');
        pom=pom.AfterFirst('#');
-       cond1_number=wxAtof(pom.BeforeFirst('#'));
+       pom.BeforeFirst('#').ToCDouble(&dxx);
+       cond1_number=(float)dxx;
        pom=pom.AfterFirst('#');
        cond2=pom.BeforeFirst('#');
        pom=pom.AfterFirst('#');
@@ -296,7 +298,8 @@ Function return -2 if maximal number jumps was set . Maximal number active jumps
        cond2_s=pom.BeforeFirst('#');
        pom=pom.AfterFirst('#');
        cond2_r=pom.BeforeFirst('#');
-       cond2_number=wxAtof(pom.AfterFirst('#'));
+       pom.AfterFirst('#').ToCDouble(&dxx);
+       cond2_number=(float)dxx;
          if(jump_lines<0) jump_lines=jump_lines*(-1);
        int pos=-1;
       for(int i=0;i<30;i++) if(active_jumps[i]==line) pos=i; // jumps in line is already active
@@ -554,6 +557,7 @@ int System_Math::GetLineParam(int line,wxString &name,int &type,wxArrayString &a
  {
    //  pd->text1+=_("Execute System_Math\n");
      float varA=0, varB=0; // varA= variable A, varB variable B
+     double dxx;
      /*
      oper=0 error bad operator
      oper=1 +
@@ -614,7 +618,11 @@ int System_Math::GetLineParam(int line,wxString &name,int &type,wxArrayString &a
      if((oper<1)||(oper>21)) return -2; //Bad operator
      pom=pom2.BeforeFirst('#');
      pom2=pom2.AfterFirst('#');
-     if(pom==_("Number"))varB=wxAtof(pom2.BeforeFirst('#'));
+     if(pom==_("Number"))
+     {
+     pom2.BeforeFirst('#').ToCDouble(&dxx);
+     varB=(float)dxx;
+     }
      else
      {
          int posB=wxAtoi(pom.AfterFirst('_'));
@@ -788,6 +796,7 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
          {
            int v2=wxAtoi(pom.BeforeFirst('#').AfterFirst('_'));
           if((v2<0)||(v2>10)) return -2;// Bad variable1 name;
+          pd->results+=_("\n");
           pd->results+=pd->str_values[v2];
          }
          else
@@ -811,6 +820,7 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
          {
            int v2=wxAtoi(pom.BeforeFirst('#').AfterFirst('_'));
           if((v2<0)||(v2>10)) return -3;// Bad variable1 name;
+           pd->results+=_("\n");
           pd->results+=pd->str_values[v2];
          }
          else
@@ -874,7 +884,9 @@ int System_Wait::RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectProg
 
       if(pom==_("Number"))
       {
-          delay_numb=wxAtof(param.AfterFirst('#'));
+      double dxx;
+      param.AfterFirst('#').ToCDouble(&dxx);
+          delay_numb=(float)dxx;
       }
       else
       {
@@ -1085,7 +1097,8 @@ int Source_ReadCamera::GetLineParam(int line,wxString &name,int &type,wxArrayStr
    else  uch=wxAtoi(param.BeforeFirst('#').AfterFirst('_'));
    pom=pom.AfterFirst('#');
    wxString calib_file=pom.BeforeFirst('#');
-   double size_coefx=wxAtof(pom.AfterFirst('#'));
+   double size_coefx;
+   pom.AfterFirst('#').ToCDouble(&size_coefx);
    if((capture_pos<0)||(capture_pos>9)) return -2; //bad capture position
    if(uch>19)return -4; // BAd undistortion channel
    if(uch>-1) //read undistortion
@@ -1409,6 +1422,7 @@ return 0;
       float f_value=0;
       if(param.BeforeFirst('#')==_("Set")) prop=0;
       else prop=1;
+      double dxx;
 
 try
 {
@@ -1443,7 +1457,11 @@ try
       pom=pom.AfterFirst('#');
 
 
-      if(pom.BeforeFirst('#')==_("Number")) f_value=wxAtof(pom.AfterFirst('#'));
+      if(pom.BeforeFirst('#')==_("Number"))
+      {
+      pom.AfterFirst('#').ToCDouble(&dxx);
+      f_value=(float)dxx;
+      }
       else
       {
            px=wxAtoi(pom.BeforeFirst('#').AfterFirst('_'));
@@ -1772,6 +1790,7 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
      int height=0;  // height of video
      int width=0; //width of video
      int is_color=1; // if value is no zero, video is colour, if 0 video is grayscale
+     double dxx;
 
        pom=param.BeforeFirst('#');
      pom2=param.AfterFirst('#');
@@ -1797,7 +1816,11 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
      pom2=pom.BeforeFirst('#');
      pom=pom.AfterFirst('#');
 
-     if(pom2==_("Number"))fps=wxAtof(pom.BeforeFirst('#'));
+     if(pom2==_("Number"))
+     {
+     pom.BeforeFirst('#').ToCDouble(&dxx);
+     fps=(float)dxx;
+     }
      else
      {
          int posB=wxAtoi(pom2.AfterFirst('_'));
@@ -1812,7 +1835,12 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
      pom2=pom.BeforeFirst('#');
      pom=pom.AfterFirst('#');
 
-      if(pom2==_("Number"))height=wxAtof(pom.BeforeFirst('#'));
+
+      if(pom2==_("Number"))
+      {
+      pom.BeforeFirst('#').ToCDouble(&dxx);
+      height=(float)dxx;
+      }
      else
      {
          int posC=wxAtoi(pom2.AfterFirst('_'));
@@ -1827,7 +1855,11 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
      pom2=pom.BeforeFirst('#');
      pom=pom.AfterFirst('#');
 
-      if(pom2==_("Number"))width=wxAtof(pom.BeforeFirst('#'));
+      if(pom2==_("Number"))
+      {
+      pom.BeforeFirst('#').ToCDouble(&dxx);
+      width=(float)dxx;
+      }
      else
      {
          int posD=wxAtoi(pom2.AfterFirst('_'));

@@ -85,7 +85,7 @@ wxString actual_dir=f.GetPath();
 	wxBoxSizer* BoxSizer1;
 	wxBoxSizer* BoxSizer3;
 
-	Create(parent, wxID_ANY, _("Contour description aplication"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxSYSTEM_MENU|wxFULL_REPAINT_ON_RESIZE, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Contour description aplication"), wxDefaultPosition, wxSize(1200,750), wxSTAY_ON_TOP|wxSYSTEM_MENU|wxFULL_REPAINT_ON_RESIZE, _T("wxID_ANY"));
 	SetBackgroundColour(wxColour(0,0,152));
 	{
 		wxIcon FrameIcon;
@@ -119,7 +119,7 @@ wxString actual_dir=f.GetPath();
 
 
 
-	ToolBar1 = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL|wxNO_BORDER|wxTB_TEXT, _T("ID_TOOLBAR1"));
+	ToolBar1 = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL|wxNO_BORDER, _T("ID_TOOLBAR1"));
 	ToolBarItem1 = ToolBar1->AddTool(idQuit, _("Quit"), wxBitmap(wxImage(actual_dir+_("/icons/quit.png"))), wxNullBitmap, wxITEM_NORMAL, _("Quit application"), _("Quit application"));
 	ToolBarItem2 = ToolBar1->AddTool(idSave, _("Save"),wxBitmap(wxImage(actual_dir+_("/icons/Save.png"))) , wxNullBitmap, wxITEM_NORMAL, _("Save new parameters"), _("Save updated parameters"));
 	ToolBarItem3 = ToolBar1->AddTool(idRead, _("Read contours"),wxBitmap(wxImage(actual_dir+_("/icons/show_contours.png"))) , wxNullBitmap, wxITEM_NORMAL, _("Read contours"), _("Read contours"));
@@ -155,7 +155,6 @@ isDisplayedImage=false;
 
 
 
-	Center();
 
 
 
@@ -183,7 +182,7 @@ isDisplayedImage=false;
 //Block for enable mouse events
 
 	Panel1->Connect( wxEVT_MOTION, wxMouseEventHandler( ContourDescript::OnMouseEvent ), NULL, this );
-     Maximize();
+
 
 
 

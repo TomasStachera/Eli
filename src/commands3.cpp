@@ -704,7 +704,8 @@ wxString unitx=pom.BeforeFirst('#');
 pom=pom.AfterFirst('#');
 int thick=wxAtoi(pom.BeforeFirst('#'));
 pom=pom.AfterFirst('#');
-double scalex=wxAtof(pom.BeforeFirst('#'));
+double scalex;
+pom.BeforeFirst('#').ToCDouble(&scalex);
 pom=pom.AfterFirst('#');
 wxString font_string=pom.BeforeFirst('#');
 int uch=-1;
@@ -1471,9 +1472,13 @@ int Object_CharToString::RunCommand(wxString param,PDAT *pd,int line,int edit,Ob
 wxString out_mes=wxEmptyString;
 
 if(SortObjectFunction(obxx,out_mes,string_direction,line_width,space_size)!=0) return -5; //Error in function  SortObjectFunction
-
+double dxx;
 if(is_string)pd->str_values[ar_pos]=out_mes;
-else pd->fval[ar_pos]=wxAtof(out_mes);
+else
+{
+out_mes.ToCDouble(&dxx);
+pd->fval[ar_pos]=(float)dxx;
+}
 
 
      return 0;
@@ -1697,7 +1702,8 @@ int Object_ParamMath::RunCommand(wxString param,PDAT *pd,int line,int edit,Objec
     pom=pom.AfterFirst('#');
     wxString parameterB=pom.BeforeFirst('#');  //Name of parameter B
     pom=pom.AfterFirst('#');
-    double B_constant=wxAtof(pom.BeforeFirst('#'));
+    double B_constant;
+    pom.BeforeFirst('#').ToCDouble(&B_constant);
     wxString result_var=pom.AfterFirst('#');
 
     vector<double> varA,varB,resultx;

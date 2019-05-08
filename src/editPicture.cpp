@@ -507,12 +507,17 @@ else
 
 void editPicture::OnLeftClick(wxKeyEvent &event)
 {
+double dxx,dxx2;
+
          if(mode==5)
          {
                wxPoint pt(event.GetPosition());
                if((pt.x<=x_size)&&(pt.y<=y_size))
              {
-           FloodFill((int)((float)pt.x*x_ratio),(int)((float)pt.y*y_ratio),colour,wxAtof(TextCtrl3->GetValue()),wxAtof(TextCtrl4->GetValue()),pom_flag);
+             TextCtrl3->GetValue().ToCDouble(&dxx);
+             TextCtrl4->GetValue().ToCDouble(&dxx2);
+
+           FloodFill((int)((float)pt.x*x_ratio),(int)((float)pt.y*y_ratio),colour,(float)dxx,(float)dxx2,pom_flag);
            TextCtrl1->Clear();
            TextCtrl2->Clear();
             (*TextCtrl1)<<(int)((float)pt.x*x_ratio);
@@ -528,10 +533,15 @@ update parameters values
 ************************************************/
 void editPicture::UpdateData(void)
 {
-  res_v1=wxAtof(TextCtrl1->GetValue());
-  res_v2=wxAtof(TextCtrl2->GetValue());
-  res_v3=wxAtof(TextCtrl3->GetValue());
-  res_v4=wxAtof(TextCtrl4->GetValue());
+double dxx;
+TextCtrl1->GetValue().ToCDouble(&dxx);
+  res_v1=(float)dxx;
+  TextCtrl2->GetValue().ToCDouble(&dxx);
+  res_v2=(float)dxx;
+  TextCtrl3->GetValue().ToCDouble(&dxx);
+  res_v3=(float)dxx;
+  TextCtrl4->GetValue().ToCDouble(&dxx);
+  res_v4=(float)dxx;
 }
 
 /*************************************************
@@ -587,7 +597,9 @@ void editPicture::OnChangeControl(wxScrollEvent& event)
         px=_("");
         px<<(float)Slider2->GetValue()/100;
         TextCtrl2->WriteText(px);
-         int rtx=EditAddWeighted((float)((float)Slider1->GetValue()/100),(float)((float)Slider2->GetValue()/100),wxAtof(TextCtrl3->GetValue()));
+        double dxx;
+        TextCtrl3->GetValue().ToCDouble(&dxx);
+         int rtx=EditAddWeighted((float)((float)Slider1->GetValue()/100),(float)((float)Slider2->GetValue()/100),(float)dxx);
         if(rtx<0)
         {
             wxString pom=_("AddWeighted function error\n");
@@ -741,10 +753,14 @@ Function is called when user press enter in one of the textboxes
 
 void editPicture::OnValueButton(wxCommandEvent& event)
 {
+ double dxx,dxx2;
     if(mode==2)
     {
-      float shift=wxAtof(TextCtrl1->GetValue());
-      float scale=wxAtof(TextCtrl2->GetValue());
+    double dxx;
+    TextCtrl1->GetValue().ToCDouble(&dxx);
+      float shift=(float)dxx;
+      TextCtrl2->GetValue().ToCDouble(&dxx);
+      float scale=(float)dxx;
       int min=Slider1->GetMin();
       int max=Slider1->GetMax();
       if((int)shift>max) Slider1->SetValue(max);
@@ -759,9 +775,13 @@ void editPicture::OnValueButton(wxCommandEvent& event)
     }
     if(mode==3)
     {
-        float a_par=wxAtof(TextCtrl1->GetValue());
-        float b_par=wxAtof(TextCtrl2->GetValue());
-        float gama=wxAtof(TextCtrl3->GetValue());
+
+    TextCtrl1->GetValue().ToCDouble(&dxx);
+        float a_par=(float)dxx;
+        TextCtrl2->GetValue().ToCDouble(&dxx);
+        float b_par=(float)dxx;
+        TextCtrl3->GetValue().ToCDouble(&dxx);
+        float gama=(float)dxx;
         if((a_par<0)||(a_par>1))
         {
             wxMessageBox(_("A weight must be in range 0-1"),_("Error"),wxICON_ERROR);
@@ -813,7 +833,9 @@ void editPicture::OnValueButton(wxCommandEvent& event)
     }
     if(mode==5)
     {
-        FloodFill(wxAtoi(TextCtrl1->GetValue()),wxAtoi(TextCtrl2->GetValue()),colour,wxAtof(TextCtrl3->GetValue()),wxAtof(TextCtrl4->GetValue()),pom_flag);
+    TextCtrl3->GetValue().ToCDouble(&dxx);
+    TextCtrl4->GetValue().ToCDouble(&dxx2);
+        FloodFill(wxAtoi(TextCtrl1->GetValue()),wxAtoi(TextCtrl2->GetValue()),colour,(float)dxx,(float)dxx2,pom_flag);
     }
     if(mode==6)
     {
@@ -839,16 +861,20 @@ void editPicture::OnValueButton(wxCommandEvent& event)
         float f1=0;
         float f2=0;
         float f3=0;
-        f1=wxAtof(TextCtrl1->GetValue());
+        TextCtrl1->GetValue().ToCDouble(&dxx);
+        f1=(float)dxx;
 
         if(corner_function_mode==2)
         {
-           f2=wxAtof(TextCtrl2->GetValue());
-           f3=wxAtof(TextCtrl3->GetValue());
+        TextCtrl2->GetValue().ToCDouble(&dxx);
+           f2=(float)dxx;
+          TextCtrl3->GetValue().ToCDouble(&dxx);
+           f3=(float)dxx;
         }
         if(corner_function_mode==3)
         {
-          f2=wxAtof(TextCtrl2->GetValue());
+        TextCtrl2->GetValue().ToCDouble(&dxx);
+          f2=(float)dxx;
         }
         Corners(corner_function_mode,f1,f2,f3);
     }

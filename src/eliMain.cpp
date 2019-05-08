@@ -161,7 +161,7 @@ actual_dir=f.GetPath();
     BoxSizer3 = new wxBoxSizer(wxVERTICAL);
     BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     StaticBoxSizer4 = new wxStaticBoxSizer(wxVERTICAL, Panel1, _("Test program"));
-    Grid2 = new wxGrid(Panel1, ID_GRID1, wxDefaultPosition, wxDefaultSize, 0, _T("ID_GRID1"));
+    Grid2 = new wxGrid(Panel1, ID_GRID1, wxDefaultPosition, wxDefaultSize,0, _T("ID_GRID1"));
     Grid2->CreateGrid(0,2);
     wxFont Grid2Font(13,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     Grid2->SetFont(Grid2Font);
@@ -171,13 +171,13 @@ actual_dir=f.GetPath();
     Grid2->SetDefaultCellFont( Grid2->GetFont() );
     Grid2->SetDefaultCellTextColour( Grid2->GetForegroundColour() );
     StaticBoxSizer4->Add(Grid2, 1, wxALL|wxEXPAND, 0);
-    BoxSizer5->Add(StaticBoxSizer4, 1, wxALL|wxEXPAND, 5);
+    BoxSizer5->Add(StaticBoxSizer4, 2, wxALL|wxEXPAND, 5);
     BoxSizer3->Add(BoxSizer5, 1, wxALL|wxEXPAND, 0);
     BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Commands"));
     TreeCtrl1 = new wxTreeCtrl(Panel1, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HIDE_ROOT|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
     StaticBoxSizer3->Add(TreeCtrl1, 1, wxALL|wxEXPAND, 5);
-    BoxSizer6->Add(StaticBoxSizer3, 2, wxALL|wxEXPAND, 5);
+    BoxSizer6->Add(StaticBoxSizer3, 1, wxALL|wxEXPAND, 5);
     StaticBoxSizer5 = new wxStaticBoxSizer(wxVERTICAL, Panel1, _("Selected command"));
     Grid1 = new wxGrid(Panel1, ID_GRID2, wxDefaultPosition, wxDefaultSize, 0, _T("ID_GRID2"));
     Grid1->CreateGrid(0,2);
@@ -190,7 +190,7 @@ actual_dir=f.GetPath();
     CommentsCmd = new wxTextCtrl(Panel1, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     StaticBoxSizer6->Add(CommentsCmd, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer5->Add(StaticBoxSizer6, 1, wxALL|wxEXPAND, 5);
-    BoxSizer6->Add(StaticBoxSizer5, 3, wxALL|wxEXPAND, 5);
+    BoxSizer6->Add(StaticBoxSizer5, 2, wxALL|wxEXPAND, 5);
     BoxSizer3->Add(BoxSizer6, 1, wxALL|wxEXPAND, 5);
     BoxSizer2->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
     BoxSizer4 = new wxBoxSizer(wxVERTICAL);
@@ -239,9 +239,9 @@ actual_dir=f.GetPath();
     MenuIRun->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_TICK_MARK")),wxART_OTHER));
     Menu3->Append(MenuIRun);
     Menu3->AppendSeparator();
-    MenuItem3 = new wxMenuItem(Menu3, idMenRunLoop, _("Run loop\tRun loop"), _("Run loop"), wxITEM_NORMAL);
+    MenuItem3 = new wxMenuItem(Menu3, idMenRunLoop, _("Run loop"), _("Run loop"), wxITEM_NORMAL);
     Menu3->Append(MenuItem3);
-    MenuItem4 = new wxMenuItem(Menu3, idMenuStopLoop, _("Stop loop\tStop loop"), _("Stop loop"), wxITEM_NORMAL);
+    MenuItem4 = new wxMenuItem(Menu3, idMenuStopLoop, _("Stop loop"), _("Stop loop"), wxITEM_NORMAL);
     Menu3->Append(MenuItem4);
     MenuItem4->Enable(false);
     MenuBar1->Append(Menu3, _("Run"));
@@ -305,7 +305,7 @@ actual_dir=f.GetPath();
     StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
-    ToolBar1 = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_FLAT|wxTB_HORIZONTAL|wxTB_TEXT|wxTB_NOALIGN|wxNO_BORDER, _T("ID_TOOLBAR1"));
+    ToolBar1 = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_FLAT|wxTB_HORIZONTAL|wxTB_NOALIGN|wxNO_BORDER, _T("ID_TOOLBAR1"));
     ToolBarItem1 = ToolBar1->AddTool(idOpen, _("Open"), wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_OPEN")),wxART_TOOLBAR), wxNullBitmap, wxITEM_NORMAL, _("Open test program"), _("Open test program"));
     ToolBarItem2 = ToolBar1->AddTool(idSave, _("Save"), wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_SAVE")),wxART_TOOLBAR), wxNullBitmap, wxITEM_NORMAL, _("Save Test program"), _("Save Test program"));
     ToolBarItem3 = ToolBar1->AddTool(idNew, _("New"), wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_NEW")),wxART_TOOLBAR), wxNullBitmap, wxITEM_NORMAL, _("New Test program"), _("Open New test program"));
@@ -327,7 +327,7 @@ actual_dir=f.GetPath();
     ToolBar1->AddSeparator();
     ToolBar1->AddSeparator();
     gaug=new wxGauge(ToolBar1,ID_GAUGE1,10);
-    stat=new wxStaticText(ToolBar1,ID_STAT,_("Stand by"),wxDefaultPosition,wxSize(300,13));
+  stat=new wxStaticText(ToolBar1,ID_STAT,_("Stand by"),wxDefaultPosition,wxSize(300,13));
     stat->SetForegroundColour(wxColour(0,0,255));
     stat->SetFont(wxFont(12,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_ITALIC,wxFONTWEIGHT_BOLD));
     ToolBar1->AddControl(gaug);
@@ -340,15 +340,15 @@ actual_dir=f.GetPath();
   ToolBar1->EnableTool(idStopLoop,false);
     ToolBar1->Realize();
     SetToolBar(ToolBar1);
-     ToolBar2 = new wxToolBar(this, ID_TOOLBAR2, wxDefaultPosition, wxDefaultSize, wxTB_VERTICAL|wxTB_TEXT|wxTB_FLAT);
+     ToolBar2 = new wxToolBar(this, ID_TOOLBAR2, wxDefaultPosition, wxDefaultSize, wxTB_VERTICAL|wxTB_FLAT|wxTB_TEXT);
  ToolBar2->SetMargins(4,4);
- ToolBarAddCmd = ToolBar2->AddTool(id_toolbar_add, _("Add"),wxBitmap(wxImage(actual_dir+_("/icons/add_button.png"))));
- ToolBarChangeCmd = ToolBar2->AddTool(id_toolbar_change, _("Change"),wxBitmap(wxImage(actual_dir+_("/icons/change_but.png"))));
- ToolBarDeleteCmd = ToolBar2->AddTool(id_toolbar_delete, _("Delete"),wxBitmap(wxImage(actual_dir+_("/icons/delete_but.png"))));
- ToolBarCopyCmd = ToolBar2->AddTool(id_toolbar_copy, _("Copy"),wxBitmap(wxImage(actual_dir+_("/icons/copy_button.png"))));
+ ToolBarAddCmd = ToolBar2->AddTool(id_toolbar_add, _("Add"),wxBitmap(wxImage(actual_dir+_("/icons/add_button.png"))),_("Add command after selected line"));
+ ToolBarChangeCmd = ToolBar2->AddTool(id_toolbar_change, _("Change"),wxBitmap(wxImage(actual_dir+_("/icons/change_but.png"))),_("Save actual command chenges"));
+ ToolBarDeleteCmd = ToolBar2->AddTool(id_toolbar_delete, _("Delete"),wxBitmap(wxImage(actual_dir+_("/icons/delete_but.png"))),_("Delete selected command line"));
+ ToolBarCopyCmd = ToolBar2->AddTool(id_toolbar_copy, _("Copy"),wxBitmap(wxImage(actual_dir+_("/icons/copy_button.png"))),_("Copy commands"));
  ToolBar2->AddSeparator();
  ToolBar2->AddSeparator();
-  ToolBarComments = ToolBar2->AddTool(id_toolbar_coments, _("Edit coments"),wxBitmap(wxImage(actual_dir+_("/icons/coments.png"))));
+  ToolBarComments = ToolBar2->AddTool(id_toolbar_coments, _(""),wxBitmap(wxImage(actual_dir+_("/icons/coments.png"))),_("Edit comments"));
   ToolBar2->AddSeparator();
   ToolBar2->AddSeparator();
  ToolBar2->Realize();
@@ -432,8 +432,6 @@ Setup parameters for command grid: Dimensions, Label name
 **********************************************************************/
 
      Grid1->SetLabelSize(1,1);
-     Grid1->SetColSize(0,200);
-     Grid1->SetColSize(1,300);
      Grid1->SetColLabelValue(0,_("Name"));
      Grid1->SetColLabelValue(1,_("Parameter"));
 
@@ -441,8 +439,6 @@ Setup parameters for command grid: Dimensions, Label name
 
 
     InitMainCommands();//Call function for inicialize pointer cmd which is filled command classes
-   Grid1->SetColSize(0,150);
-  Grid1->SetColSize(1,470);
       Maximize(); // Main window is always maximize
      but_gr=NULL; // Set null pointer for position of line in command grid
        im=new wxImageList(32,32); //INicialize ImageList for commands list box
@@ -1481,7 +1477,7 @@ void eliFrame::OnCommandHelpSelected(wxCommandEvent& event)
 
     wxString page_name=actual_dir;
 page_name+=wxT("/help/");
-     
+
     page_name+=name;
     page_name+=wxT(".htm");
     wxString help_name=_("Help window for command ");
@@ -3033,6 +3029,7 @@ void eliFrame::OnGrid2Resize(wxSizeEvent& event)
 void eliFrame::OnGrid1Resize(wxSizeEvent& event)
 {
     SetResize1();
+
 }
 
 /*
