@@ -764,11 +764,11 @@ void eliFrame::OnGrid1CellLeftClick(wxGridEvent& event)
           wxColourData dat=dialog.GetColourData();
           wxColour dcolour=dat.GetColour();
           wxString out=_("");
-          out<<dcolour.Red();
+          out<<(int)dcolour.Red();
           out+=_(",");
-          out<<dcolour.Green();
+          out<<(int)dcolour.Green();
           out+=_(",");
-          out<<dcolour.Blue();
+          out<<(int)dcolour.Blue();
           Grid1->SetCellValue(y,1,out); // Colour code is display in command grid line in format (R,G,B) R,G,B means unsigned char value of each colour
          }
 
