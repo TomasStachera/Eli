@@ -1448,6 +1448,8 @@ void eliFrame::OnMenuINewProgramSelected(wxCommandEvent& event)
         if(Grid1->GetNumberRows()>0)Grid1->DeleteRows(0,Grid1->GetNumberRows());
 
      tp_prg=new TestProgram();
+delete ob_prg;
+ob_prg=new ObjectPrograms;// Always set new object program class
        stat->SetLabel(_("New program"));
      stat->SetForegroundColour(wxColour(0,0,255));
 

@@ -1589,6 +1589,12 @@ if((line==1)||(line==3))
           pom<<i;
           arraystr.Add(pom);
         }
+         for(int i=0;i<100;i++)
+        {
+           pom=_("Variable_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
         aray_str=arraystr;
         type2=0;
     }
@@ -1832,16 +1838,26 @@ int Object_ParamMath::RunCommand(wxString param,PDAT *pd,int line,int edit,Objec
 
     }
 
-
+     int type_result=0;
+      if(result_var.BeforeFirst('_')==wxT("Derived"))type_result=1;
+      else type_result=0;
      int posxx=wxAtoi(result_var.AfterFirst('_'));
+if(type_result==1)
+{
      if((posxx<0)||(posxx>9))return -5; //Bad result variable
+}
+else
+{
+  if((posxx<0)||(posxx>99))return -5; //Bad result variable
+}
      unsigned xxx=0;
       for(unsigned int i=0;i<pd->obj.size();i++)
           {
            if(object_name==pd->obj[i].object_name)
            {
                if(xxx==resultx.size())return -6; // Bad vector size
-             pd->obj[i].derived[posxx]=resultx[i];
+             if(type_result==1)pd->obj[i].derived[posxx]=resultx[i]; //Derived object
+             else pd->fval[posxx]=resultx[i]; //system variable
              xxx++;
            }
           }
