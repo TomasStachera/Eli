@@ -1,0 +1,119 @@
+/**
+Example 1
+Test program finds numbers on tested image
+
+
+
+
+
+
+
+
+
+
+
+**/
+Source_OpenFile Load tested image#/home/tomas/Dokumenty/eli_documents/eli_test_picture/number_sans4.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0
+Conversion_Color Coversion to grayscale image#Picture_0#Picture_1#RGB2GRAY
+Conversion_Canny Create binary image#Picture_1#Picture_1#Number#90#Number#200#5
+Conversion_Morfology Dilate object#Picture_1#Picture_1#Dilate#1#RECT#2#2#0#0
+Contours_Find Find contours on binary image#Picture_1#Contour_0#Number#0#Number#0#None
+Object_Find Find numbers as objects#Picture_1#Contour_0#Block_1#Basic#None#New
+Object_ToChar Select one#one#1
+Object_ToChar Select two#two#2
+Object_ToChar Select three#three#3
+Object_ToChar Select four#four#4
+Object_ToChar Select five#five#5
+Object_ToChar Select six#six#6
+Object_ToChar Select seven#seven#7
+Object_ToChar Select eight#eight#8
+Object_ToChar Select nine#nine#9
+Object_ToChar Select zero#zero#0
+Object_ToChar Select dot#dot#.
+Object_CharToString Convert to string 0#Left -> Right#20#100# #String_0
+System_Results Display string#Picture_0# String#String_0# #None
+OBJECTBLOCK_1
+FILTER#1#1#0#1#2#-1
+OBJECT#one#
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm centr moments (0,2) more than 0.48#CONDITION#1#36#0.000000# #4#0#0.480000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm centr moments (0,3) less than 0,53#CONDITION#1#36#0.000000# #4#0#0.530000# #3#0#
+OBJECT#two#Find number two
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 2 more than 0,0048#CONDITION#1#29#0.000000# #4#0#0.004800# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 2 is less than 0,0056#CONDITION#1#29#0.000000# #4#0#0.006500# #3#0#
+OBJECT#three#Find number three
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 1 is more than 0,05#CONDITION#1#28#0.000000# #4#0#0.050000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 1 is less than 0,1#CONDITION#1#28#0.000000# #4#0#0.100000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 2 is more than 0,01#CONDITION#1#29#0.000000# #4#0#0.010000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 2 is less than 0,013#CONDITION#1#29#0.000000# #4#0#0.014500# #3#0#
+OBJECT#four#Find number four
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm central moment (1,2) more than 0,013#CONDITION#1#39#0.000000# #4#0#0.013000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm central moments(1,2) less than 0,016#CONDITION#1#39#0.000000# #4#0#0.016000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 more than 0,20#CONDITION#1#27#0.000000# #4#0#0.200000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 less than 0,24#CONDITION#1#27#0.000000# #4#0#0.240000# #3#0#
+OBJECT#five#Find number five
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 is more than 0,46#CONDITION#1#27#0.000000# #4#0#0.460000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 is less than 0,50#CONDITION#1#27#0.000000# #4#0#0.500000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 2 less than 0,008#CONDITION#1#29#0.000000# #4#0#0.008000# #3#0#
+OBJECT#six#Find number six
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Central moments (3,0) more than 30000#CONDITION#1#23#0.000000# #4#0#30000.000000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Central moments (3,0) less than 600000#CONDITION#1#23#0.000000# #4#0#600000.000000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 is more than 0,19#CONDITION#1#27#0.000000# #4#0#0.190000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 less than 0,22#CONDITION#1#27#0.000000# #4#0#0.220000# #3#0#
+OBJECT#seven#Find number seven
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 1 more than 0,12#CONDITION#1#28#0.000000# #4#0#0.120000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 1 less than 0,149#CONDITION#1#28#0.000000# #4#0#0.149000# #3#0#
+OBJECT#eight#Find number eight
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 more than 0,181#CONDITION#1#27#0.000000# #4#0#0.181000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0  is less than 0,195#CONDITION#1#27#0.000000# #4#0#0.195000# #3#0#
+OBJECT#nine#Find number nine
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 more than 0,19#CONDITION#1#27#0.000000# #4#0#0.190000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#HU moments 0 less than 0,22#CONDITION#1#27#0.000000# #4#0#0.220000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Centr moments (1,2) less than -20000#CONDITION#1#25#0.000000# #4#0#-20000.000000# #3#0#
+OBJECT#zero#Find number zero
+TOBJECT#No outside contours#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm Central moments (0,2)more than 0,10#CONDITION#1#36#0.000000# #4#0#0.100000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Norm Central moments (0,2) less than 0,12#CONDITION#1#36#0.000000# #4#0#0.120000# #3#0#
+OBJECT#dot#Find dot
+TOBJECT#No outside contorurs#CONDITION#1#52#0.000000# #4#0#0.000000# #1#0#
+TOBJECT#Difference height width#MATH#1#3#0.000000# #1#4#0.000000# #2#-1#diff1
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Difference less than 5#CONDITION#3#0#0.000000#diff1#4#0#5.000000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Bounding rect height less than 30#CONDITION#1#3#0.000000# #4#0#30.000000# #3#0#
