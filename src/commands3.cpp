@@ -1317,7 +1317,7 @@ int Object_CharToString::SortObjectFunction(std::vector<OBJECTX2> obxx,wxString 
          {
               if(i<(obxx.size()-1))
            {
-              if((obxx[i].y+line_width)<(obxx[i+1].y))
+              if((obxx[i].bot_y+line_width)<(obxx[i+1].bot_y))
              {
             if(direction==1) std::sort(obxx2.begin(),obxx2.end(),compareByX);
             if(direction==2) std::sort(obxx2.begin(),obxx2.end(),compareByX2);
@@ -1325,6 +1325,7 @@ int Object_CharToString::SortObjectFunction(std::vector<OBJECTX2> obxx,wxString 
             for(unsigned int j=0;j<obxx2.size();j++)obxx3.push_back(obxx2[j]);
             o2.x=0;
             o2.y=0;
+            o2.bot_y=0;
             o2.chr='\n';
             obxx3.push_back(o2);
             obxx2.clear();
@@ -1336,7 +1337,12 @@ int Object_CharToString::SortObjectFunction(std::vector<OBJECTX2> obxx,wxString 
             if(direction==2) std::sort(obxx2.begin(),obxx2.end(),compareByX2);
 
             for(unsigned int j=0;j<obxx2.size();j++)obxx3.push_back(obxx2[j]);
+            o2.x=0;
+            o2.y=0;
+            o2.bot_y=0;
+            o2.chr='\n';
             obxx3.push_back(o2);
+            obxx2.clear();
            }
          }
          else
@@ -1351,6 +1357,7 @@ int Object_CharToString::SortObjectFunction(std::vector<OBJECTX2> obxx,wxString 
             for(unsigned int j=0;j<obxx2.size();j++)obxx3.push_back(obxx2[j]);
             o2.x=0;
             o2.y=0;
+             o2.bot_y=0;
             o2.chr='\n';
             obxx3.push_back(o2);
             obxx2.clear();
@@ -1362,7 +1369,12 @@ int Object_CharToString::SortObjectFunction(std::vector<OBJECTX2> obxx,wxString 
             if(direction==3) std::sort(obxx2.begin(),obxx2.end(),compareByY);
             if(direction==4) std::sort(obxx2.begin(),obxx2.end(),compareByY2);
             for(unsigned int j=0;j<obxx2.size();j++)obxx3.push_back(obxx2[j]);
+            o2.x=0;
+            o2.y=0;
+             o2.bot_y=0;
+            o2.chr='\n';
             obxx3.push_back(o2);
+                obxx2.clear();
            }
          }
 
@@ -1397,9 +1409,14 @@ for(unsigned int i=0;i<obxx3.size();i++)
     }
 
     out_mes<<obxx3[i].chr;
+
+
+
     if(space_find)out_mes+=_(" ");
     space_find=false;
+
 }
+
     return 0;
 }
 
@@ -1442,14 +1459,16 @@ int Object_CharToString::RunCommand(wxString param,PDAT *pd,int line,int edit,Ob
 
      OBJECTX2 o2;
 
+
      for(unsigned int i=0;i<pd->obj.size();i++)
      {
          if(pd->obj[i].char_activated)
          {
              o2.x=pd->obj[i].bounding_rect_x;
              o2.y=pd->obj[i].bounding_rect_y;
+             o2.bot_y=pd->obj[i].bounding_rect_y+pd->obj[i].bounding_rect_height;
              o2.chr=pd->obj[i].chr;
-
+ 
              obxx.push_back(o2);
          }
      }
@@ -1462,6 +1481,7 @@ int Object_CharToString::RunCommand(wxString param,PDAT *pd,int line,int edit,Ob
          {
              o2.x=pd->obj[i].bounding_rect_x;
              o2.y=pd->obj[i].bounding_rect_y;
+             o2.bot_y=pd->obj[i].bounding_rect_y+pd->obj[i].bounding_rect_height;
              o2.chr=' ';
 
              obxx.push_back(o2);
@@ -1470,6 +1490,8 @@ int Object_CharToString::RunCommand(wxString param,PDAT *pd,int line,int edit,Ob
      }
 
 wxString out_mes=wxEmptyString;
+
+
 
 if(SortObjectFunction(obxx,out_mes,string_direction,line_width,space_size)!=0) return -5; //Error in function  SortObjectFunction
 double dxx;

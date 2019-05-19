@@ -8,6 +8,7 @@
          int x;
          int y;
          wxChar chr;
+         int bot_y;
      };
 /*************************************************************************************
 Class for find contours on selected image

@@ -777,6 +777,7 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
        wxString pom,pom2;
      pom=param.BeforeFirst('#');
      pom2=param.AfterFirst('#');
+
      if(pom!=_("None"))
      {
       if(pom.BeforeFirst('_')!=_("Picture"))return -1; //Bad picture name
