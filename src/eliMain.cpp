@@ -2476,6 +2476,8 @@ isDisplayedImage=true;
      loop_running=false;
     }
 
+   if(Timer2!=NULL) StopViewCameraFunction();
+
     ErrorLog er;
     er.SetError(_("OpenCV error in function GenerateDisplPicture"),pv);
     er.DisplayLog();
