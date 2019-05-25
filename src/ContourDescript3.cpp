@@ -459,7 +459,7 @@ try
 {
    if((type>=1)&&(type<=4)) //Bounding rect
    {
-      CvRect rect;
+      cv::Rect rect;
       if(!param[pos].rect_calculated)
       {
           rect=boundingRect(contour);

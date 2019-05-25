@@ -407,18 +407,18 @@ int ContourDescript::GenerateDisplPicture(Mat img)
          Mat img_x;
            if (img.type()==CV_8UC1)
            {
-               cvtColor(img, img_x, CV_GRAY2RGB);
+               cvtColor(img, img_x, COLOR_GRAY2RGB);
 
             //displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-           resize(img_x,displayed_Image,Size(),(double)tot_ratio,(double)tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+           resize(img_x,displayed_Image,Size(),(double)tot_ratio,(double)tot_ratio,INTER_LINEAR ); // resize final image to new sizes
 
            }
            else
            {
                     //    displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-       resize(img,displayed_Image,Size(),tot_ratio,tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+       resize(img,displayed_Image,Size(),tot_ratio,tot_ratio,INTER_LINEAR ); // resize final image to new sizes
            }
- cvtColor(displayed_Image,displayed_Image,CV_RGB2BGR);
+ cvtColor(displayed_Image,displayed_Image,COLOR_RGB2BGR);
 
 isDisplayedImage=true;
 
@@ -444,7 +444,7 @@ try
 {
 
  mainImage2=mainImage.clone();
- if(mainImage2.channels()<3)cvtColor(mainImage2,mainImage2,CV_GRAY2RGB);
+ if(mainImage2.channels()<3)cvtColor(mainImage2,mainImage2,COLOR_GRAY2RGB);
 
 
   /* Read setup */
@@ -1065,17 +1065,17 @@ try
 
          r_data=_("");
          cfg_data.Read(_("CONTOURWINDOW_OBJECTNAME_FONT"),&r_data);
-         int ft=CV_FONT_HERSHEY_SIMPLEX;  // Font
+         int ft=FONT_HERSHEY_SIMPLEX;  // Font
          if(r_data.Length()>0)
          {
-         if(wxAtoi(r_data)==0) ft=CV_FONT_HERSHEY_SIMPLEX;
-         if(wxAtoi(r_data)==1)  ft=CV_FONT_HERSHEY_PLAIN;
-         if(wxAtoi(r_data)==2)  ft=CV_FONT_HERSHEY_DUPLEX;
-         if(wxAtoi(r_data)==3)  ft=CV_FONT_HERSHEY_COMPLEX;
-         if(wxAtoi(r_data)==4)  ft=CV_FONT_HERSHEY_TRIPLEX;
-         if(wxAtoi(r_data)==5)  ft=CV_FONT_HERSHEY_COMPLEX_SMALL;
-         if(wxAtoi(r_data)==6)  ft=CV_FONT_HERSHEY_SCRIPT_SIMPLEX;
-         if(wxAtoi(r_data)==7)  ft=CV_FONT_HERSHEY_SCRIPT_COMPLEX;
+         if(wxAtoi(r_data)==0) ft=FONT_HERSHEY_SIMPLEX;
+         if(wxAtoi(r_data)==1)  ft=FONT_HERSHEY_PLAIN;
+         if(wxAtoi(r_data)==2)  ft=FONT_HERSHEY_DUPLEX;
+         if(wxAtoi(r_data)==3)  ft=FONT_HERSHEY_COMPLEX;
+         if(wxAtoi(r_data)==4)  ft=FONT_HERSHEY_TRIPLEX;
+         if(wxAtoi(r_data)==5)  ft=FONT_HERSHEY_COMPLEX_SMALL;
+         if(wxAtoi(r_data)==6)  ft=FONT_HERSHEY_SCRIPT_SIMPLEX;
+         if(wxAtoi(r_data)==7)  ft=FONT_HERSHEY_SCRIPT_COMPLEX;
          }
 
 
@@ -1094,13 +1094,13 @@ try
 
 
         //Drav selected objects
-        CvPoint p1,p2;
+        cv::Point p1,p2;
         p1.x=obj_found[ret_code].bounding_rect_x;
         p1.y=obj_found[ret_code].bounding_rect_y;
         p2.x=obj_found[ret_code].bounding_rect_x + obj_found[ret_code].bounding_rect_width;
         p2.y=obj_found[ret_code].bounding_rect_y + obj_found[ret_code].bounding_rect_height;
 
-        if(mainImage2.channels()<3)cvtColor(mainImage2,mainImage2,CV_GRAY2RGB);
+        if(mainImage2.channels()<3)cvtColor(mainImage2,mainImage2,COLOR_GRAY2RGB);
 
         rectangle(mainImage2,p1,p2,CV_RGB(pok.Red(),pok.Green(),pok.Blue()),line_thick);
 

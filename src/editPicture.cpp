@@ -719,22 +719,22 @@ try
 
            if (img.type()==CV_8UC1)
            {
-               cvtColor(img, img_x, CV_GRAY2RGB);
+               cvtColor(img, img_x, COLOR_GRAY2RGB);
 
             //displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-           resize(img_x,displayed_Image,displayed_Image.size(),tot_ratio,tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+           resize(img_x,displayed_Image,displayed_Image.size(),tot_ratio,tot_ratio,INTER_LINEAR ); // resize final image to new sizes
            }
            else
            {
                     //    displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-       resize(img,displayed_Image,displayed_Image.size(),tot_ratio,tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+       resize(img,displayed_Image,displayed_Image.size(),tot_ratio,tot_ratio,INTER_LINEAR ); // resize final image to new sizes
            }
            x_size=im_width*tot_ratio;
            y_size=im_height*tot_ratio;
            x_ratio=1/tot_ratio;
            y_ratio=1/tot_ratio;
 
- cvtColor(displayed_Image,displayed_Image,CV_RGB2BGR);
+ cvtColor(displayed_Image,displayed_Image,COLOR_RGB2BGR);
 isDisplayedImage=true;
 }
         catch( cv::Exception& e )

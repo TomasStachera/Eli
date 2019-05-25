@@ -1360,26 +1360,26 @@ int Source_CaptureProperty::GetLineParam(int line,wxString &name,int &type,wxArr
         type=2;
         wxArrayString arraystr;
         wxString pom;
-         arraystr.Add(_("CV_CAP_PROP_POS_MSEC"));
-         arraystr.Add(_("CV_CAP_PROP_POS_FRAMES"));
-         arraystr.Add(_("CV_CAP_PROP_POS_AVI_RATIO"));
-         arraystr.Add(_("CV_CAP_PROP_FRAME_WIDTH"));
-         arraystr.Add(_("CV_CAP_PROP_FRAME_HEIGHT"));
-         arraystr.Add(_("CV_CAP_PROP_FPS"));
-         arraystr.Add(_("CV_CAP_PROP_FOURCC"));
-         arraystr.Add(_("CV_CAP_PROP_FRAME_COUNT"));
-         arraystr.Add(_("CV_CAP_PROP_FORMAT"));
-          arraystr.Add(_("CV_CAP_PROP_MODE"));
-          arraystr.Add(_("CV_CAP_PROP_BRIGHTNESS"));
-          arraystr.Add(_("CV_CAP_PROP_CONTRAST"));
-          arraystr.Add(_("CV_CAP_PROP_SATURATION"));
-          arraystr.Add(_("CV_CAP_PROP_HUE"));
-          arraystr.Add(_("CV_CAP_PROP_GAIN"));
-          arraystr.Add(_("CV_CAP_PROP_EXPOSURE"));
-          arraystr.Add(_("CV_CAP_PROP_CONVERT_RGB"));
-           arraystr.Add(_("CV_CAP_PROP_RECTIFICATION"));
-           arraystr.Add(_("CV_CAP_PROP_ISO_SPEED"));
-           arraystr.Add(_("CV_CAP_PROP_BUFFERSIZE"));
+         arraystr.Add(_("CAP_PROP_POS_MSEC"));
+         arraystr.Add(_("CAP_PROP_POS_FRAMES"));
+         arraystr.Add(_("CAP_PROP_POS_AVI_RATIO"));
+         arraystr.Add(_("CAP_PROP_FRAME_WIDTH"));
+         arraystr.Add(_("CAP_PROP_FRAME_HEIGHT"));
+         arraystr.Add(_("CAP_PROP_FPS"));
+         arraystr.Add(_("CAP_PROP_FOURCC"));
+         arraystr.Add(_("CAP_PROP_FRAME_COUNT"));
+         arraystr.Add(_("CAP_PROP_FORMAT"));
+          arraystr.Add(_("CAP_PROP_MODE"));
+          arraystr.Add(_("CAP_PROP_BRIGHTNESS"));
+          arraystr.Add(_("CAP_PROP_CONTRAST"));
+          arraystr.Add(_("CAP_PROP_SATURATION"));
+          arraystr.Add(_("CAP_PROP_HUE"));
+          arraystr.Add(_("CAP_PROP_GAIN"));
+          arraystr.Add(_("CAP_PROP_EXPOSURE"));
+          arraystr.Add(_("CAP_PROP_CONVERT_RGB"));
+           arraystr.Add(_("CAP_PROP_RECTIFICATION"));
+           arraystr.Add(_("CAP_PROP_ISO_SPEED"));
+           arraystr.Add(_("CAP_PROP_BUFFERSIZE"));
         aray_str=arraystr;
         type2=0;
     }
@@ -1432,28 +1432,28 @@ try
      if((capture_index<0)||(capture_index>9)) return -1; // Bad capture index
      pom=pom.AfterFirst('#');
 
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_POS_MSEC")) prop_id=CV_CAP_PROP_POS_MSEC;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_POS_FRAMES")) prop_id=CV_CAP_PROP_POS_FRAMES;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_POS_AVI_RATIO")) prop_id=CV_CAP_PROP_POS_AVI_RATIO;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FRAME_WIDTH")) prop_id=CV_CAP_PROP_FRAME_WIDTH;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FRAME_HEIGHT")) prop_id=CV_CAP_PROP_FRAME_HEIGHT;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FPS")) prop_id=CV_CAP_PROP_FPS;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FOURCC")) prop_id=CV_CAP_PROP_FOURCC;
-       if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FRAME_COUNT")) prop_id=CV_CAP_PROP_FRAME_COUNT;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_POS_MSEC")) prop_id=CAP_PROP_POS_MSEC;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_POS_FRAMES")) prop_id=CAP_PROP_POS_FRAMES;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_POS_AVI_RATIO")) prop_id=CAP_PROP_POS_AVI_RATIO;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_FRAME_WIDTH")) prop_id=CAP_PROP_FRAME_WIDTH;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_FRAME_HEIGHT")) prop_id=CAP_PROP_FRAME_HEIGHT;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_FPS")) prop_id=CAP_PROP_FPS;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_FOURCC")) prop_id=CAP_PROP_FOURCC;
+       if(pom.BeforeFirst('#')==_("CAP_PROP_FRAME_COUNT")) prop_id=CAP_PROP_FRAME_COUNT;
 
-     if(pom.BeforeFirst('#')==_("CV_CAP_PROP_FORMAT")) prop_id=CV_CAP_PROP_FORMAT;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_MODE")) prop_id=CV_CAP_PROP_MODE;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_BRIGHTNESS")) prop_id=CV_CAP_PROP_BRIGHTNESS;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_CONTRAST")) prop_id=CV_CAP_PROP_CONTRAST;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_SATURATION")) prop_id=CV_CAP_PROP_SATURATION;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_HUE")) prop_id=CV_CAP_PROP_HUE;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_GAIN")) prop_id=CV_CAP_PROP_GAIN;
-       if(pom.BeforeFirst('#')==_("CV_CAP_PROP_EXPOSURE")) prop_id=CV_CAP_PROP_EXPOSURE;
+     if(pom.BeforeFirst('#')==_("CAP_PROP_FORMAT")) prop_id=CAP_PROP_FORMAT;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_MODE")) prop_id=CAP_PROP_MODE;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_BRIGHTNESS")) prop_id=CAP_PROP_BRIGHTNESS;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_CONTRAST")) prop_id=CAP_PROP_CONTRAST;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_SATURATION")) prop_id=CAP_PROP_SATURATION;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_HUE")) prop_id=CAP_PROP_HUE;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_GAIN")) prop_id=CAP_PROP_GAIN;
+       if(pom.BeforeFirst('#')==_("CAP_PROP_EXPOSURE")) prop_id=CAP_PROP_EXPOSURE;
 
-       if(pom.BeforeFirst('#')==_("CV_CAP_PROP_CONVERT_RGB")) prop_id=CV_CAP_PROP_CONVERT_RGB;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_RECTIFICATION")) prop_id=CV_CAP_PROP_FRAME_WIDTH;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_ISO_SPEED")) prop_id=CV_CAP_PROP_ISO_SPEED;
-      if(pom.BeforeFirst('#')==_("CV_CAP_PROP_BUFFERSIZE")) prop_id=CV_CAP_PROP_BUFFERSIZE;
+       if(pom.BeforeFirst('#')==_("CAP_PROP_CONVERT_RGB")) prop_id=CAP_PROP_CONVERT_RGB;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_RECTIFICATION")) prop_id=CAP_PROP_FRAME_WIDTH;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_ISO_SPEED")) prop_id=CAP_PROP_ISO_SPEED;
+      if(pom.BeforeFirst('#')==_("CAP_PROP_BUFFERSIZE")) prop_id=CAP_PROP_BUFFERSIZE;
 
       pom=pom.AfterFirst('#');
 
@@ -1786,7 +1786,7 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
 
      int videow_pos=-1; // position of video writer structure
      wxString video_file_path; // path for store video file
-     int fourcc=CV_FOURCC('P','I','M','1'); // code of codec
+     int fourcc_=VideoWriter::fourcc('P','I','M','1'); // code of codec
      double fps=0; // framerate of video stream
      int height=0;  // height of video
      int width=0; //width of video
@@ -1805,14 +1805,14 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
      pom=pom.AfterFirst('#');
 
 
-     if(pom2==_("MPEG-1")) fourcc=CV_FOURCC('P','I','M','1');
-     if(pom2==_("motion-jpeg")) fourcc=CV_FOURCC('M','J','P','G');
-     if(pom2==_("MPEG-4.2")) fourcc=CV_FOURCC('M', 'P', '4', '2');
-     if(pom2==_("MPEG-4.3")) fourcc=CV_FOURCC('D', 'I', 'V', '3');
-     if(pom2==_("MPEG-4")) fourcc=CV_FOURCC('D', 'I', 'V', 'X');
-     if(pom2==_("H263")) fourcc=CV_FOURCC('U', '2', '6', '3');
-     if(pom2==_("H263I")) fourcc=CV_FOURCC('I', '2', '6', '3');
-     if(pom2==_("FLV1")) fourcc=CV_FOURCC('F', 'L', 'V', '1');
+     if(pom2==_("MPEG-1")) fourcc_=VideoWriter::fourcc('P','I','M','1');
+     if(pom2==_("motion-jpeg")) fourcc_=VideoWriter::fourcc('M','J','P','G');
+     if(pom2==_("MPEG-4.2")) fourcc_=VideoWriter::fourcc('M', 'P', '4', '2');
+     if(pom2==_("MPEG-4.3")) fourcc_=VideoWriter::fourcc('D', 'I', 'V', '3');
+     if(pom2==_("MPEG-4")) fourcc_=VideoWriter::fourcc('D', 'I', 'V', 'X');
+     if(pom2==_("H263")) fourcc_=VideoWriter::fourcc('U', '2', '6', '3');
+     if(pom2==_("H263I")) fourcc_=VideoWriter::fourcc('I', '2', '6', '3');
+     if(pom2==_("FLV1")) fourcc_=VideoWriter::fourcc('F', 'L', 'V', '1');
 
      pom2=pom.BeforeFirst('#');
      pom=pom.AfterFirst('#');
@@ -1875,7 +1875,7 @@ int Source_SaveImage::GetLineParam(int line,wxString &name,int &type,wxArrayStri
 try
 {
 
-  pd->video_writers[videow_pos].open(String(video_file_path.mbc_str()),fourcc,fps,cvSize(width,height),is_color);
+  pd->video_writers[videow_pos].open(String(video_file_path.mbc_str()),fourcc_,fps,Size(width,height),is_color);
   if(!pd->video_writers[videow_pos].isOpened()) return -8; //Can not open video file
 }
      catch( cv::Exception& e )

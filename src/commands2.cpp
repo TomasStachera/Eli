@@ -82,36 +82,36 @@ to colour, or yoy can convert between several colour spaces, see command help.
    {
    int i_src=wxAtoi(src_pic.AfterFirst('_'));
    int i_dest=wxAtoi(dest_pic.AfterFirst('_'));
-   int i_code=CV_RGB2GRAY;
-   if(code==_("RGB2GRAY")) i_code=CV_RGB2GRAY;
-   if(code==_("GRAY2RGB")) i_code=CV_GRAY2RGB;
-   if(code==_("RGB2XYZ")) i_code=CV_RGB2XYZ;
-   if(code==_("XYZ2RGB")) i_code=CV_XYZ2RGB;
-   if(code==_("RGB2YCrCb")) i_code=CV_RGB2YCrCb;
-   if(code==_("YCrCb2RGB")) i_code=CV_YCrCb2RGB;
-   if(code==_("RGB2HSV")) i_code=CV_RGB2HSV;
-   if(code==_("HSV2RGB")) i_code=CV_HSV2RGB;
-   if(code==_("RGB2HLS")) i_code=CV_RGB2HLS;
-   if(code==_("HLS2RGB")) i_code=CV_HLS2RGB;
-   if(code==_("RGB2Lab")) i_code=CV_RGB2Lab;
-    if(code==_("Lab2RGB")) i_code=CV_Lab2RGB;
-    if(code==_("RGB2Luv")) i_code=CV_RGB2Luv;
-    if(code==_("Luv2RGB")) i_code=CV_Luv2RGB;
+   int i_code=COLOR_RGB2GRAY;
+   if(code==_("RGB2GRAY")) i_code=COLOR_RGB2GRAY;
+   if(code==_("GRAY2RGB")) i_code=COLOR_GRAY2RGB;
+   if(code==_("RGB2XYZ")) i_code=COLOR_RGB2XYZ;
+   if(code==_("XYZ2RGB")) i_code=COLOR_XYZ2RGB;
+   if(code==_("RGB2YCrCb")) i_code=COLOR_RGB2YCrCb;
+   if(code==_("YCrCb2RGB")) i_code=COLOR_YCrCb2RGB;
+   if(code==_("RGB2HSV")) i_code=COLOR_RGB2HSV;
+   if(code==_("HSV2RGB")) i_code=COLOR_HSV2RGB;
+   if(code==_("RGB2HLS")) i_code=COLOR_RGB2HLS;
+   if(code==_("HLS2RGB")) i_code=COLOR_HLS2RGB;
+   if(code==_("RGB2Lab")) i_code=COLOR_RGB2Lab;
+    if(code==_("Lab2RGB")) i_code=COLOR_Lab2RGB;
+    if(code==_("RGB2Luv")) i_code=COLOR_RGB2Luv;
+    if(code==_("Luv2RGB")) i_code=COLOR_Luv2RGB;
 
-    if(code==_("BGR2GRAY")) i_code=CV_BGR2GRAY;
-   if(code==_("GRAY2BGR")) i_code=CV_GRAY2BGR;
-   if(code==_("BGR2XYZ")) i_code=CV_BGR2XYZ;
-   if(code==_("XYZ2BGR")) i_code=CV_XYZ2BGR;
-   if(code==_("BGR2YCrCb")) i_code=CV_BGR2YCrCb;
-   if(code==_("YCrCb2BGR")) i_code=CV_YCrCb2BGR;
-   if(code==_("BGR2HSV")) i_code=CV_BGR2HSV;
-   if(code==_("HSV2BGR")) i_code=CV_HSV2BGR;
-   if(code==_("BGR2HLS")) i_code=CV_BGR2HLS;
-   if(code==_("HLS2BGR")) i_code=CV_HLS2BGR;
-   if(code==_("BGR2Lab")) i_code=CV_BGR2Lab;
-    if(code==_("Lab2BGR")) i_code=CV_Lab2BGR;
-    if(code==_("BGR2Luv")) i_code=CV_BGR2Luv;
-    if(code==_("Luv2BGR")) i_code=CV_Luv2BGR;
+    if(code==_("BGR2GRAY")) i_code=COLOR_BGR2GRAY;
+   if(code==_("GRAY2BGR")) i_code=COLOR_GRAY2BGR;
+   if(code==_("BGR2XYZ")) i_code=COLOR_BGR2XYZ;
+   if(code==_("XYZ2BGR")) i_code=COLOR_XYZ2BGR;
+   if(code==_("BGR2YCrCb")) i_code=COLOR_BGR2YCrCb;
+   if(code==_("YCrCb2BGR")) i_code=COLOR_YCrCb2BGR;
+   if(code==_("BGR2HSV")) i_code=COLOR_BGR2HSV;
+   if(code==_("HSV2BGR")) i_code=COLOR_HSV2BGR;
+   if(code==_("BGR2HLS")) i_code=COLOR_BGR2HLS;
+   if(code==_("HLS2BGR")) i_code=COLOR_HLS2BGR;
+   if(code==_("BGR2Lab")) i_code=COLOR_BGR2Lab;
+    if(code==_("Lab2BGR")) i_code=COLOR_Lab2BGR;
+    if(code==_("BGR2Luv")) i_code=COLOR_BGR2Luv;
+    if(code==_("Luv2BGR")) i_code=COLOR_Luv2BGR;
 
     if((i_src<0)||(i_src>19))return -1; //BAd source image index
     if((i_dest<0)||(i_dest>19)) return -2;//BAd destination image index
@@ -1561,11 +1561,11 @@ Class for resize tested image
    int sour_pic_pos=wxAtoi(param.BeforeFirst('#').AfterFirst('_'));//position of source picture in picture array
   wxString pom=param.AfterFirst('#');
   int dest_pic_pos=wxAtoi(pom.BeforeFirst('#').AfterFirst('_')); //position of destination picture in picture array
-  int method=CV_INTER_NN; //INterpolation method
+  int method=INTER_NEAREST; //INterpolation method
   pom=pom.AfterFirst('#');
-  if(pom.BeforeFirst('#')==_("CV_INTER_LINEAR")) method=CV_INTER_LINEAR;
-  if(pom.BeforeFirst('#')==_("CV_INTER_AREA")) method=CV_INTER_AREA;
-  if(pom.BeforeFirst('#')==_("CV_INTER_CUBIC")) method=CV_INTER_CUBIC;
+  if(pom.BeforeFirst('#')==_("CV_INTER_LINEAR")) method=INTER_LINEAR;
+  if(pom.BeforeFirst('#')==_("CV_INTER_AREA")) method=INTER_AREA;
+  if(pom.BeforeFirst('#')==_("CV_INTER_CUBIC")) method=INTER_CUBIC;
   double x_scale=0,y_scale=0;
   pom=pom.AfterFirst('#');
     for(int i=0;i<2;i++)

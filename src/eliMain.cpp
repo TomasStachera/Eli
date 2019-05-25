@@ -37,6 +37,7 @@
 #include "CameraProperties.h"
 #include "VariableWindow.h"
 
+
 /* libraries for get cameras information in linux
 It must be instaled v4l-utils libraries
 */
@@ -1536,14 +1537,14 @@ try
      wxWindowDisabler disableAll;
       Update();
 
-    t1=cvGetTickCount();
+    t1=getTickCount();
     int ret=run_tpg->RunProgram(tp_prg,cmd,1,ob_prg,0);
-   t2=cvGetTickCount();
+   t2=getTickCount();
    UpdateActualVariableStatus();
     if(ret==0)
     {
         tx=t2-t1;
-      long long tot_time=tx/(long)cvGetTickFrequency();//calculate total time for test program
+      long long tot_time=tx/(long)getTickFrequency();//calculate total time for test program
         wxString tim_string=_("Program time: ");
         tim_string<<tot_time;
         tim_string+=_(" us \n");
@@ -2449,17 +2450,17 @@ try
          Mat img_x;
            if (img.type()==CV_8UC1)
            {
-               cvtColor(img, img_x, CV_GRAY2RGB);
+               cvtColor(img, img_x, COLOR_GRAY2RGB);
 
             //displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-           resize(img_x,displayed_Image,Size(),tot_ratio,tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+           resize(img_x,displayed_Image,Size(),tot_ratio,tot_ratio,INTER_LINEAR ); // resize final image to new sizes
            }
            else
            {
                     //    displayed_Image=(new_width,new_heigth,img_x.depth(),img_x.channels());
-       resize(img,displayed_Image,Size(),tot_ratio,tot_ratio,CV_INTER_LINEAR ); // resize final image to new sizes
+       resize(img,displayed_Image,Size(),tot_ratio,tot_ratio,INTER_LINEAR ); // resize final image to new sizes
            }
- cvtColor(displayed_Image,displayed_Image,CV_RGB2BGR);
+ cvtColor(displayed_Image,displayed_Image,COLOR_RGB2BGR);
 isDisplayedImage=true;
 
 
@@ -2827,7 +2828,7 @@ if(run_tpg==NULL)
 }
 
 long long t1=0,t2=0,tx;
-if(first_time_view)  t1=cvGetTickCount();
+if(first_time_view)  t1=getTickCount();
 
 try
 {
@@ -2926,10 +2927,10 @@ try
 
 if(first_time_view)
 {
-  t2=cvGetTickCount();
+  t2=getTickCount();
 
         tx=t2-t1;
-      long long tot_time=tx/(long)cvGetTickFrequency();//calculate total time for test program
+      long long tot_time=tx/(long)getTickFrequency();//calculate total time for test program
 
 
 
@@ -3230,7 +3231,7 @@ ViewCameraFunction(false);
  void eliFrame::OnTimer2Trigger(wxTimerEvent& event)
  {
      long long t1=0,t2=0,tx;
-       if(first_time_view)  t1=cvGetTickCount();
+       if(first_time_view)  t1=getTickCount();
 
      Mat imgxx;
     cam_video>>imgxx;
@@ -3269,10 +3270,10 @@ Refresh();
 
 if(first_time_view)
 {
-  t2=cvGetTickCount();
+  t2=getTickCount();
 
         tx=t2-t1;
-      long long tot_time=tx/(long)cvGetTickFrequency();//calculate total time for test program
+      long long tot_time=tx/(long)getTickFrequency();//calculate total time for test program
 
       wxConfig config2(wxT("cam_properties"),wxT("ELI"));
      wxString pxx;

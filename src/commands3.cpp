@@ -128,12 +128,12 @@ Class for find contours on selected image
   wxString pom=param.AfterFirst('#');
   int contour_pos=wxAtoi(pom.BeforeFirst('#').AfterFirst('_')); //position of contours array
   pom=pom.AfterFirst('#');
-  int mode=CV_RETR_CCOMP; //Retrieval mode
+  int mode=RETR_CCOMP; //Retrieval mode
  /* if(pom.BeforeFirst('#')==_("CV_RETR_EXTERNAL")) mode=CV_RETR_EXTERNAL;
   if(pom.BeforeFirst('#')==_("CV_RETR_CCOMP")) mode=CV_RETR_CCOMP;
   if(pom.BeforeFirst('#')==_("CV_RETR_TREE")) mode=CV_RETR_TREE;*/
  // pom=pom.AfterFirst('#');
-  int method=CV_CHAIN_APPROX_SIMPLE; //Aproximation method
+  int method=CHAIN_APPROX_SIMPLE; //Aproximation method
  /* if(pom.BeforeFirst('#')==_("CV_CHAIN_APPROX_NONE")) method=CV_CHAIN_APPROX_NONE;
   if(pom.BeforeFirst('#')==_("CV_CHAIN_APPROX_TC89_L1"))method=CV_CHAIN_APPROX_TC89_L1;
   if(pom.BeforeFirst('#')==_("CV_CHAIN_APPROX_TC89_KCOS"))method=CV_CHAIN_APPROX_TC89_KCOS;*/
@@ -290,7 +290,7 @@ Class for find contours on selected image
     int ticness=wxAtoi(pom.BeforeFirst('#')); //Ticknes of the contours lines
     int line_type=8; //type of the contours segments
     if(pom.AfterFirst('#')==_("4")) line_type=4;
-    if(pom.AfterFirst('#')==_("CV_AA"))line_type=CV_AA;
+    if(pom.AfterFirst('#')==_("CV_AA"))line_type=LINE_AA;
 
      if((sour_pic_pos<0)||(sour_pic_pos>19)) return -1; // bad position of source picture in picture array
      if((cont_pos<0)||(cont_pos>19)) return -2; // bad position of contour in contours array
@@ -765,19 +765,19 @@ int uch=-1;
       if(parameterx==_("Derived_8"))par_type=28;
       if(parameterx==_("Derived_9"))par_type=29;
 
-      if(pd->imgx[picture_pos].channels()<3)cvtColor(pd->imgx[picture_pos],pd->imgx[picture_pos],CV_GRAY2RGB);
+      if(pd->imgx[picture_pos].channels()<3)cvtColor(pd->imgx[picture_pos],pd->imgx[picture_pos],COLOR_GRAY2RGB);
 
       wxString labl_text=wxEmptyString;
       int ft=0;
-      if(font_string==_("FONT_HERSHEY_SIMPLEX"))ft=CV_FONT_HERSHEY_SIMPLEX;
-      if(font_string==_("FONT_HERSHEY_PLAIN"))ft=CV_FONT_HERSHEY_PLAIN;
-      if(font_string==_("FONT_HERSHEY_DUPLEX"))ft=CV_FONT_HERSHEY_DUPLEX;
-      if(font_string==_("FONT_HERSHEY_COMPLEX"))ft=CV_FONT_HERSHEY_COMPLEX;
-      if(font_string==_("FONT_HERSHEY_TRIPLEX"))ft=CV_FONT_HERSHEY_TRIPLEX;
-      if(font_string==_("FONT_HERSHEY_COMPLEX_SMALL"))ft=CV_FONT_HERSHEY_COMPLEX_SMALL;
-      if(font_string==_("FONT_HERSHEY_SCRIPT_SIMPLEX"))ft=CV_FONT_HERSHEY_SCRIPT_SIMPLEX;
-      if(font_string==_("FONT_HERSHEY_SCRIPT_COMPLEX"))ft=CV_FONT_HERSHEY_SCRIPT_COMPLEX;
-      if(font_string==_("FONT_ITALIC"))ft=CV_FONT_ITALIC;
+      if(font_string==_("FONT_HERSHEY_SIMPLEX"))ft=FONT_HERSHEY_SIMPLEX;
+      if(font_string==_("FONT_HERSHEY_PLAIN"))ft=FONT_HERSHEY_PLAIN;
+      if(font_string==_("FONT_HERSHEY_DUPLEX"))ft=FONT_HERSHEY_DUPLEX;
+      if(font_string==_("FONT_HERSHEY_COMPLEX"))ft=FONT_HERSHEY_COMPLEX;
+      if(font_string==_("FONT_HERSHEY_TRIPLEX"))ft=FONT_HERSHEY_TRIPLEX;
+      if(font_string==_("FONT_HERSHEY_COMPLEX_SMALL"))ft=FONT_HERSHEY_COMPLEX_SMALL;
+      if(font_string==_("FONT_HERSHEY_SCRIPT_SIMPLEX"))ft=FONT_HERSHEY_SCRIPT_SIMPLEX;
+      if(font_string==_("FONT_HERSHEY_SCRIPT_COMPLEX"))ft=FONT_HERSHEY_SCRIPT_COMPLEX;
+      if(font_string==_("FONT_ITALIC"))ft=FONT_ITALIC;
 
   try
     {
@@ -1468,7 +1468,7 @@ int Object_CharToString::RunCommand(wxString param,PDAT *pd,int line,int edit,Ob
              o2.y=pd->obj[i].bounding_rect_y;
              o2.bot_y=pd->obj[i].bounding_rect_y+pd->obj[i].bounding_rect_height;
              o2.chr=pd->obj[i].chr;
- 
+
              obxx.push_back(o2);
          }
      }
