@@ -1518,7 +1518,7 @@ void eliFrame::OnMenuIRunSelected(wxCommandEvent& event)
 
 
     TextCtrl1->Clear();
-  long long t1=0,t2=0,tx=0;
+  int64 t1=0,t2=0,tx=0;
 
     run_tpg=new RunTestProgram(cmd);
 
@@ -1537,17 +1537,17 @@ try
      wxWindowDisabler disableAll;
       Update();
 
-    t1=getTickCount();
+    t1=cv::getTickCount();
     int ret=run_tpg->RunProgram(tp_prg,cmd,1,ob_prg,0);
-   t2=getTickCount();
+   t2=cv::getTickCount();
    UpdateActualVariableStatus();
     if(ret==0)
     {
         tx=t2-t1;
-      long long tot_time=tx/(long)getTickFrequency();//calculate total time for test program
+      double tot_time=(double)tx/cv::getTickFrequency();//calculate total time for test program
         wxString tim_string=_("Program time: ");
         tim_string<<tot_time;
-        tim_string+=_(" us \n");
+        tim_string+=_(" s \n");
         TextCtrl1->WriteText(tim_string);
       // TextCtrl1->WriteText(run_tpg->GetText1());
        TextCtrl1->WriteText(_("\nResults:\n\n"));
@@ -2827,8 +2827,8 @@ if(run_tpg==NULL)
     return;
 }
 
-long long t1=0,t2=0,tx;
-if(first_time_view)  t1=getTickCount();
+int64 t1=0,t2=0,tx;
+if(first_time_view)  t1=cv::getTickCount();
 
 try
 {
@@ -3270,10 +3270,10 @@ Refresh();
 
 if(first_time_view)
 {
-  t2=getTickCount();
+  t2=cv::getTickCount();
 
         tx=t2-t1;
-      long long tot_time=tx/(long)getTickFrequency();//calculate total time for test program
+      double tot_time=(double)tx/cv::getTickFrequency();//calculate total time for test program
 
       wxConfig config2(wxT("cam_properties"),wxT("ELI"));
      wxString pxx;
@@ -3284,10 +3284,10 @@ if(first_time_view)
 
      wxString pxv;
 
-      if(tot_time/1000>(loop_timex-30))
+      if(tot_time*1000>(loop_timex-30))
       {
         pxv.Printf(_("Error view camera:Please Change view loop time\nMinimal value for View loop time is:")) ;
-        pxv<<((tot_time/1000)+30);
+        pxv<<((tot_time*1000)+30);
         pxv+=_("ms");
         TextCtrl1->WriteText(pxv);
          //Stop camera
@@ -3300,7 +3300,7 @@ if(first_time_view)
 
      pxv=_("\nFunction time :");
       pxv<<tot_time;
-      pxv+=_(" us");
+      pxv+=_(" s");
       TextCtrl1->WriteText(pxv);
       first_time_view=false;
 }
