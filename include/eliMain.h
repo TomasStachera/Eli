@@ -21,7 +21,7 @@
 #include <wx/frame.h>
 #include <wx/statusbr.h>
 //*)
-
+#include <wx/hyperlink.h>
 #include <new>
 
 #include <wx/filedlg.h>
@@ -46,6 +46,58 @@
 
 using namespace std;
 using namespace cv;
+
+/**
+Class for display about program information
+**/
+
+class help_info: public wxDialog
+{
+	public:
+
+		help_info(wxWindow* parent,wxWindowID id=wxID_ANY);
+		virtual ~help_info();
+
+		//(*Declarations(help_info)
+		wxButton* AutorBut;
+		wxButton* ExitBut;
+		wxButton* OpenCvBut;
+		wxHyperlinkCtrl* HyperlinkCtrl1;
+		wxStaticText* BuildDate;
+		wxStaticText* Compiler_type;
+		wxStaticText* Lib_info;
+		wxStaticText* StaticText1;
+		wxStaticText* VersionNumb;
+		wxStaticText* osSystem;
+		wxTextCtrl* TextInfo;
+		//*)
+
+	protected:
+
+		//(*Identifiers(help_info)
+		static const long ID_STATICTEXT1;
+		static const long ID_STATICTEXT2;
+		static const long ID_STATICTEXT3;
+		static const long ID_STATICTEXT4;
+		static const long ID_STATICTEXT5;
+		static const long ID_STATICTEXT6;
+		static const long ID_TEXTCTRL1;
+		static const long ID_BUTTON1;
+		static const long ID_BUTTON2;
+		static const long ID_HYPERLINKCTRL1;
+		static const long ID_BUTTON3;
+		//*)
+
+	private:
+
+		//(*Handlers(help_info)
+		void OnAutorButClick(wxCommandEvent& event);
+		void OnOpenCvButClick(wxCommandEvent& event);
+		void OnExitButClick(wxCommandEvent& event);
+		//*)
+
+		DECLARE_EVENT_TABLE()
+};
 
 /*****************************************************************
 Class eliFrame

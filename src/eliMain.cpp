@@ -48,8 +48,13 @@ It must be instaled v4l-utils libraries
 #include <linux/videodev2.h>
 #endif // defined
 
+#include <wx/platinfo.h>
+#include <wx/platform.h>
+#include <wx/versioninfo.h>
 
-using namespace cv;
+#define ELI_VERSION_NUMBER "0.1-dev"
+
+//using namespace cv;
 
 
 //(*IdInit(eliFrame)
@@ -120,6 +125,25 @@ const long eliFrame::ID_TIMER3=wxNewId();
 BEGIN_EVENT_TABLE(eliFrame,wxFrame)
     //(*EventTable(eliFrame)
     //*)
+END_EVENT_TABLE()
+
+//(*IdInit(help_info)
+const long help_info::ID_STATICTEXT1 = wxNewId();
+const long help_info::ID_STATICTEXT2 = wxNewId();
+const long help_info::ID_STATICTEXT3 = wxNewId();
+const long help_info::ID_STATICTEXT4 = wxNewId();
+const long help_info::ID_STATICTEXT5 = wxNewId();
+const long help_info::ID_STATICTEXT6 = wxNewId();
+const long help_info::ID_TEXTCTRL1 = wxNewId();
+const long help_info::ID_BUTTON1 = wxNewId();
+const long help_info::ID_BUTTON2 = wxNewId();
+const long help_info::ID_HYPERLINKCTRL1 = wxNewId();
+const long help_info::ID_BUTTON3 = wxNewId();
+//*)
+
+BEGIN_EVENT_TABLE(help_info,wxDialog)
+	//(*EventTable(help_info)
+	//*)
 END_EVENT_TABLE()
 
 eliFrame::eliFrame(wxWindow* parent,wxWindowID id)
@@ -551,8 +575,8 @@ Function display about window with information about program
 *******************************************************/
 void eliFrame::OnAbout(wxCommandEvent& event)
 {
-    wxString msg = _("About program");
-    wxMessageBox(msg, _("Welcome to..."));
+   help_info dlg(this);
+   dlg.ShowModal();
 }
 
 /**********************************************************************************
@@ -3670,4 +3694,142 @@ void eliFrame::UpdateActualVariableStatus(void)
    run_tpg->GetAllObjects(act_variables.all_obj);
 
 
+}
+
+/**
+Help info class
+
+**/
+
+help_info::help_info(wxWindow* parent,wxWindowID id)
+{
+	//(*Initialize(help_info)
+	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer3;
+	wxBoxSizer* BoxSizer4;
+	wxStaticBoxSizer* StaticBoxSizer1;
+
+	Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("wxID_ANY"));
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("ELI version:"), wxDefaultPosition, wxSize(264,46), 0, _T("ID_STATICTEXT1"));
+	wxFont StaticText1Font(24,wxFONTFAMILY_SWISS,wxFONTSTYLE_ITALIC,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	StaticText1->SetFont(StaticText1Font);
+	BoxSizer2->Add(StaticText1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	VersionNumb = new wxStaticText(this, ID_STATICTEXT2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+	wxFont VersionNumbFont(24,wxFONTFAMILY_SWISS,wxFONTSTYLE_ITALIC,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	VersionNumb->SetFont(VersionNumbFont);
+	BoxSizer2->Add(VersionNumb, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	StaticBoxSizer1 = new wxStaticBoxSizer(wxVERTICAL, this, _("Build info"));
+	Compiler_type = new wxStaticText(this, ID_STATICTEXT3, _("Compiler"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+	wxFont Compiler_typeFont(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	Compiler_type->SetFont(Compiler_typeFont);
+	StaticBoxSizer1->Add(Compiler_type, 1, wxALL|wxALIGN_LEFT, 5);
+	BuildDate = new wxStaticText(this, ID_STATICTEXT4, _("Build date"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+	wxFont BuildDateFont(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	BuildDate->SetFont(BuildDateFont);
+	StaticBoxSizer1->Add(BuildDate, 1, wxALL|wxALIGN_LEFT, 5);
+	osSystem = new wxStaticText(this, ID_STATICTEXT5, _("System"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+	wxFont osSystemFont(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	osSystem->SetFont(osSystemFont);
+	StaticBoxSizer1->Add(osSystem, 1, wxALL|wxALIGN_LEFT, 5);
+	Lib_info = new wxStaticText(this, ID_STATICTEXT6, _("Lib:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+	wxFont Lib_infoFont(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	Lib_info->SetFont(Lib_infoFont);
+	StaticBoxSizer1->Add(Lib_info, 1, wxALL|wxALIGN_LEFT, 5);
+	BoxSizer1->Add(StaticBoxSizer1, 2, wxALL|wxEXPAND, 5);
+	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	TextInfo = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	BoxSizer3->Add(TextInfo, 2, wxALL|wxEXPAND, 5);
+	BoxSizer4 = new wxBoxSizer(wxVERTICAL);
+	AutorBut = new wxButton(this, ID_BUTTON1, _("Autors"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	BoxSizer4->Add(AutorBut, 1, wxALL|wxEXPAND, 5);
+	OpenCvBut = new wxButton(this, ID_BUTTON2, _("OpenCV build info"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	BoxSizer4->Add(OpenCvBut, 1, wxALL|wxEXPAND, 5);
+	HyperlinkCtrl1 = new wxHyperlinkCtrl(this, ID_HYPERLINKCTRL1, _("Home page"), _("www.google.com"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
+	wxFont HyperlinkCtrl1Font(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+	HyperlinkCtrl1->SetFont(HyperlinkCtrl1Font);
+	BoxSizer4->Add(HyperlinkCtrl1, 1, wxALL|wxEXPAND, 5);
+	ExitBut = new wxButton(this, ID_BUTTON3, _("Exit"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+	BoxSizer4->Add(ExitBut, 1, wxALL|wxEXPAND, 5);
+	BoxSizer3->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
+	BoxSizer1->Add(BoxSizer3, 3, wxALL|wxEXPAND, 5);
+	SetSizer(BoxSizer1);
+	BoxSizer1->Fit(this);
+	BoxSizer1->SetSizeHints(this);
+
+	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&help_info::OnAutorButClick);
+	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&help_info::OnOpenCvButClick);
+	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&help_info::OnExitButClick);
+	//*)
+
+	VersionNumb->SetLabel(wxT(ELI_VERSION_NUMBER));
+
+	wxString pom=wxT("Compiler version: ");
+	pom+=wxString::FromUTF8(__VERSION__);
+	Compiler_type->SetLabel(pom);
+
+	pom=wxT("Build date: ");
+	pom+=wxString::FromUTF8(__DATE__);
+	pom+=wxT(" ");
+	pom+=wxString::FromUTF8(__TIME__);
+	BuildDate->SetLabel(pom);
+
+	wxPlatformInfo infx;
+	pom=wxT("OS: ");
+	pom+=infx.GetOperatingSystemDescription();
+	pom+=_(" Arch:");
+	pom+=infx.GetArchName();
+	osSystem->SetLabel(pom);
+
+	wxVersionInfo infv;
+	pom=wxT("Lib: ");
+	infv=wxGetLibraryVersionInfo();
+	pom+=infv.GetVersionString();
+	pom+=wxT("    OpenCV ");
+	pom+=wxString::FromUTF8(CV_VERSION);
+	Lib_info->SetLabel(pom);
+
+}
+
+help_info::~help_info()
+{
+	//(*Destroy(help_info)
+	//*)
+}
+
+
+void help_info::OnAutorButClick(wxCommandEvent& event)
+{
+    TextInfo->Clear();
+    wxString autor=wxT("Tomas Stachera");
+    wxString email=wxT("tomas.stachera@gmail com");
+
+    wxString infx=wxT("Autor: ");
+    infx+=autor;
+    infx+=_("\nEmail:");
+    infx+=email;
+
+    TextInfo->WriteText(infx);
+}
+
+void help_info::OnOpenCvButClick(wxCommandEvent& event)
+{
+    TextInfo->Clear();
+    String s=cv::getBuildInformation();
+    int n = s.length();
+
+    char char_array[n + 1];
+
+    strcpy(char_array, s.c_str());
+    wxString info_str(char_array,wxConvUTF8);
+
+    TextInfo->WriteText(info_str);
+}
+
+void help_info::OnExitButClick(wxCommandEvent& event)
+{
+    EndModal(0);
 }
