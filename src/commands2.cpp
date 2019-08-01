@@ -551,8 +551,8 @@ Each pixels is before add multiply with weight factor on image.
     }
     }
     if((sourc_pic_B<0)||(sourc_pic_B>19)) return -4; //bad position of picture B in picture array
-    if((weight_A<0)||(weight_A>1)) return -5;// weight of picture A is out of range (must be (0-1))
-    if((weight_B<0)||(weight_B>1)) return -6;//weight of picture B is out of range (must be (0-1))
+    if((weight_A<-1)||(weight_A>1)) return -5;// weight of picture A is out of range (must be (0-1))
+    if((weight_B<-1)||(weight_B>1)) return -6;//weight of picture B is out of range (must be (0-1))
 
     try
     {
@@ -580,6 +580,476 @@ Each pixels is before add multiply with weight factor on image.
     #endif
 
     addWeighted(pd->imgx[sourc_pic_A],weight_A,pd->imgx[sourc_pic_B],weight_B,0,pd->imgx[dest_pos]);
+
+    }
+
+        catch( cv::Exception& e )
+   {
+
+       SetOpenCVErrorMess(e.err,e.file,e.func,e.line,pd);
+       return -90; // OpenCv error
+   }
+     return 0;
+ }
+
+
+  int Conversion_MaskPicture::GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2)
+{
+  if(line<0)return -1;
+  if(line>12) return -2;
+  /**
+  0=Mask picture
+  1=type of picture
+  2=Clone picture Yes/No
+  3=Clone picture selection
+  4=Background color type
+  5=Background color code
+  6=Mask color type
+  7=Mask color selection
+  8=Mask picture width
+  9= Mask picture height
+  10= x-ofset
+  11= Y ofset
+  **/
+
+ if((line==0)||(line==3))
+  {
+     if(line==0) name=wxT("Mask picture");
+     if(line==3) name=wxT("Clone picture");
+        type=2;
+        wxArrayString arraystr;
+        wxString pom;
+        for(int i=0;i<20;i++)
+        {
+           pom=_("Picture_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
+        aray_str=arraystr;
+        type2=0;
+  }
+  if(line==1)
+  {
+     type=2;
+      name=wxT("Type of picture");
+        wxArrayString arraystr;
+        arraystr.Add(_("Binary")) ;
+       arraystr.Add(_("Color")) ;
+       aray_str=arraystr;
+        type2=0;
+  }
+  if(line==2) //Clone picture Yes/no
+  {
+    type=3;
+    type2=0;
+    name=wxT("Use clone picture");
+  }
+    if((line==4)||(line==6))
+  {
+     type=2;
+     if(line==4)name=wxT("Background color type");
+     else name=wxT("Mask color type");
+        wxArrayString arraystr;
+        arraystr.Add(_("White")) ;
+       arraystr.Add(_("Black")) ;
+       arraystr.Add(_("Color")) ;
+       aray_str=arraystr;
+        type2=0;
+  }
+  if((line==5)||(line==7))
+  {
+      if(line==5)name=wxT("Background color");
+      else name=wxT("Mask color");
+        type=1; //file path string type
+        str=wxT("0,0,0");
+        type2=3;//open collor dialog will display
+
+  }
+     if((line==8)||(line==9))
+  {
+
+      if(line==8) name=wxT("Mask picture width");
+      if(line==9) name=wxT("Mask picture height");
+        type=4;
+        ival=0;
+
+  }
+  if((line==10)||(line==11))
+ {
+         if(line==10)  name=wxT("X-offset");
+         else name=wxT("Y-offset");
+        type=2;
+        wxArrayString arraystr;
+        wxString pom;
+        arraystr.Add(_("None"));
+        for(int i=0;i<100;i++)
+        {
+           pom=_("Variable_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
+        aray_str=arraystr;
+        type2=0;
+ }
+  if(line==12)
+  {
+      name=_("Mask objects");
+    type=1;
+    str=wxT(" ");
+    type2=0;
+  }
+
+
+  return 0;
+}
+/**
+Function decodes mask object parameters
+**/
+void Conversion_MaskPicture::DecodeParam(wxString param,vector<CONT_DAT> &datax)
+{
+   datax.clear();
+if(param.Length()<5) return; // EMpty command string or not valid command
+bool end_loop=false;
+bool end_loop2=false;
+bool valid_data=false;// TRue if decode data is vai
+wxString pom,typex,pom2;
+CONT_DAT cd;
+Point pt;
+
+while(!end_loop)
+{
+pom=param.BeforeFirst(';');
+if(pom.Length()>5)
+{
+typex=pom.BeforeFirst(':');
+if(typex==_("R"))cd.type=1;
+else if(typex==_("C"))cd.type=2;
+else if(typex==_("P"))cd.type=3;
+else return; //Bad command
+pom=pom.AfterFirst(':');
+end_loop2=false;
+cd.data.clear();
+  while(!end_loop2)
+  {
+     pom2=pom.BeforeFirst(':');
+     pt.x=wxAtoi(pom2.BeforeFirst(' ')) ;
+     pt.y=wxAtoi(pom2.AfterFirst(' '));
+     cd.data.push_back(pt);
+     pom=pom.AfterFirst(':');
+     if(pom==wxEmptyString)end_loop2=true;
+  }
+
+  if(cd.type==1)
+  {
+     if(cd.data.size()==4)valid_data=true;
+     else valid_data=false;
+  }
+  else if(cd.type==2)
+  {
+     if(cd.data.size()==2)valid_data=true;
+     else valid_data=false;
+  }
+  else
+  {
+     if(cd.data.size()>1)valid_data=true;
+     else valid_data=false;
+  }
+
+  if(valid_data)datax.push_back(cd);
+}
+param=param.AfterFirst(';');
+if(param==wxEmptyString)end_loop=true;
+
+}
+
+}
+/**
+Function generate command with mask objects
+**/
+void Conversion_MaskPicture::GenerateRetCommand(vector<CONT_DAT> cont_data,wxString &ret_command)
+{
+    ret_command=wxEmptyString;
+    wxString pom;
+    for(unsigned i=0;i<cont_data.size();i++)
+    {
+      pom=wxEmptyString;
+      if(i>0)ret_command+=_(";");
+      if(cont_data[i].type==1)pom=_("R:");
+      else if(cont_data[i].type==2)pom=_("C:");
+      else pom=_("P:");
+      for(unsigned j=0;j<cont_data[i].data.size();j++)
+      {
+            if(j>0)pom+=_(":");
+          pom<<cont_data[i].data[j].x;
+          pom+=_(" ");
+          pom<<cont_data[i].data[j].y;
+      }
+      ret_command+=pom;
+    }
+}
+/**
+Function create mask according cont_data vector  on  image
+1.parameter: cont_data: vector with mask data
+2.parameter: new_image: image where mask will be created
+3.parameter: is_color_img: true if it is colored image , fail if it is binary image
+4.parameter:mask_col: mask color string R,G,B
+5.parameter:bin_val: mask value in binary image (0 or 255)
+Function return 0 if all is ok
+        return -2 if there is error Bad circle array
+**/
+int Conversion_MaskPicture::CreateMask(vector<CONT_DAT> cont_data,Mat &new_image,bool is_color_img,wxString mask_col,int bin_val)
+{
+
+  vector<vector<Point> > contours;
+  int rgb_code[3];
+
+  rgb_code[0]=wxAtoi(mask_col.BeforeFirst(','));
+           mask_col=mask_col.AfterFirst(',');
+           rgb_code[1]=wxAtoi(mask_col.BeforeFirst(','));
+           rgb_code[2]=wxAtoi(mask_col.AfterFirst(','));
+
+     if(!is_color_img)rgb_code[0]=bin_val;
+
+
+ for(unsigned i=0;i<cont_data.size();i++)
+ {
+       contours.clear();
+     switch (cont_data[i].type)
+     {
+      case 1: //rectangle
+        contours.push_back(cont_data[i].data);
+        if(is_color_img)drawContours(new_image,contours,0,Scalar(rgb_code[2],rgb_code[1],rgb_code[0]),-1);
+        else drawContours(new_image,contours,0,Scalar(rgb_code[0]),-1);
+        break;
+      case 2://circle
+          if(cont_data[i].data.size()!=2)
+          {
+              return -2; //Bad si ze circle array
+          }
+         if(is_color_img)circle( new_image,cont_data[i].data[0], cont_data[i].data[1].x, Scalar(rgb_code[2],rgb_code[1],rgb_code[0]), -1 );
+        else circle( new_image,cont_data[i].data[0] ,cont_data[i].data[1].x, Scalar(rgb_code[0]), -1);
+        break;
+      case 3://polynom
+        contours.push_back(cont_data[i].data);
+        if(is_color_img)drawContours(new_image,contours,0,Scalar(rgb_code[2],rgb_code[1],rgb_code[0]),-1);
+        else drawContours(new_image,contours,0,Scalar(rgb_code[0]),-1);
+        break;
+     }
+ }
+
+ return 0;
+}
+
+ int Conversion_MaskPicture::RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp)
+ {
+  /**
+  0=Mask picture
+  1=type of picture
+  2=Clone picture Yes/No
+  3=Clone picture selection
+  4=Background color type
+  5=Background color code
+  6=Mask color type
+  7=Mask color selection
+  8=Mask picture width
+  9= Mask picture height
+  10= x-ofset
+  11= Y ofset
+  12=Mask objects
+  **/
+  wxString root_cmd=param.BeforeLast('#');// All command expect mask object
+
+  wxString pom=param.BeforeFirst('#');
+  int mask_picture=wxAtoi(pom.AfterFirst('_')); //picture position <0..19>
+  pom=param.AfterFirst('#');
+  wxString type_picture=pom.BeforeFirst('#'); // Binary,color
+  pom=pom.AfterFirst('#');
+  int clone_picture=wxAtoi(pom.BeforeFirst('#')); //1=Yes, 0=NO
+    pom=pom.AfterFirst('#');
+  int clone_pic_sel=wxAtoi(pom.BeforeFirst('#').AfterFirst('_')) ; //clone picture position <0..19>
+   pom=pom.AfterFirst('#');
+  wxString backg_col_type=pom.BeforeFirst('#'); // white,black,color
+   pom=pom.AfterFirst('#');
+  wxString backg_col_code=pom.BeforeFirst('#');
+   pom=pom.AfterFirst('#');
+   wxString mask_col_type=pom.BeforeFirst('#');
+   pom=pom.AfterFirst('#');
+   wxString mask_col_code=pom.BeforeFirst('#');
+   pom=pom.AfterFirst('#');
+   int mask_pic_width=wxAtoi(pom.BeforeFirst('#'));
+   pom=pom.AfterFirst('#');
+   int mask_pic_height=wxAtoi(pom.BeforeFirst('#'));
+   pom=pom.AfterFirst('#');
+   wxString pxx=pom.BeforeFirst('#');
+  int x_ofset=0;
+   if(pxx==_("None"))x_ofset=0;
+   else
+   {
+       int pos=wxAtoi(pxx.AfterFirst('_'));
+       if((pos<0)||(pos>99)) return -1;//Bad  position of float array
+       x_ofset=pd->fval[pos];
+   }
+   pom=pom.AfterFirst('#');
+   pxx=pom.BeforeFirst('#');
+   int y_ofset=0;
+   if(pxx==_("None"))y_ofset=0;
+   else
+   {
+       int pos=wxAtoi(pxx.AfterFirst('_'));
+       if((pos<0)||(pos>99)) return -1;//Bad  position of float array
+       x_ofset=pd->fval[pos];
+   }
+
+   wxString obj_param=pom.AfterFirst('#'); //Parameters
+
+   vector<CONT_DAT> obj_datax;
+    DecodeParam(obj_param,obj_datax);
+
+    //Add offset if offset is used
+    if((x_ofset !=0)||(y_ofset !=0))
+    {
+        for(unsigned i=0;i<obj_datax.size();i++)
+        {
+            if(obj_datax[i].type==2)//circle
+            {
+                if(obj_datax[i].data.size()!=2) return -2; // Bad circle vector size
+                obj_datax[i].data[0].x=obj_datax[i].data[0].x+x_ofset;
+                obj_datax[i].data[0].y=obj_datax[i].data[0].y+y_ofset; // Add ofset to circle centre
+            }
+            else
+            {
+                for(unsigned j=0;j<obj_datax[i].data.size();j++)
+                {
+                    obj_datax[i].data[j].x=obj_datax[i].data[j].x+x_ofset;
+                    obj_datax[i].data[j].y=obj_datax[i].data[j].y+y_ofset;
+                }
+            }
+        }
+    }
+    //End add offset params
+
+    if((mask_picture<0)||(mask_picture>19)) return -3 ; //Bad mask picture position. It must be from range <0..19>
+    if(clone_picture==1)
+    {
+        if((clone_pic_sel<0)||(clone_pic_sel>19)) return -4; //Bad clone picture position.It must be from range <0..19>
+    }
+
+
+       int i_back_col_type; //Background color type
+      if(backg_col_type==wxT("White")) i_back_col_type=0;
+      else if(backg_col_type==wxT("Black"))i_back_col_type=1;
+      else i_back_col_type=2;
+
+      int i_mask_col_type; //mask color type
+      if(mask_col_type==wxT("White"))i_mask_col_type=0;
+      else if(mask_col_type==wxT("Black"))i_mask_col_type=1;
+      else i_mask_col_type=2;
+
+      int i_type_pic;
+      if(type_picture==_("Binary"))i_type_pic=0; //binary picture
+      else i_type_pic=1; //Color picture
+
+    try
+    {
+        #ifndef ELI_SHARED_LIB
+     if(edit==1)
+     {
+       Mat back_imgx;
+       if(clone_picture==1)back_imgx=pd->imgx[clone_pic_sel].clone();
+       else
+       {
+           if(i_type_pic==0) //Gray scale picture
+           {
+               int col_val;
+              if(i_back_col_type==0)col_val=255;
+             else col_val=0;
+                Mat img_g(Size(mask_pic_width,mask_pic_height),CV_8UC1,Scalar(col_val));
+            back_imgx=img_g.clone();
+           }
+           else //Color picture
+           {
+              Mat img_g2(Size(mask_pic_width,mask_pic_height),CV_8UC3,Scalar(255,255,255));
+            back_imgx=img_g2.clone();
+           }
+       }
+       wxString cmd_ret;
+       GenerateRetCommand(obj_datax,cmd_ret);
+       MaskPictureEdit dlg(0,back_imgx,i_type_pic,i_back_col_type,i_mask_col_type,backg_col_code,mask_col_code,cmd_ret);
+    dlg.ShowModal();
+    cmd_ret=wxEmptyString;
+    cmd_ret=dlg.GetRetCommand();
+    root_cmd+=_("#");
+    root_cmd+=cmd_ret;
+     pd->updated_param+=root_cmd;
+        pd->update_param=true;
+
+        DecodeParam(cmd_ret,obj_datax);
+     }
+
+    #endif
+    //Generate mask image
+
+
+    int mtype;
+    if(i_type_pic==0)mtype=CV_8UC1; //Binary image
+    else mtype=CV_8UC3;
+    if(clone_picture==1)//Clone picture
+    {
+        mask_pic_width=pd->imgx[clone_pic_sel].cols;
+        mask_pic_height=pd->imgx[clone_pic_sel].rows;
+    }
+    if(i_type_pic==0) //Binary image
+    {
+         int col_val;
+        if(i_back_col_type==0)col_val=255;
+        else col_val=0;
+
+        Mat img_g(Size(mask_pic_width,mask_pic_height),mtype,Scalar(col_val));
+        pd->imgx[mask_picture]=img_g.clone();
+
+
+    }
+    else //Color image
+    {
+        int rx=0,gx=0,bx=0;
+      if(i_back_col_type==0)
+      {
+          rx=255;
+          gx=255;
+          bx=255;
+      }
+      else if(i_back_col_type==1)
+      {
+          rx=0;
+          gx=0;
+          bx=0;
+      }
+      else
+      {
+          rx=wxAtoi(backg_col_code.BeforeFirst(','));
+          backg_col_code=backg_col_code.AfterFirst(',');
+          gx=wxAtoi(backg_col_code.BeforeFirst(','));
+          bx=wxAtoi(backg_col_code.AfterFirst(','));
+      }
+
+      Mat img_g(Size(mask_pic_width,mask_pic_height),mtype,Scalar(bx,gx,rx));
+      pd->imgx[mask_picture]=img_g.clone();
+        }
+      bool is_color;
+      if(i_type_pic==0)is_color=false;
+      else is_color=true;
+      int bin_val=0;
+      if(i_type_pic==0)
+      {
+          if(i_mask_col_type==0)bin_val=255;
+      else bin_val=0;
+      }
+
+
+      int rxx=CreateMask(obj_datax,pd->imgx[mask_picture],is_color,mask_col_code,bin_val);
+      if(rxx!=0) return -2;
+
+//End generate mask image
 
     }
 

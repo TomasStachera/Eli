@@ -3,6 +3,7 @@
 
 #include "commands_main.h"
 #include "editPicture.h"
+#include "MaskPictureEdit.h"
 
 /*************************************************************************************
 Class for colour conversion. You can conver colour picture to grayscale or grayscale
@@ -64,6 +65,37 @@ class Conversion_AddWeighted:public command{
     virtual wxString ReturnClassname(void){return wxT("Conversion_AddWeighted");}
     virtual int RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp);
      virtual int Inicialize(void){return 0;}
+};
+
+/**
+Class for generate Mask picture (New picture with some mask objects)
+**/
+class Conversion_MaskPicture:public command{
+    public:
+  Conversion_MaskPicture(){};
+   ~Conversion_MaskPicture(){};
+   virtual int GetCmdNumberLines(void){return 13;}
+   virtual int GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2);
+    virtual wxString ReturnClassname(void){return wxT("Conversion_MaskPicture");}
+    virtual int RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp);
+     virtual int Inicialize(void){return 0;}
+    private:
+
+        /**
+		data:
+		rectangle: 1-corner,2-corner,3-corner 4-corner
+		circle:center,radius
+		polynom: polynom point 1....polynom point n
+		**/
+
+		struct CONT_DAT{
+		    int type;  //1=rectangle,2=circle,3=polynom
+		    vector<Point> data;
+		};
+
+		void DecodeParam(wxString param,vector<CONT_DAT> &datax);
+		void GenerateRetCommand(vector<CONT_DAT> cont_data,wxString &ret_command);
+		int CreateMask(vector<CONT_DAT> cont_data,Mat &new_image,bool is_color_img,wxString mask_col,int bin_val);
 };
 
 /*************************************************************************************

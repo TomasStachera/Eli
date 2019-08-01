@@ -43,6 +43,7 @@ int i=0;
   cmd[i++]=new Conversion_Scale;
   cmd[i++]=new Conversion_Roi;
   cmd[i++]=new Conversion_AddWeighted;
+  cmd[i++]=new Conversion_MaskPicture;
   cmd[i++]=new Conversion_Threshold;
   cmd[i++]=new Conversion_AdaptThresh;
   cmd[i++]=new Conversion_FloodFill;

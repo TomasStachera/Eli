@@ -20,7 +20,7 @@
 using namespace cv;
 using namespace std;
 
-#define NUMBER_COMMANDS_CLASS 40 // define number of all commands class. Number must be same as number of command class
+#define NUMBER_COMMANDS_CLASS 41// define number of all commands class. Number must be same as number of command class
 #define MAXIMAL_FILTER_LINES 100
 #define MAXIMAL_OBJECTS_LINES 1000
 #define MAXIMAL_OBJECT_TEST_PROGRAM_LINES  400

@@ -45,6 +45,7 @@ ${PROJECT_SOURCE_DIR}/src/CameraProperties.cpp
   ${PROJECT_SOURCE_DIR}/src/ContourDescript3.cpp
   ${PROJECT_SOURCE_DIR}/src/ContourDescript4.cpp
  ${PROJECT_SOURCE_DIR}/src/editPicture.cpp
+ ${PROJECT_SOURCE_DIR}/src/MaskPictureEdit.cpp
   ${PROJECT_SOURCE_DIR}/src/LoopDialog.cpp
  ${PROJECT_SOURCE_DIR}/src/ExportParam.cpp
  ${PROJECT_SOURCE_DIR}/src/VariableWindow.cpp

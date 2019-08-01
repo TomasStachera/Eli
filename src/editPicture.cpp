@@ -782,14 +782,14 @@ void editPicture::OnValueButton(wxCommandEvent& event)
         float b_par=(float)dxx;
         TextCtrl3->GetValue().ToCDouble(&dxx);
         float gama=(float)dxx;
-        if((a_par<0)||(a_par>1))
+        if((a_par<-1)||(a_par>1))
         {
-            wxMessageBox(_("A weight must be in range 0-1"),_("Error"),wxICON_ERROR);
+            wxMessageBox(_("A weight must be in range -1 ,-1"),_("Error"),wxICON_ERROR);
             return;
         }
-        if((b_par<0)||(b_par>1))
+        if((b_par<-1)||(b_par>1))
         {
-            wxMessageBox(_("B weight must be in range 0-1"),_("Error"),wxICON_ERROR);
+            wxMessageBox(_("B weight must be in range -1,-1"),_("Error"),wxICON_ERROR);
             return;
         }
         if((gama<-255)||(gama>255))
@@ -912,15 +912,15 @@ return 0;
 /*****************************************************************
 Function cumpute sum of two images
 Images are weighted
-alpha- weight of first image (range 0-1.0)
-beta-weight of the second image(range 0-1.0)
+alpha- weight of first image (range -1,1.0)
+beta-weight of the second image(range -1,1.0)
 gama= scallar add to each sum(range -255, 255)
 *****************************************************************/
 int editPicture::EditAddWeighted(float alpha,float beta,float gama)
 {
 
-    if((alpha<0)||(alpha>1)) return -3; //bad alpha value
-    if((beta<0)||(beta>1)) return -4; // bad beta value
+    if((alpha<-1)||(alpha>1)) return -3; //bad alpha value
+    if((beta<-1)||(beta>1)) return -4; // bad beta value
     if((gama<-255)||(gama>255)) return -5; //bad gama value
    if(_img.channels() != _img1.channels()) return -6; //number of channels are not same
 
