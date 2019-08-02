@@ -108,6 +108,12 @@ void ExportParam::OnExportClick(wxCommandEvent& event)
       wxString path=dialog.GetPath();
      wxString sv=path.BeforeLast('/');
       config.Write(wxT("EXPORT_DATA"),sv);
+   
+     if((path.AfterLast('.').Length()>5)||(path.AfterLast('.').Length()<1))
+       {
+    wxMessageBox(_("Missing extension of exported file"),_("Export file error"),wxICON_ERROR,this);
+     return;
+       }
     if(WriteDataToFile(path)==0)
     {
         if(CheckBox1->GetValue())
