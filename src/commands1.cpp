@@ -134,6 +134,7 @@ if(line>12) return -2; //Maximal line for command grid is 12
         arraystr.Add(wxT("less"));
         arraystr.Add(wxT("more"));
         arraystr.Add(wxT("equal"));
+         arraystr.Add(wxT("NOT equal"));
         aray_str=arraystr;
         type2=0;
     }
@@ -198,6 +199,7 @@ if(line>12) return -2; //Maximal line for command grid is 12
         arraystr.Add(wxT("less"));
         arraystr.Add(wxT("more"));
         arraystr.Add(wxT("equal"));
+        arraystr.Add(wxT("NOT equal"));
         aray_str=arraystr;
         type2=0;
     }
@@ -369,6 +371,12 @@ Function return -2 if maximal number jumps was set . Maximal number active jumps
              else b_end1=false;
          }
 
+           if(cond1_s==_("NOT equal")) // variable 1 == variable 2
+         {
+             if(f1!=f2)b_end1=true;
+             else b_end1=false;
+         }
+
          if(cond2==_("Not_used")) //condition2 is not used
          {
              if(direction==_("Before"))
@@ -420,6 +428,12 @@ Function return -2 if maximal number jumps was set . Maximal number active jumps
               if(cond2_s==_("equal"))
              {
              if(f3==f4)b_end2=true;
+             else b_end2=false;
+             }
+
+               if(cond2_s==_("NOT equal"))
+             {
+             if(f3!=f4)b_end2=true;
              else b_end2=false;
              }
 

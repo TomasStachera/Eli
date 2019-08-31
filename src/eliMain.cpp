@@ -2573,6 +2573,18 @@ stop loop or Test program will report some error
 *******************************************************/
 void eliFrame::OnRunLoopClicked(wxCommandEvent& event)
 {
+        ToolBar1->EnableTool(idStopLoop,true);
+       ToolBar1->EnableTool(idRunLoop,false);
+      ToolBar1->EnableTool(idToolDebug,false);
+      ToolBar1->EnableTool(idToolRunTestPrg,false);
+      ToolBar1->EnableTool(idToSetBreak,false);
+      ToolBar1->EnableTool(idTolRemovBreak,false);
+      ToolBar1->EnableTool(idTolRemoveAllBreak,false);
+      ToolBar1->EnableTool(idOpen,false);
+      ToolBar1->EnableTool(idSave,false);
+      ToolBar1->EnableTool(idNew,false);
+  ToolBar1->Realize();
+
     int numb_lines_tot=Grid2->GetRows();
     if(numb_lines_tot==0)return;
 LoopDialog dlg(this,numb_lines_tot);
@@ -2630,17 +2642,7 @@ dlg.ShowModal();
      CopyCommands->Enable(false);
      DeleteCommands->Enable(false);*/
 
-       ToolBar1->EnableTool(idStopLoop,true);
-       ToolBar1->EnableTool(idRunLoop,false);
-      ToolBar1->EnableTool(idToolDebug,false);
-      ToolBar1->EnableTool(idToolRunTestPrg,false);
-      ToolBar1->EnableTool(idToSetBreak,false);
-      ToolBar1->EnableTool(idTolRemovBreak,false);
-      ToolBar1->EnableTool(idTolRemoveAllBreak,false);
-      ToolBar1->EnableTool(idOpen,false);
-      ToolBar1->EnableTool(idSave,false);
-      ToolBar1->EnableTool(idNew,false);
-  ToolBar1->Realize();
+
     ////////////////////////////////////////////////////////
       stat->SetLabel(_("Loop running"));
      stat->SetForegroundColour(wxColour(0,255,0));
@@ -2864,9 +2866,13 @@ try
         {
             if(run_tpg->GetResults()!=old_loop_string)
             {
-                TextCtrl1->WriteText(_("\n"));
+
                 TextCtrl1->WriteText(run_tpg->GetResults());
+                TextCtrl1->WriteText(_("\n"));
                 old_loop_string=run_tpg->GetResults();
+                int h;
+             TextCtrl1->GetClientSize(0, &h);
+             TextCtrl1->ShowPosition(TextCtrl1->XYToPosition(0, TextCtrl1->GetNumberOfLines()+(h/TextCtrl1->GetCharHeight())));
             }
         }
           if((run_tpg->GetResultPicturePosition()>=0)&&(run_tpg->GetResultPicturePosition()<20))
