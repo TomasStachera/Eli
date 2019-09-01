@@ -8,13 +8,9 @@ SET (VERSION_MINOR 0)
 SET(ELI_LIB OFF CACHE BOOL "Create eli lib?")
 #Create gui application
 SET(ELI_GUI ON CACHE BOOL "Create eli gui?")
-if(WIN32)
-# Set installation directory for Windows
-SET(INSTAL_DIR ${PROJECT_SOURCE_DIR}/install)
-else()
-# Set instalation directory for Linux
-SET(INSTAL_DIR /usr/local/Eli)
-ENDIF()
+
+SET(INSTAL_DIR Eli)
+
 # Declare wxWidgets directory
 IF(WIN32)
 SET(wxWidgets_ROOT_DIR C:/prog_linux/wx)
@@ -86,3 +82,13 @@ ENDIF(ELI_LIB)
 install(TARGETS Eli DESTINATION ${INSTAL_DIR})
 install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
 install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)
+
+set(CPACK_PACKAGE_NAME "Eli")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_GENERATOR "RPM")
+set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}")
+
+include(CPack)
+
