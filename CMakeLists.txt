@@ -5,7 +5,7 @@ project(Eli)
 SET (VERSION_MAJOR 1)
 SET (VERSION_MINOR 0)
 # Create shared library
-SET(ELI_LIB OFF CACHE BOOL "Create eli lib?")
+SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
 #Create gui application
 SET(ELI_GUI ON CACHE BOOL "Create eli gui?")
 
@@ -60,9 +60,7 @@ ${PROJECT_SOURCE_DIR}/src/LOGMES.cpp
  )
 
 SET(wxWidgets_USE_LIBS)
-IF(ELI_LIB)
-add_definitions(-DELI_SHARED_LIB)
-ENDIF(ELI_LIB)
+
 find_package(wxWidgets REQUIRED net core base adv html)
 find_package( OpenCV REQUIRED )
 include(${wxWidgets_USE_FILE})
@@ -73,11 +71,15 @@ ELSE()
 add_executable(Eli ${TARGET_main_FILES})
 ENDIF(WIN32)
 target_link_libraries(Eli ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
+
 ENDIF(ELI_GUI)
 IF(ELI_LIB)
- ADD_LIBRARY(EliLib SHARED ${LIBRARY_MAIN_FILES})
- target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
+ADD_LIBRARY(EliLib SHARED ${LIBRARY_MAIN_FILES})
+target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
+target_compile_definitions(EliLib PUBLIC -DELI_SHARED_LIB)
 ENDIF(ELI_LIB)
+
+#Set instalation directory for CPACK
 
 install(TARGETS Eli DESTINATION ${INSTAL_DIR})
 install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
@@ -87,6 +89,7 @@ set(CPACK_PACKAGE_NAME "Eli")
 set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_PACKAGE_VERSION_MAJOR "1")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
+#Set CPACK generator RPM for Fedora
 set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}")
 
