@@ -3,6 +3,19 @@
 
 #include "../include/commands_main.h"
 
+#if defined(__WXMSW__)
+#include "wx/wx.h"
+
+#include <windows.h>
+#include <process.h>
+
+HANDLE ThreadId;
+
+class wxDLLApp : public wxApp
+{
+    bool OnInit();
+};
+#endif
 
 class GLOB_ELI_CLASS: public INIT_CMD{
    public:

@@ -282,7 +282,10 @@ cont_calc=new  ContourCalculation(contx,obprg,numbobj);
 
  if(cont_calc->WasOpenCvError()) wxMessageBox(cont_calc->GetStringOpenCvError(),_("OpenCvError"),wxICON_ERROR,this);
 
+   Maximize();
+
 	}
+
 
 
 	  catch( cv::Exception& e )

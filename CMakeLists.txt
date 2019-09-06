@@ -13,10 +13,10 @@ SET(INSTAL_DIR Eli)
 
 # Declare wxWidgets directory
 IF(WIN32)
-SET(wxWidgets_ROOT_DIR C:/prog_linux/wx)
-SET(wxWidgets_LIB_DIR C:/prog_linux/wx/lib/gcc_dll)
-SET(wxWidgets_LIBRARIES C:/prog_linux/wx/lib/gcc_dll)
-SET(wxWidgets_INCLUDE_DIRS C:/prog_linux/wx/include)
+SET(wxWidgets_ROOT_DIR C:/prog_linux/wx64)
+SET(wxWidgets_LIB_DIR C:/prog_linux/wx64/lib/gcc_dll)
+SET(wxWidgets_LIBRARIES C:/prog_linux/wx64/lib/gcc_dll)
+SET(wxWidgets_INCLUDE_DIRS C:/prog_linux/wx64/include)
 ENDIF()
 # At least one option must be selected
 if((NOT ELI_LIB) AND (NOT ELI_GUI))
@@ -90,6 +90,7 @@ set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_PACKAGE_VERSION_MAJOR "1")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
 #Set CPACK generator RPM for Fedora
+#Set CPACK generator NSIS for Windows
 set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}")
 

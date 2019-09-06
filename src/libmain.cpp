@@ -5,9 +5,17 @@ GLOB_ELI_CLASS eli_class;
 #  define EXPORTIT
 
 #elif defined(__WXMSW__)
-
+#include <process.h> 
 #  define EXPORTIT __declspec( dllexport )
 
+IMPLEMENT_APP_NO_MAIN(wxDLLApp)
+
+DWORD WINAPI ThreadProc(LPVOID lpParameter)
+{
+    wxApp::SetInstance(new wxDLLApp());
+    wxEntry(GetModuleHandle(NULL), NULL, NULL, SW_SHOW);
+    return true;
+}
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 {
@@ -16,7 +24,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
         case DLL_PROCESS_ATTACH:
 
             /* Init Code here */
-
+             ThreadId = CreateThread(NULL,0,ThreadProc,NULL,0,NULL);
             break;
         case DLL_THREAD_ATTACH:
             break;
@@ -25,7 +33,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
             break;
 
        case DLL_PROCESS_DETACH:
-
+              wxEntryCleanup();
             /* Cleanup code here */
 
             break;
@@ -37,6 +45,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
         return TRUE;
 
 }
+
+bool wxDLLApp::OnInit()
+{
+    return true;
+}
+
 #endif
 
 extern "C"
