@@ -35,9 +35,9 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
 
-
+#if defined (WITH_WXWIDGETS)
 EXPORTIT int EliOpenProgram(wxString path);
-
+#endif
 
 /**
 Function: SetSystemVariable
@@ -97,7 +97,9 @@ Function:GetErrorString
 Function return ErrorString in case of error in some function
 Needs to be compiled with wxWidgets
 **/
+#if defined (WITH_WXWIDGETS)
 EXPORTIT wxString EliGetErrorString(void);
+#endif
 
 /**
 Function:GetErrorStringCh
@@ -120,9 +122,9 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-
+#if defined (WITH_WXWIDGETS)
 EXPORTIT int EliGetStringVariable(int pos,wxString *sval);
-
+#endif
 
 /**
 Function:GetStringVariableCh
@@ -152,9 +154,9 @@ Function show name of object parameters according position number
 Function return o if all is ok
          return -1 if parameter 1 is not from range <1..29>
 **/
-
+#if defined (WITH_WXWIDGETS)
 EXPORTIT int EliGetObjectsParametersName(int pos,wxString *namex);
-
+#endif
 
 /**
 Function:GetObjectsParametersNameCh
@@ -174,9 +176,9 @@ Function return number of found objects according object name
 1.parameter: namex: name of object which number we want to count
 Function return number of found objects
 **/
-
+#if defined (WITH_WXWIDGETS)
 EXPORTIT int EliGetNumberObjectsName(wxString namex);
-
+#endif
 
 /**
 Function:GetNumberObjectsNameChextern "C"
@@ -200,9 +202,9 @@ Function return 0 if not object with same name as 1.parameter as found
         return 1 if type of returned parameters id INTEGER
         return 2 if type of returned parameters ids double
 **/
-
+#if defined (WITH_WXWIDGETS)
 EXPORTIT int EliGetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
-
+#endif
 
 /**
 Function:GetObjectparameterC

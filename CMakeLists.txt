@@ -2,8 +2,8 @@
 #Tomas Stachera
 cmake_minimum_required (VERSION 2.6)
 project(Eli)
-SET (VERSION_MAJOR 1)
-SET (VERSION_MINOR 0)
+SET (VERSION_MAJOR 0)
+SET (VERSION_MINOR 1)
 # Create shared library
 SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
 #Create gui application
@@ -71,9 +71,11 @@ ELSE()
 add_executable(Eli ${TARGET_main_FILES})
 ENDIF(WIN32)
 target_link_libraries(Eli ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
+#set_target_properties(Eli PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 ENDIF(ELI_GUI)
 IF(ELI_LIB)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 ADD_LIBRARY(EliLib SHARED ${LIBRARY_MAIN_FILES})
 target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
 target_compile_definitions(EliLib PUBLIC -DELI_SHARED_LIB)
@@ -81,14 +83,17 @@ ENDIF(ELI_LIB)
 
 #Set instalation directory for CPACK
 
-install(TARGETS Eli DESTINATION ${INSTAL_DIR})
-install(DIRECTORY icons/ DESTINATION ${INSTAL_DIR}/icons)
-install(DIRECTORY help/ DESTINATION ${INSTAL_DIR}/help)
+install(TARGETS Eli EliLib RUNTIME DESTINATION bin 
+                           LIBRARY DESTINATION lib)
+install(DIRECTORY share/Eli/icons/ DESTINATION share/Eli/icons)
+install(DIRECTORY share/Eli/help/ DESTINATION share/Eli/help)
+install(FILES include/EliLib.h DESTINATION include)
+
 
 set(CPACK_PACKAGE_NAME "Eli")
-set(CPACK_PACKAGE_VERSION "1.0.0")
-set(CPACK_PACKAGE_VERSION_MAJOR "1")
-set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+set(CPACK_CREATE_DESKTOP_LINKS "Eli")
 #Set CPACK generator RPM for Fedora
 #Set CPACK generator NSIS for Windows
 set(CPACK_GENERATOR "RPM")

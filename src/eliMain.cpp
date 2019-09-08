@@ -151,6 +151,9 @@ eliFrame::eliFrame(wxWindow* parent,wxWindowID id)
     cv::setBreakOnError(false);
 wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 actual_dir=f.GetPath();
+actual_dir=actual_dir.BeforeLast('/');
+actual_dir+=wxT("/share/Eli");
+
 
     try
     {

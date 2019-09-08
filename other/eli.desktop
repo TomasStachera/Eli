@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Eli
+Comment=Eli gui program
+Exec=/usr/bin/Eli
+Icon=/usr/share/Eli/icons/eli_icon.png
+Terminal=false

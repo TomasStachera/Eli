@@ -75,6 +75,8 @@ ContourDescript::ContourDescript(wxWindow* parent,wxWindowID id,const wxPoint& p
 
 wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 wxString actual_dir=f.GetPath();
+actual_dir=actual_dir.BeforeLast('/');
+actual_dir+=wxT("/share/Eli");
 
 //cvSetErrMode(CV_ErrModeParent);
 

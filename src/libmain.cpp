@@ -1,21 +1,50 @@
 #include "libmain.h"
 GLOB_ELI_CLASS eli_class;
+IMPLEMENT_APP_NO_MAIN(wxDLLApp)
+
+
 
 #if defined(__UNIX__)
 #  define EXPORTIT
+extern "C"
+{
+void *Execute_thr( void *ptr )
+{
+    int argv;
+    char **argc;
+   wxApp::SetInstance(new wxDLLApp());
+   wxEntry(argv,argc);
+return NULL;
+}
+
+void __attribute__ ((constructor)) _linux_init(void);
+void __attribute__ ((destructor)) _linux_close(void);
+
+void _linux_init(void)
+{
+int iret;
+iret = pthread_create( &thread1, NULL, Execute_thr, NULL);
+
+
+}
+
+void _linux_close(void)
+{
+pthread_exit(NULL);
+wxEntryCleanup();
+}
+}
 
 #elif defined(__WXMSW__)
-#include <process.h> 
+#include <process.h>
 #  define EXPORTIT __declspec( dllexport )
-
-IMPLEMENT_APP_NO_MAIN(wxDLLApp)
-
 DWORD WINAPI ThreadProc(LPVOID lpParameter)
 {
-    wxApp::SetInstance(new wxDLLApp());
+  wxApp::SetInstance(new wxDLLApp());
     wxEntry(GetModuleHandle(NULL), NULL, NULL, SW_SHOW);
     return true;
 }
+
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 {
@@ -46,12 +75,14 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 
 }
 
+
+
+#endif
+
 bool wxDLLApp::OnInit()
 {
     return true;
 }
-
-#endif
 
 extern "C"
 {

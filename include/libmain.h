@@ -2,20 +2,24 @@
 #define LIBMAIN_H_INCLUDED
 
 #include "../include/commands_main.h"
-
-#if defined(__WXMSW__)
 #include "wx/wx.h"
+#if defined(__WXMSW__)
 
 #include <windows.h>
 #include <process.h>
 
 HANDLE ThreadId;
+#endif
+#if defined (__UNIX__)
+#include <pthread.h>
+pthread_t thread1;
+#endif
+
 
 class wxDLLApp : public wxApp
 {
     bool OnInit();
 };
-#endif
 
 class GLOB_ELI_CLASS: public INIT_CMD{
    public:
