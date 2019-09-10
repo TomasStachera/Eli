@@ -58,6 +58,7 @@ class GLOB_ELI_CLASS: public INIT_CMD{
        int GetNumberObjectsName(wxString namex);
        int GetNumberObjectsNameCh(char *namex);
        int GetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
+       int GetResultPicture(Mat &res_pic);
    private:
 
        Mat result_img;

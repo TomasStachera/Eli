@@ -231,8 +231,26 @@ Function return 0 if not object with same name as 1.parameter as found
 
       return ret;
   }
-}
 
+/**
+Function gets result picture in Mat format . Project must be compiled with OpenCV
+1.parameter: resultPicture: Pointer for result picture
+Function return 0 if all is OK
+          return -1 if result picture was not selected
+          return -2 if result picture is out of range <0..19>
+**/
+EXPORTIT int EliGetResultPicture(Mat *resultPicture)
+{
+    Mat res_pic;
+    int ret=eli_class.GetResultPicture(res_pic);
+    if(ret<0) return ret;
+    else
+    {
+        *resultPicture=res_pic;
+    }
+    return ret;
+}
+}
 
 /*
 Function must be called in loading library
@@ -796,4 +814,20 @@ int GLOB_ELI_CLASS::GetObjectParameter(wxString namex,int pos,std::vector<int> &
   }
 
   return ret;
+}
+
+/**
+Function gets Result picture as a 1.parameter reference
+Function return 0 if all is ok
+         return -1 if no result picture position was selected
+         return -2 if  Bad selected picture position (Not in range <0..19>)
+**/
+int  GLOB_ELI_CLASS::GetResultPicture(Mat &res_pic)
+{
+    int pos=run_tpg->GetResultPicturePosition();
+  if(pos<0) return -1; // No result picture position
+  if(pos>19) return -2; //Bad selected picture position
+
+  res_pic=run_tpg->GetResultPicture();
+   return 0;
 }

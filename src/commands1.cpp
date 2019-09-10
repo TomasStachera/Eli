@@ -965,6 +965,7 @@ int Source_OpenFile::GetLineParam(int line,wxString &name,int &type,wxArrayStrin
         type2=0;
     }
 
+
     return 0;
 }
 /*************************************************************************

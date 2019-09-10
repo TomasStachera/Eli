@@ -35,7 +35,7 @@ Function return 0 if all is ok
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
 
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT int EliOpenProgram(wxString path);
 #endif
 
@@ -97,7 +97,7 @@ Function:GetErrorString
 Function return ErrorString in case of error in some function
 Needs to be compiled with wxWidgets
 **/
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT wxString EliGetErrorString(void);
 #endif
 
@@ -122,7 +122,7 @@ Function return 0 if all is ok
          return -1 if there is initial error (Error will display in error message)
          return -2 if there is run error (Error can be read in function GetErrorString)
 **/
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT int EliGetStringVariable(int pos,wxString *sval);
 #endif
 
@@ -154,7 +154,7 @@ Function show name of object parameters according position number
 Function return o if all is ok
          return -1 if parameter 1 is not from range <1..29>
 **/
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT int EliGetObjectsParametersName(int pos,wxString *namex);
 #endif
 
@@ -176,7 +176,7 @@ Function return number of found objects according object name
 1.parameter: namex: name of object which number we want to count
 Function return number of found objects
 **/
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT int EliGetNumberObjectsName(wxString namex);
 #endif
 
@@ -202,7 +202,7 @@ Function return 0 if not object with same name as 1.parameter as found
         return 1 if type of returned parameters id INTEGER
         return 2 if type of returned parameters ids double
 **/
-#if defined (WITH_WXWIDGETS)
+#if defined (ELI_WITH_WXWIDGETS)
 EXPORTIT int EliGetObjectParameter(wxString namex,int pos,std::vector<int> &ival,std::vector<double> &dval);
 #endif
 
@@ -225,6 +225,16 @@ Function return 0 if not object with same name as 1.parameter as found
 **/
 EXPORTIT int EliGetObjectparameterC(char *namex,int max_len,int pos,int *num_ival,int *ival,int *num_dval,double *dval);
 
+/**
+Function gets ResultPicture in Mat class ( Project with Function must be compiled with OpenCV)
+1.parameter: Pointer for resultPicture in Mat class
+Function return 0 if all is ok
+        return -1 if no result picture was selected
+        return -2 if selected picture is out of range not in <0..19>
+**/
+#if defined (ELI_WITH_OPENCV)
+EXPORTIT EliGetResultPicture(Mat *resultPicture);
+#endif
 
 }
 #endif // ELILIB_H_INCLUDED
