@@ -87,16 +87,21 @@ install(TARGETS Eli EliLib RUNTIME DESTINATION bin
                            LIBRARY DESTINATION lib)
 install(DIRECTORY share/Eli/icons/ DESTINATION share/Eli/icons)
 install(DIRECTORY share/Eli/help/ DESTINATION share/Eli/help)
+install(DIRECTORY build/dlls/ DESTINATION bin)
 install(FILES include/EliLib.h DESTINATION include)
 
 
 set(CPACK_PACKAGE_NAME "Eli")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+set(CPACK_PACKAGE_EXECUTABLES
+  "Eli" "Eli"
+)
 set(CPACK_CREATE_DESKTOP_LINKS "Eli")
+set(CPACK_NSIS_MODIFY_PATH "ON")
 #Set CPACK generator RPM for Fedora
 #Set CPACK generator NSIS for Windows
-set(CPACK_GENERATOR "RPM")
+set(CPACK_GENERATOR "NSIS")
 set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}")
 
 include(CPack)

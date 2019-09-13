@@ -151,8 +151,14 @@ eliFrame::eliFrame(wxWindow* parent,wxWindowID id)
     cv::setBreakOnError(false);
 wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 actual_dir=f.GetPath();
+#if defined(__UNIX__)
 actual_dir=actual_dir.BeforeLast('/');
 actual_dir+=wxT("/share/Eli");
+#elif defined(__WXMSW__)
+actual_dir=actual_dir.BeforeLast('\\');
+actual_dir+=wxT("\\share\\Eli");
+#endif
+
 
 
     try
@@ -183,6 +189,12 @@ actual_dir+=wxT("/share/Eli");
     wxMenu* Menu5;
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    {
+    	wxIcon FrameIcon;
+    	//FrameIcon.CopyFromBitmap(wxBitmap(wxImage(framex_icon)));
+    	FrameIcon.LoadFile(wxT("aaaaaa"),wxBITMAP_TYPE_ICO_RESOURCE);
+    	SetIcon(FrameIcon);
+    }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
