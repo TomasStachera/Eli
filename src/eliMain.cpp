@@ -3094,7 +3094,14 @@ public:
 
       wxImage cellImage;
 wxFileName f(wxStandardPaths::Get().GetExecutablePath());
-      wxString pic=f.GetPath()+_("/icons/break.png");
+wxString pic=f.GetPath();
+#if defined(__UNIX__)
+pic=pic.BeforeLast('/');
+picr+=wxT("/share/Eli/icons/break.png");
+#elif defined(__WXMSW__)
+pic=pic.BeforeLast('\\');
+pic+=wxT("\\share\\Eli\\icons\\break.png");
+#endif
 
 
         int xadd= grid.GetColSize(0)-20;
@@ -3122,7 +3129,17 @@ public:
 
       wxImage cellImage;
       wxFileName f(wxStandardPaths::Get().GetExecutablePath());
-      wxString pic=f.GetPath()+_("/icons/empty.png");
+      wxString pic=f.GetPath();
+#if defined(__UNIX__)
+pic=pic.BeforeLast('/');
+picr+=wxT("/share/Eli/icons/empty.png");
+#elif defined(__WXMSW__)
+pic=pic.BeforeLast('\\');
+pic+=wxT("\\share\\Eli\\icons\\empty.png");
+#endif
+      
+
+
 
         int xadd= grid.GetColSize(0)-20;
 

@@ -13,8 +13,9 @@ Test program finds numbers on tested image
 
 
 
+
 **/
-Source_OpenFile Load tested image#/home/tomas/Dokumenty/eli_documents/eli_test_picture/numbers/number_sans3.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0
+Source_OpenFile Load tested image#C:\prog_linux\wxProject\eli2\Eli\Eli_examples\test_pictures\numbers\number_sans2.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0
 Conversion_Color Coversion to grayscale image#Picture_0#Picture_1#RGB2GRAY
 Conversion_Canny Create binary image#Picture_1#Picture_1#Number#90#Number#200#5
 Conversion_Morfology Dilate object#Picture_1#Picture_1#Dilate#1#RECT#2#2#0#0
