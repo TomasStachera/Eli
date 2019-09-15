@@ -191,8 +191,8 @@ actual_dir+=wxT("\\share\\Eli");
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     {
     	wxIcon FrameIcon;
-    	//FrameIcon.CopyFromBitmap(wxBitmap(wxImage(framex_icon)));
-    	FrameIcon.LoadFile(wxT("aaaaaa"),wxBITMAP_TYPE_ICO_RESOURCE);
+    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(actual_dir+_("/icons/eli_icon.png"))));
+    	//FrameIcon.LoadFile(actual_dir+_("/icons/eli_icon.ico"),wxBITMAP_TYPE_ICO_RESOURCE);
     	SetIcon(FrameIcon);
     }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
@@ -3097,7 +3097,7 @@ wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 wxString pic=f.GetPath();
 #if defined(__UNIX__)
 pic=pic.BeforeLast('/');
-picr+=wxT("/share/Eli/icons/break.png");
+pic+=wxT("/share/Eli/icons/break.png");
 #elif defined(__WXMSW__)
 pic=pic.BeforeLast('\\');
 pic+=wxT("\\share\\Eli\\icons\\break.png");
@@ -3132,7 +3132,7 @@ public:
       wxString pic=f.GetPath();
 #if defined(__UNIX__)
 pic=pic.BeforeLast('/');
-picr+=wxT("/share/Eli/icons/empty.png");
+pic+=wxT("/share/Eli/icons/empty.png");
 #elif defined(__WXMSW__)
 pic=pic.BeforeLast('\\');
 pic+=wxT("\\share\\Eli\\icons\\empty.png");
