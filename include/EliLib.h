@@ -1,5 +1,11 @@
 #ifndef ELILIB_H_INCLUDED
 #define ELILIB_H_INCLUDED
+#if defined (ELI_WITH_WXWIDGETS)
+#include <vector>
+#endif
+#if defined (ELI_WITH_OPENCV)
+#include <opencv2/core/core.hpp>
+#endif
 #if defined(__UNIX__)
 #  define EXPORTIT
 
@@ -233,7 +239,7 @@ Function return 0 if all is ok
         return -2 if selected picture is out of range not in <0..19>
 **/
 #if defined (ELI_WITH_OPENCV)
-EXPORTIT EliGetResultPicture(Mat *resultPicture);
+EXPORTIT int EliGetResultPicture(cv::Mat *resultPicture);
 #endif
 
 }

@@ -1,10 +1,30 @@
 #include "libmain.h"
+/*************************************************
+Functions for create library which can be used in other
+application which can read and execute eli files
+It will be generated 2 library:
+1.EliLib - this library can be use in application which
+not used wxWidgets
+2.EliLibwx- this application can be used in application
+which is using wxWidgets.
+Reason for this 2 library is that in Not wxwidgets application
+library must start wxWidgtes thread for proper run library.
+When application already used wxWidgets run another
+wxWidgets thread (in library) make error
+*************************************************/
+
+
 GLOB_ELI_CLASS eli_class;
+
+/**
+If is not used wxWidgets in application using EliLib
+must be included wxWidgets thread part see defined part
+bellow for not defined ELI_SHARED_WITHWX
+Linux application
+**/
+
+#if defined(__UNIX__)&& !defined(ELI_SHARED_WITHWX)
 IMPLEMENT_APP_NO_MAIN(wxDLLApp)
-
-
-
-#if defined(__UNIX__)
 #  define EXPORTIT
 extern "C"
 {
@@ -17,6 +37,7 @@ void *Execute_thr( void *ptr )
 return NULL;
 }
 
+//Functions run durring startup library (constructor) and durning close library (destructor)
 void __attribute__ ((constructor)) _linux_init(void);
 void __attribute__ ((destructor)) _linux_close(void);
 
@@ -35,9 +56,18 @@ wxEntryCleanup();
 }
 }
 
-#elif defined(__WXMSW__)
+/**
+If is not used wxWidgets in application using EliLib
+must be included wxWidgets thread part see defined part
+bellow for not defined ELI_SHARED_WITHWX
+Windows application
+**/
+
+#elif defined(__WXMSW__) && !defined(ELI_SHARED_WITHWX)
 #include <process.h>
 #  define EXPORTIT __declspec( dllexport )
+IMPLEMENT_APP_NO_MAIN(wxDLLApp)
+
 DWORD WINAPI ThreadProc(LPVOID lpParameter)
 {
   wxApp::SetInstance(new wxDLLApp());
@@ -75,14 +105,58 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
 
 }
 
+/**
+If is  used wxWidgets in application using EliLib
+must not be included wxWidgets thread part !!!!
+Windows application
+**/
 
+#elif defined(__WXMSW__) && defined(ELI_SHARED_WITHWX)
+#  define EXPORTIT __declspec( dllexport )
+BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD  fdwReason,LPVOID lpvReserved)
+{
+    switch (fdwReason)
+    {
+        case DLL_PROCESS_ATTACH:
 
+            /* Init Code here */
+            break;
+        case DLL_THREAD_ATTACH:
+            break;
+        case DLL_THREAD_DETACH:
+
+            break;
+
+       case DLL_PROCESS_DETACH:
+            /* Cleanup code here */
+
+            break;
+
+    }
+
+    /* The return value is used for successful DLL_PROCESS_ATTACH */
+
+        return TRUE;
+
+}
+
+/**
+If is  used wxWidgets in application using EliLib
+must not be included wxWidgets thread part !!!!
+JUst define EXPORTID macro as a empty
+Linux application
+**/
+
+#elif defined(__UNIX__)&& defined(ELI_SHARED_WITHWX)
+#  define EXPORTIT
 #endif
+
 
 bool wxDLLApp::OnInit()
 {
     return true;
 }
+
 
 extern "C"
 {

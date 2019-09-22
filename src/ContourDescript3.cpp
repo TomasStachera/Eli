@@ -510,6 +510,7 @@ try
        if(type==9) value=(double)box.size.height;
        if(type==10) value=(double)box.size.width;
        if(type==11) value=(double)box.angle;
+
    }
    if((type>=12)&&(type<=14)) //MInimal enclosing circle
    {
@@ -561,7 +562,7 @@ try
        {
         momentsx=moments(contour);
         param[pos].momentsx=momentsx;
-        param[pos].min_area_rec_calculated=true;
+        param[pos].moments_calculated=true;
        }
        else momentsx=param[pos].momentsx;
   //central moments

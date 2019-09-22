@@ -79,12 +79,16 @@ IF(ELI_LIB)
 ADD_LIBRARY(EliLib SHARED ${LIBRARY_MAIN_FILES})
 target_link_libraries(EliLib ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
 target_compile_definitions(EliLib PUBLIC -DELI_SHARED_LIB)
+
+ADD_LIBRARY(EliLibwx SHARED ${LIBRARY_MAIN_FILES})
+target_link_libraries(EliLibwx ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} )
+target_compile_definitions(EliLibwx PUBLIC -DELI_SHARED_LIB -DELI_SHARED_WITHWX)
 ENDIF(ELI_LIB)
 
 #Set instalation directory for CPACK
 
-install(TARGETS Eli EliLib RUNTIME DESTINATION bin 
-                           LIBRARY DESTINATION lib)
+install(TARGETS Eli EliLib EliLibwx RUNTIME DESTINATION bin 
+                                    LIBRARY DESTINATION lib)
 install(DIRECTORY share/Eli/icons/ DESTINATION share/Eli/icons)
 install(DIRECTORY share/Eli/help/ DESTINATION share/Eli/help)
 if(WIN32)
