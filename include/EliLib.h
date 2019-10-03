@@ -217,7 +217,7 @@ Function:GetObjectparameterC
 Function for get object parameters which does not use vector (for C language)
 1.parameter: namex: object name
 2.parameter:max_len: maximal length size for alocation ival and dval pointer
-3.parameter: pos: position in object structure
+3.parameter: pos:  object parameter range <1..29>
 4.parameter: num_ival: number of integer values in ival
 5.parameter: ival: INTEGER value pointer
 6.parameter: num_dval: number og double values in dval
@@ -233,13 +233,13 @@ EXPORTIT int EliGetObjectparameterC(char *namex,int max_len,int pos,int *num_iva
 
 /**
 Function gets ResultPicture in Mat class ( Project with Function must be compiled with OpenCV)
-1.parameter: Pointer for resultPicture in Mat class
+1.parameter: reference for resultPicture in Mat class
 Function return 0 if all is ok
         return -1 if no result picture was selected
         return -2 if selected picture is out of range not in <0..19>
 **/
 #if defined (ELI_WITH_OPENCV)
-EXPORTIT int EliGetResultPicture(cv::Mat *resultPicture);
+EXPORTIT int EliGetResultPicture(cv::Mat &resultPicture);
 #endif
 
 }

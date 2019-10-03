@@ -1,4 +1,4 @@
-Source_ReadVideo Read video#File#/home/tomas/Dokumenty/eli_samples/videos/test.avi#http://#Capture_0
+Source_ReadVideo Read video#File#/home/tomas/Dokumenty/eli_samples/videos/multimeter.avi#http://#Capture_0
 Source_QueryFrame Get video picture#Capture_0#Picture_0#None
 Conversion_Color Convert to grayscale#Picture_0#Picture_1#RGB2GRAY
 Conversion_Roi Set ROI#Picture_1#Number#109#Number#120#Number#360#Number#191
@@ -19,8 +19,8 @@ Object_ToChar convert seven object#seven#7
 Object_ToChar convert eight object#eight#8
 Object_ToChar convert nine object#nine#9
 Object_ToChar convert zero object#zero#0
-Object_CharToString covert value to variable 0#Left -> Right#80#0# #String_0
-System_Results Display picture 0#Picture_0#Result#String_0# #None
+Object_CharToString covert value to variable 10#Left -> Right#80#0# #Variable_10
+System_Results Display picture 0#Picture_0#Result#Variable_10# #None
 OBJECTBLOCK_1
 FILTER#1#1#1#2#60#-1
 FILTER#1#0#2#2#25#-1

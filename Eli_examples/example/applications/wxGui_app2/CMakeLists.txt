@@ -1,6 +1,6 @@
 #Application 1 
 #This application will explain how to use EliLib library
-#for creating own consolle application
+#for creating own wxWidgets application
 #Tomas Stachera  email:tomas.stachera@gmail.com
 cmake_minimum_required (VERSION 2.6)
 project(wxGuiApp2)
@@ -23,7 +23,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 # Set aplication files
 SET (TARGET_main_FILES
 ${PROJECT_SOURCE_DIR}/src/gui_applicationApp.cpp
-${PROJECT_SOURCE_DIR}/src/gui_applicationMain.cpp)
+${PROJECT_SOURCE_DIR}/src/gui_applicationMain.cpp
+${PROJECT_SOURCE_DIR}/src/LoopDialog.cpp)
 
 SET(wxWidgets_USE_LIBS)
 

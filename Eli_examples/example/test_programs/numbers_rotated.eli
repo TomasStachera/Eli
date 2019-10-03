@@ -17,8 +17,9 @@ Test program finds numbers on tested image if numbers on pictures are rotated
 
 
 
+
 **/
-Source_OpenFile Load image#/home/tomas/Dokumenty/eli_documents/eli_test_picture/number_sans1.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0
+Source_OpenFile Load image#/home/tomas/Dokumenty/eli_documents/eli_test_picture/numbers/number_rot_pos45.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0
 Source_CloneImage Clone picture 2 for displaying image#Picture_2#Picture_0
 Conversion_Color Coversion to grayscale#Picture_0#Picture_1#RGB2GRAY
 Conversion_Morfology Erode picture#Picture_1#Picture_1#Erode#6#RECT#7#7#5#5

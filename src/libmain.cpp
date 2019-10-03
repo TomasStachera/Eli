@@ -184,7 +184,7 @@ extern "C"
   {
       float fv=0;
       int ret=eli_class.GetSystemVariable(pos,fv);
-      fval=&fv;
+      *fval=fv;
       return ret;
   }
 
@@ -293,10 +293,10 @@ Function return 0 if not object with same name as 1.parameter as found
       wxString nam = wxString::FromUTF8(namex);
 
       int ret=eli_class.GetObjectParameter(nam,pos,ixval,dxval);
-      if(ret < 0)
+      if(ret > 0)
       {
-        *num_ival=ixval.size();
-        *num_dval=dxval.size();
+        *num_ival=(int)ixval.size();
+        *num_dval=(int)dxval.size();
         if(ixval.size()>max_len)return -2; //
         if(dxval.size()>max_len)return -2; //Size returned vector is more than max_len
         for(unsigned i=0;i<ixval.size();i++) ival[i]=ixval[i];
@@ -308,19 +308,19 @@ Function return 0 if not object with same name as 1.parameter as found
 
 /**
 Function gets result picture in Mat format . Project must be compiled with OpenCV
-1.parameter: resultPicture: Pointer for result picture
+1.parameter: resultPicture: reference for result picture
 Function return 0 if all is OK
           return -1 if result picture was not selected
           return -2 if result picture is out of range <0..19>
 **/
-EXPORTIT int EliGetResultPicture(Mat *resultPicture)
+EXPORTIT int EliGetResultPicture(Mat &resultPicture)
 {
     Mat res_pic;
     int ret=eli_class.GetResultPicture(res_pic);
     if(ret<0) return ret;
     else
     {
-        *resultPicture=res_pic;
+     resultPicture=res_pic.clone();
     }
     return ret;
 }
@@ -337,6 +337,7 @@ tp_prg=new TestProgram(); // Inicialize test program class
       ob_prg=new ObjectPrograms;
        InitMainCommands();//Call function for inicialize pointer cmd which is filled command classes
        error_string=wxEmptyString;
+      res_pic_position=-1;
        for(unsigned i=0;i<100;i++)syst_variables[i]=0;
        for(unsigned i=0;i<10;i++)string_variables[i]=wxEmptyString;
        all_obj.clear();
@@ -472,11 +473,12 @@ int ret=run_tpg->RunProgram(tp_prg,cmd,1,ob_prg,0);
 
 if(ret==0) //Run program ok
 {
+ res_pic_position=run_tpg->GetResultPicturePosition();
      if((run_tpg->GetResultPicturePosition()>=0)&&(run_tpg->GetResultPicturePosition()<20))
         {
          result_img=run_tpg->GetResultPicture() ;
         }
-      for(unsigned i=0;i<100;i++)syst_variables[i]=run_tpg->GetSystemVariable(i);  // Set system variables
+      for(unsigned i=0;i<100;i++)syst_variables[i]=run_tpg->GetSystemVariable(i);  // Get system variables
       run_tpg->GetAllObjects(all_obj);
       for(unsigned i=0;i<10;i++)string_variables[i]=run_tpg->GetStringVariables(i);
 
@@ -530,6 +532,7 @@ int ret=run_tpg->RunProgram(tp_prg,cmd,line,ob_prg,0);
 
 if(ret==0) //Run program ok
 {
+res_pic_position=run_tpg->GetResultPicturePosition();
      if((run_tpg->GetResultPicturePosition()>=0)&&(run_tpg->GetResultPicturePosition()<20))
         {
          result_img=run_tpg->GetResultPicture() ;
@@ -898,10 +901,9 @@ Function return 0 if all is ok
 **/
 int  GLOB_ELI_CLASS::GetResultPicture(Mat &res_pic)
 {
-    int pos=run_tpg->GetResultPicturePosition();
+    int pos=res_pic_position;
   if(pos<0) return -1; // No result picture position
   if(pos>19) return -2; //Bad selected picture position
-
-  res_pic=run_tpg->GetResultPicture();
+  res_pic=result_img.clone();
    return 0;
 }

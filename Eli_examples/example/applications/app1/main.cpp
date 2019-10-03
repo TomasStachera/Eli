@@ -62,7 +62,58 @@ int main()
     cout << "Return string variable :"<<endl;
     cout <<string_var<<endl;
     
+     string obj_name="zero";
+    char obj_namech[eli_path.size()+1];
+    strcpy(obj_namech,obj_name.c_str());
+    /**  Function from EliLib. Function return number of objects according name***/
+     ret=EliGetNumberObjectsNameCh(obj_namech);
+    cout << "Number of objects "<<obj_namech<<":"<< ret<<endl;
+    
+   char param_name[100]={0};
+   int *num_ival;
+    int *num_dval;
+    int ival[10]; // If there are more than 10 objects alocate more
+    double dval[10]; // If there are more than 10 objects alocate more
+    
+   num_ival=new int;
+   num_dval=new int;
+    
+    for(unsigned i=1;i<30;i++) // Get all 29 parameters
+    {
+    /** Function from EliLib Get name of object parameter****************************/
+    ret=EliGetObjectsParametersNameCh(i,99,param_name);
+    /**************************************************/
+     if(ret!=0)
+      {
+      cout << "Get  objects parameter name error: Position: "<<i<< " Error code: "<<ret<<endl; 
+      break;
+       }
+    /** Function from EliLib  Get object parameter value****************************/
+    ret= EliGetObjectparameterC(obj_namech,10,i,num_ival,ival,num_dval,dval);
+       /**************************************************/
+     if(ret<0)
+      {
+      cout << "Get  objects parameter error: Position: "<<i<< " Error code: "<<ret<<endl; 
+      break;
+       }
+     int numi=0;
+     int numd=0;
+       numi=*num_ival;
+       numd=*num_dval;
+      cout<<param_name<<": ";
+      if(ret==1) // Returned parameter is integer
+       {
+         for(unsigned j=0;j<numi;j++) cout<<ival[j]<<":"<<endl;
+       }
+      if(ret==2)  //Returned parameter is double
+      {
+        for(unsigned j=0;j<numd;j++) cout<<dval[j]<<":"<<endl;
+      }
+    }
+    
     cout<<"Press CTRL+C for terminate program!!!"<<endl;
+    delete num_ival;
+    delete num_dval;
 
     return 0;
 }

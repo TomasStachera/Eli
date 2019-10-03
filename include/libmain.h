@@ -64,6 +64,7 @@ class GLOB_ELI_CLASS: public INIT_CMD{
        Mat result_img;
 
      TestProgram *tp_prg; //Pointer for TestProgram array
+   int res_pic_position;
 
         RunTestProgram *run_tpg;
         ObjectPrograms *ob_prg;

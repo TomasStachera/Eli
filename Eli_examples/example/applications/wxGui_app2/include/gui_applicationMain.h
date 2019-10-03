@@ -20,7 +20,16 @@
 #include <wx/stattext.h>
 #include <wx/statusbr.h>
 #include <wx/textctrl.h>
+#include <wx/timer.h>
+#include <EliLib.h>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/core/cvdef.h>
+#include <opencv2/core/utility.hpp>
 //*)
+using namespace cv;
 
 class gui_applicationFrame: public wxFrame
 {
@@ -38,7 +47,12 @@ class gui_applicationFrame: public wxFrame
         void OnRunAllClick(wxCommandEvent& event);
         void OnRunLoopClick(wxCommandEvent& event);
         void OnStopLoopClick(wxCommandEvent& event);
+        void OnPanelPaint(wxPaintEvent& event);
         //*)
+        void DisplayOutputParameters(void);
+        int GenerateDisplPicture(Mat img);
+        void DrawBitmatPic(void);
+        void OnTimer1Trigger(wxTimerEvent& event);
 
         //(*Identifiers(gui_applicationFrame)
         static const long ID_TEXTCTRL1;
@@ -54,6 +68,7 @@ class gui_applicationFrame: public wxFrame
         static const long idMenuQuit;
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
+        static const long ID_TIMER1;
         //*)
 
         //(*Declarations(gui_applicationFrame)
@@ -69,6 +84,11 @@ class gui_applicationFrame: public wxFrame
         wxTextCtrl* PathToProg;
         wxTextCtrl* TextVarOut;
         //*)
+         wxTimer* Timer1;
+         Mat displayed_Image; //Image is display in result window
+        bool isDisplayedImage;
+        int loop_start_line;
+        int loop_time_ms;
 
         DECLARE_EVENT_TABLE()
 };
