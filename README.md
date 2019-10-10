@@ -6,4 +6,11 @@ Eli application consist from:
 User can easy create own program. This program can be executed, debugging and checking.
 * **Library:**
 Library can executed .eli program with user application
+### OS support
+Aplication works on Windows and Linux platforms. Application is written in C++.
+### Requirements for compilation from source code
+* **Cmake:** Version 2.6 or higher
+* **C++ compiler*
+* **wxWidgets:** [wxWidgets](http://www.wxwidgets.org)
+* **OpenCV:** [OpenCv](http://opencv.org/)
 
