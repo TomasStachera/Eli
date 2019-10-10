@@ -6,7 +6,7 @@ Eli application consist from:
 User can easy create own program. This program can be executed, debugging and checking.
 * **Library:**
 Library can executed .eli program with user application
-![Screenshot Logo](/share/Eli/helo/pictures/screenshot_1.png)
+![Screenshot Logo](/share/Eli/help/pictures/screenshot_1.png)
 ### OS support
 Aplication works on Windows and Linux platforms. Application is written in C++.
 ### Requirements for compilation from source code
