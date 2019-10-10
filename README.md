@@ -1,6 +1,5 @@
 # Eli
 ![Eli Logo](/share/Eli/icons/eli_icon.png)
-Format: ![Alt Text](url)
 ##Computer vission application for simple detection objects on camera, video or picture.
 Eli application consist from:
 *GUI application
