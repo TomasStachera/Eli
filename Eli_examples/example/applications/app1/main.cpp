@@ -23,7 +23,7 @@ int main()
     char string_var[101];//Maximal variable strings 100 chars
     char er_string[501];// Maximal error string 500 chars
     //Write path for eli program which will be executed. Change path according your setup
-    string eli_path="/home/tomas/programming/Eli/Eli_examples/example/test_programs/numbers.eli";
+    string eli_path="C:\\prog_linux\\wxProject\\eli2\\Eli\\Eli_examples\\example\\test_programs\\numbers.eli";
     char path[eli_path.size()+1];
     strcpy(path,eli_path.c_str());
     /**

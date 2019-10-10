@@ -10,6 +10,7 @@ with wxWidgtes and OpenCv support
  **************************************************************/
 
 #include "gui_applicationMain.h"
+
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(gui_applicationFrame)
@@ -25,7 +26,7 @@ with wxWidgtes and OpenCv support
 
 
 
-
+using namespace cv;
 
 
 //(*IdInit(gui_applicationFrame)
@@ -223,7 +224,12 @@ try
    /** Function from EliLib***************/
     ret=EliGetResultPicture(imgx);
   /******************************************/
-    if(ret==0) GenerateDisplPicture(imgx);
+    if(ret==0) 
+    {
+    GenerateDisplPicture(imgx);
+    Update();
+    Refresh();
+    }
 
     if(sel_str==_("Object"))//Object parameters
     {
@@ -404,7 +410,7 @@ void gui_applicationFrame::OnStopLoopClick(wxCommandEvent& event)
 Function for generate display picture.
 This picture is display in picture window
 ********************************************************************/
-int gui_applicationFrame::GenerateDisplPicture(Mat img)
+int gui_applicationFrame::GenerateDisplPicture(cv::Mat img)
 {
 
 try

@@ -6,7 +6,10 @@ cmake_minimum_required (VERSION 2.6)
 project(App1)
 SET (VERSION_MAJOR 1)
 SET (VERSION_MINOR 0)
-
+IF (WIN32)
+link_directories("C:/Program Files/Eli 0.1.1/bin")
+include_directories("C:/Program Files/Eli 0.1.1/include")
+ENDIF(WIN32)
 # Set aplication files
 SET (TARGET_main_FILES
 ${PROJECT_SOURCE_DIR}/main.cpp)

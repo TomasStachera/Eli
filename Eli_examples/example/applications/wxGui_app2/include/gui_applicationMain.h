@@ -29,7 +29,7 @@
 #include <opencv2/core/cvdef.h>
 #include <opencv2/core/utility.hpp>
 //*)
-using namespace cv;
+
 
 class gui_applicationFrame: public wxFrame
 {
@@ -50,7 +50,7 @@ class gui_applicationFrame: public wxFrame
         void OnPanelPaint(wxPaintEvent& event);
         //*)
         void DisplayOutputParameters(void);
-        int GenerateDisplPicture(Mat img);
+        int GenerateDisplPicture(cv::Mat img);
         void DrawBitmatPic(void);
         void OnTimer1Trigger(wxTimerEvent& event);
 
@@ -85,7 +85,7 @@ class gui_applicationFrame: public wxFrame
         wxTextCtrl* TextVarOut;
         //*)
          wxTimer* Timer1;
-         Mat displayed_Image; //Image is display in result window
+         cv::Mat displayed_Image; //Image is display in result window
         bool isDisplayedImage;
         int loop_start_line;
         int loop_time_ms;
