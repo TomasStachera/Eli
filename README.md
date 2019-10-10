@@ -10,7 +10,7 @@ Library can executed .eli program with user application
 Aplication works on Windows and Linux platforms. Application is written in C++.
 ### Requirements for compilation from source code
 * **Cmake:** Version 2.6 or higher
-* **C++ compiler*
+* **C++ compiler**
 * **wxWidgets:** [wxWidgets](http://www.wxwidgets.org)
 * **OpenCV:** [OpenCv](http://opencv.org/)
 
