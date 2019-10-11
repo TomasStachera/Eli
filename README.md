@@ -31,7 +31,7 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Create directory dlls : **mkdir dlls**. *Copy to this directory all wxWidgtes Dll and all OpenCv dll* (Only if you want to distrubute this application with compiled wxWidgets and OpneCv)
 * Stay in directory build*
 * Run Cmake command (Or use cmake gui):
- * Mingw: **cmake -G "MinGW Makefiles" ..**
+  * Mingw: **cmake -G "MinGW Makefiles" ..**
 
 
 
