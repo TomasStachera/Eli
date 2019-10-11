@@ -15,4 +15,7 @@ Aplication works on Windows and Linux platforms. Application is written in C++.
 * **C++ compiler**
 * **wxWidgets:** [wxWidgets](http://www.wxwidgets.org)
 * **OpenCV:** [OpenCv](http://opencv.org/)
+### Compilation instructions
+## Windows
+* Clone Eli: 
 
