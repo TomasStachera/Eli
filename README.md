@@ -52,7 +52,7 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Set CPACK generator according your distribution
 * Create build directory: **mkdir build**
 * Go to the build directory: **cd build**
-* Run Cmake command: **cmake ..*
+* Run Cmake command: **cmake ..**
 * Compile application: **make**
 * Compilation will create executable application and 2 shared library
 * Create package: **make package**
