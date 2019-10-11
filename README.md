@@ -29,9 +29,15 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Create build directory: **mkdir build**
 * Go to the build directory: **cd build**
 * Create directory dlls : **mkdir dlls**. *Copy to this directory all wxWidgtes Dll and all OpenCv dll* (Only if you want to distrubute this application with compiled wxWidgets and OpneCv)
-* Stay in directory build*
+* Stay in directory build
 * Run Cmake command (Or use cmake gui):
   * Mingw: **cmake -G "MinGW Makefiles" ..**
+* Compile aplication:
+  * Mingw: **mingw32-make**
+* Compilation create exe application and 2 library files
+* Create setup package:
+  * Mingw: **mingw32-make package**
+* Run Eli setup package for instaling Eli to the system
 
 
 
