@@ -17,9 +17,11 @@ Aplication works on Windows and Linux platforms. Application is written in C++.
 * **OpenCV:** [OpenCv](http://opencv.org/)
 ### Compilation instructions
 #### Windows
+* Install Cmake
 * Install wxWidgets
 * Install OpenCv
 * Instal mingw compiler or other C++ compiler
+* Open windows terminal
 * Clone Eli: **git clone https://github.com/TomasStachera/Eli**
 * Go to Eli directory: cd ../Eli
 * Open CMakeLists.txt
@@ -38,6 +40,23 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Create setup package:
   * Mingw: **mingw32-make package**
 * Run Eli setup package for instaling Eli to the system
+#### Linux
+* Open terminal
+* Install Cmake
+* Install wxWidgets (wxGtk). Instal from your distribution repositories or from source code
+* Install OpenCv. Instal from your distribution repositories or from source code. If you want to use Read/Write video file commands install it with FFMPEG support. Check if your distribution package is compiled with FFMPEG. If not compile it from source code. You can use also OpenCv CV without FFMPEG support but Read Wirite video file command s will not working, other command will works.
+* Install gcc (g++) compiller
+* Clone Eli: **git clone https://github.com/TomasStachera/Eli**
+* Go to Eli directory: cd ../Eli
+* Open CMakeLists.txt
+* Set CPACK generator according your distribution
+* Create build directory: **mkdir build**
+* Go to the build directory: **cd build**
+* Run Cmake command: **cmake ..*
+* Compile application: **make**
+* Compilation will create executable application and 2 shared library
+* Create package: **make package**
+* Install package to your system
 
 
 
