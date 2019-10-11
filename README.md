@@ -19,6 +19,7 @@ Aplication works on Windows and Linux platforms. Application is written in C++.
 #### Windows
 * Install wxWidgets
 * Install OpenCv
+* Instal mingw compiler or other C++ compiler
 * Clone Eli: **git clone https://github.com/TomasStachera/Eli**
 * Go to Eli directory: cd ../Eli
 * Open CMakeLists.txt
@@ -27,7 +28,10 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Set CPACK generator to **NSIS** *( In the end of CmakeLists)*
 * Create build directory: **mkdir build**
 * Go to the build directory: **cd build**
-* Create directory dlls : **mkdir dlls**. *Copy to this directory all wxWidgtes Dll and all OpenCv dll* (Only if you want to distrubute this applicatio with compiled wxWidgets and OpneCv)
+* Create directory dlls : **mkdir dlls**. *Copy to this directory all wxWidgtes Dll and all OpenCv dll* (Only if you want to distrubute this application with compiled wxWidgets and OpneCv)
+* Stay in directory build*
+* Run Cmake command (Or use cmake gui):
+ * Mingw: **cmake -G "MinGW Makefiles" ..**
 
 
 
