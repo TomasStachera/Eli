@@ -16,6 +16,15 @@ Aplication works on Windows and Linux platforms. Application is written in C++.
 * **wxWidgets:** [wxWidgets](http://www.wxwidgets.org)
 * **OpenCV:** [OpenCv](http://opencv.org/)
 ### Compilation instructions
-## Windows
-* Clone Eli: 
+#### Windows
+* Install wxWidgets
+* Install OpenCv
+* Clone Eli: https://github.com/TomasStachera/Eli
+* Go to Eli directory: cd ../Eli
+* Open CMakeLists.txt
+* Set wxWidgtes instaled directory:
+Find part "Declare wxWidgets directory" and change this directory according your instalation directory
+* Create build directory: mkdir build
+* Go to the build directory: cd build
+
 
