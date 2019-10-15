@@ -1,0 +1,32 @@
+<a name="Object_ParamMath"></a>
+<a href="Object_ParamMath"></a>
+<h1>Object_ParamMath</h1>
+<h2>Using of command</h2>
+Function calculates  derived values from object parameter. It can be used mathematic oparation between objects or
+between object and constant and result is stored to one 10 derived parameters or to system variables. If you use system variable 
+for strore result use it only if only one object wiht given name can be found. If there are more than one object with same object name system variable result will 
+be calculated only from one of them.
+
+<h2>Commands parameters</h2>
+Command has 6 parameters:
+<ol>
+<li>Object name: You need write object name,which parameters will be calculated </li>
+<li>Parameter A: Type of object parameter which will be as a operand 1.</li>
+<li>Operator:  Mathematical operator, which will execute mat operation between operand 1 and operand 2</li>
+<li>Parameter B: Type of object parameter which will be as a operand 2. It can be used olso option Constant number. In this case Constant from the next line will be used as a operand2</li>
+<li>Parameter B constant. Constant number if option 'Constant number ' was selected in previous step</li>
+<li>Result to: Select where result from calculation will be stored. It can be select Derived parameter or system variable. If there is expected more than 1 objects with same name derived parameter store 
+specific value for each object. System variable store value only from one object if there is more objects with same name.</li>
+
+ </ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Error get parameter A. </li>
+<li>Error code -12:Error get parameter B. </li>
+<li>Error code -13:Bad operator type. </li>
+<li>Error code -14:Bad vector size of parameter. A and B can not have same dimension. </li>
+<li>Error code -15:Bad result variable. </li>
+<li>Error code -16:Bad result vector size. </li>
+  </ol>

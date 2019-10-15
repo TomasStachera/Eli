@@ -1,0 +1,76 @@
+<a name="Coversion_MaskPicture"></a>
+<a href="Coversion_MaskPicture"></a>
+<h1>Coversion_MaskPicture</h1>
+<h2>Using of command</h2>
+This command is used for create new picture which can be used as a mask picture. It means that can be computed with other image to mask some parts 
+of image. Function create new image (color or grayscale) and mask objects (color or grayscale)  on this image. Function has edit window which will be executed
+in debug mode one step run. Edit window display image also with other image which we want to mask.
+
+<h2>Commands parameters</h2>
+Command has 13 parameters:
+<ol>
+<li>Mask picture: Select picture where will be stored new image </li>
+<li>Type of picture:It can be select type of image :
+ <ol>
+   <li> Binary: In this option image will be grayscale with binary values 0 or 255. One is for background, the second one is for foreground</li>
+   <li> Color: This option create color image where bacground and foreground will be collor</li>
+ </ol> 
+ </li>
+<li> Use clone picture: If this option is selected  new picture width and height will be cloned from existing image (Select this image in the next step).
+If this option is not selected width and height  will be selected in other options</li>
+<li> Clone picture. This option select which image parameter will be cloned to new on. It must be selected option 'Use clone picture' in previous step. This picture must be loaded before
+this command </li>
+<li>Background color type: It can be select type of backgroung color. Black,White,Color </li>
+<li>Background color: Click on this line , color dialog will be open. Select color of background if option Color was selected in previous line </li>
+<li>Mask color type: It can be select type of foreground color. Black,White,Color </li>
+<li>Mask color: Click on this line , color dialog will be open. Select color of foreground (Mask) if option Color was selected in previous line </li>
+<li>Mask picture width: Mask picture width if Clone picture option was not set in previous line</li>
+<li>Mask picture height: Mask picture height if Clone picture option was not set in previous line</li>
+<li>X-offset: It can be select ofset in X-axis which can be stored in some variable. This offset will be add to X-axis value on each mask element. It can be used  if we need dynamically move 
+mask on the picture </li>
+<li>Y-offset :It can be select ofset in Y-axis which can be stored in some variable. This offset will be add to Y-axis value on each mask element. It can be used  if we need dynamically move 
+mask on the picture </li>
+<li>Mask objects: This option will be add automatically from edit window. It can be select also manually for each element of mask. Command consinst from element description and aditional parameters.
+Ech elements are separated with ';'
+Elements type:
+  <ol>
+   <li> P= Polynome: -> point 1 X, point1 Y, ':'-separator  -> point 2 X, point 2 Y  and so on. Example P:187 25:178 149:183 150 </li>
+   <li> C- Circle :  -> Center X , Center Y, ':'-separator ->radius 0. Example:C:100 41:52 0 </li>
+   <li> R-Rectangle: ->Point 1X Point 1Y':'-separator->Point 2X Point 2Y':'-separator ->Point 3X Point 3Y':'-separator ->Point 4X Point 4Y . Example: R:227 118:227 143:274 143:274 118 </li>
+   
+  </ol>
+</li>
+
+
+ </ol>
+ 
+ <h2>Edit window                  </h2>
+Edit window is activated in debug mode when is set break on Conversion_MaskPicture line and Run one step is activated
+
+ <img src="pictures/mask_picture_window.png" width="640" height="480" alt="Mask picture window">
+ <br>
+ If Clone picture option was selected cloned image will be displayed  with background of new image. Slider in 'Type' window mixed this two images
+ <ol>
+  <li>Picture window: It is in the top part of page and display cloned image and mask image mixed according slider setup. Left click on mouse button start draw selected object on area. release of left button stop drawing object </li>
+  <li>Command window: It is in the left bottom part of window. Display all elements command.Right click on selected command can clone new element from element where is placed cursor</li>
+  <li>Type window: It is in the bottom part of window. It can be select type of element (rectangle,circle,polynome). Slider mixed cloned image and new image
+  <ol>
+     <li>Rectangle: Left click on area where you want to drive rectangle and move cursor. Release left mouse button for stop drawing. Click on button New for add rectangle to the element list </li>
+     <li>Circle:Left click on area with circle center. Move mouse and release left button for stop drawing. Click button New for add circle to the element list </li>
+     <li>Polynom: Left click on the start poit, release left button, move mouse, left click on other point. Click new and selected polynom will be add to the element list.<li>
+     
+  </ol>
+  </li>
+  <li>New button: Add element to element list </li>
+  <li>Delete button: Remove selected elemnt from element command list</li>
+ </ol>
+
+<h2>Error codes</h2>
+
+<ol>
+<li>Error code -11:Bad position in float aray. Not in range (0..99) </li>
+<li>Error code -12:Bad circle vector size </li>
+<li>Error code -13:Bad mask picture position. It must be from range (0..19). </li>
+<li>Error code -14:Bad clone picture position.It must be from range (0..19) </li>
+<li>Error code -100:OpenCV error. </li>
+  </ol>
