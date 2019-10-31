@@ -1,4 +1,48 @@
 <a name="EditObjectFind"></a>
 <a href="Object_Find.htm">Object_Find command page </a>
 <h1>Object Find edit window</h1>
-
+<h3>This window is displayed in debug mode when <u>Run One step </u> command is executed in command <u>Object_Find</u></h3>
+<img src="pictures/windowObject.png" alt="Edit object window"><br><br>
+<b>Window has 6 areas:</b>
+<ol>
+  <li>Menu window</li>
+  <li>Picture window</li>
+  <li>Contour window</li>
+  <li>Buttons</li>
+  <li>Detail window</li>
+  <li>Coordinates window</li
+			  </ol>
+<h2>Menu window</h2>
+<b>Menu window has several buttons which for working with selected picture</b>
+<ol>
+  <li><b><u>Close</u></b><img src="../icons/quit.png" alt="Close button">
+    This button closes Object window and return to main window to the line with Object_Find command. Changes are not saved automatically, so press <b>Save button </b> before click on Close button.
+  </li><br>
+  <li><b><u>Save</u></b>><img src="../icons/Save.png" alt="Save button">This button save all changes done on this window to eli program.Changes are saved only in eli program not in eli file, so <b> you need to save eli program</b> in main application window  as those saved changes was saved also on .eli file.</li><br>
+<li><b><u>Show Contours</u></b><img src="../icons/show_contours.png" alt="Show Contours  button"> Click on this button draw  all selected  contours from Contour window to Picture window</li><br>
+<li><b><u>Filter module</u></b><img src="../icons/display_filter.png" alt="Filter module  button">Filter modole window will display after click on this button. You can program filter for contour. Filter module window is described here: <a href="FilterModule.htm"><b>Filter module window</b></a></li><br>
+<li><b><u>Run Filter</u></b><img src="../icons/run_filter.png" alt="Filter run  button">Click on this button executes filter module program.Only conours which passed filter are displayed in the Contour window and only passed contours are used in the object calculation.</li><br>
+<li><b><u>Clear filter</u></b><img src="../icons/clear_filter.bmp" alt="Filter run  button">Function cancel filter execution. It means that all contours are displayed in the Contour window and all contours can be used in the object calculation. </li><br>
+<li><b><u>Object module</u></b><img src="../icons/object_module.png" alt="Object module  button">Click on this button opens Object modulle window where you can done all objects operations (Create objects, copy, delete objects, debug objects).Object module window is describe here: <a href="ObjectModule.htm"><b>Object  module window</b></a> </li><br>
+<li><b><u>Find objects</u></b><img src="../icons/find_objects.bmp" alt="Object module  button">Function executes Find object module.Function find all objects programmed in the Object module window. Result of this operation is displayed in the Detail window. Number of found each type of objects and contours describing the object. </li><br>
+<li><b><u>Object List</u></b><img src="../icons/object_list.png" alt="Object list  button">.Function display object list window if some objects was found in the Find objects function.(Find object must be executed before click on this button). If no objects was found error message will display after click on this command and Object list window will not show. Object list window has list box with all found objects. left click on selected object will display basic information about object (Bouding rectange: x,y,width,height, perimeter and contour area)Click on button <b>Show object</b> close this window and display selected object on the Picture window. Click on button <b>Exit</b> just close this window.</li><br>
+<li><b><u>Clear Objects</u></b><img src="../icons/clear_objects.bmp" alt="Clear objects  button">. Click on this button clear Picture window fromall displayed objects or contours. Only source image will stay on this window.
+  </li><br>
+<li><b><u>Setup</u></b><img src="../icons/setup.png" alt="Setup  button">Click on this button open Setup window.This window setups displayed object parameters in the Picture window. It can be setup Object line parameters (color, thickness). Object line is displayed area in the Picture window around selected object in <b>Object list window</b>. This parameter is also used in the <b>Show contours</b> option.  Next part of this window is object name.It can be selected object name parameters (color, line thickness, line type and letter font).Object name is name of the object display in the Picture window ower selected object in <b>Object list window</b>. After change some parameter you need to click <b>Update button</b> for save changes. Click on button <b>Exit</b> close this window. </li><br>
+	
+</ol>
+<h2>Picture window</h2>
+Picture window display source image which is selected in the function Object_Find. This picture must be <b>binary image</b>.Picture window display also contours or objects after click on proper menu button. When you move mouse on the Picture window area mouse coordinates and contours over the cursor will be display in the Coordinates window.
+<h2>Contour window</h2>
+Contour window display all found contours on the source image or all passed filter contours if <b>Run filter</b> option was executed. Left click  on any contour will display all contours parameters in the <b>Detail window</b> on selected contour. Left click can select or unselect one contour. <b>Only selected </b> contour will be display in picture window when <b>Show contour</b> option will be selected.
+<h2>Buttons</h2>
+There are 3 buttons on this area:<br>
+<ol>
+  <li><u>All</u>: Click on this button selects all contours in the <b>Contour window</b></li>
+  <li><u>None</u>: Click on this button unselect all contours in the <b>Contour window</b></li>
+  <li><u>Export</u>: Click on this button exports <b>all selected contours in the Contour window</b> to the file. After click on this button export window will display. It can be select in the selected window which group of parameters will be exported to the file.When you select option <b>Display file</b>, exported file will be displayed. Click on button <b> Export</b> save file dialog will open. You need to select directory and write export file name with <b> extension</b>.According file extension , program execute software for export file display (If you choose option Display file).Each contour is on the separate line. Contours parameters are separete with horizontal tabelator (\t). Click on button <b>Cancel</b> just close this window.</li> 
+</ol>
+<h2>Detail window</h2>
+This window display all contours parameters when you left click on some contour in the <b>Contour window</b> Explanation of contour parameters is describe here:  <b><a href="ContourParameter.htm">Contour parameters</a> </b>. When <b> Find object</b> function will be executed this window display information about  number of found object and which contour is which object.
+<h2>Coordinates window</h2>
+This window display coordinates of cursor position when you move in to  Picture window. It display also Contour number outside cursor position (also contours which not pass after filter execution). Remember that there is always one contour over all picture area so it is always display on this window ( You can filter it in the filter) but it will be stil display on this window.
