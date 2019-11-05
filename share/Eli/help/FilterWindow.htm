@@ -1,0 +1,22 @@
+<a name="FilterWindow"></a>
+<a href="EditObjectFind.htm">Edit Object find   page </a>
+<h1>Filter window</h1>
+<h3>This window is displayed when user click on Filter module icon in EditObject  find window. This window is used for set filter commands which filter some contours according filter commands condition. When user run filter only contours which passed filter will be use in object calculation. <u>If there are some line in the filter window, filter commands will be executed in the eli program.</u><bru>If you do not want used filter filter command window must be empty</u></h3>
+<img src="pictures/filter_window.png" alt="Filter  window"><br><br>
+<b>Filter module has 3 buttons:</b>
+<ol>
+  <li><u>Insert line:</u> When you click on this button, new command line is added to the Filter command</li>
+  <li><u>Delete line:</u>When you click on this button, line with cursor in filter commands will delete. Put cursor (by click on line) to the line which you want to delete and click on this button. Line will be deleted. <b>If you do not use filter command delete all lines </b></li>
+  <li><u>Update module:</u>This button save changes done in the Filter module. If user close window without click on this button chages will not be stored. Next changes must be saved also in the EditObject window by click on button Save and also must be saved eli program in the main window. In this case filter commands will be executed in the eli program </li>
+</ol>
+<h2>Filter commands</h2>
+Filter commands are executed step by step. It means that the first line is executed at the first, next second line and so on.<br>
+<b>Each command line has 6 columns:</b><br>
+<ol>
+  <li><u>Result:</u> Click on this column user can select result if this operation. If user select <b>Active</b> Contours which will pass command condition will be active, contours which did not pass command will be not active. If user select <b> Not active</b>, it will negate result.(Pass contours will be not active, not pass contours will be active)</li>
+  <li><u>Input from</u> Click on this column user can select which contour will be calculated on this command line.If option <b>All</b> will be selected calculation will be done on the all contours. If option <b>Active</b> will be selected only active contour will be calculate on this command line. Option <b>All</b> will done logical <b>OR</b> with previous command lines, option <b>Active</b> will done logicad <b>AND</b> with previous command lines.</li>
+  <li><u>Contour parameter:</u>It can be select contour parameter which will be 1.operand for condition execution on this command line.The first option is <b>Edge line</b>: This option should be used if previous operation in the main program used  <b>edge operation</b> (Canny threshold).On the edge operation are separete only object shape which has contours outside shape line and inside shape lines. On this case describe object 2 simillar contours. If select <b>Edge line </b> parameter it will filter inside shape line contours. You need only select line width in the second operand. Other contours parameters are same parameters which will be used in the object calculation. Describe of this parameters is here:<b><a href="ContourParameter.htm">Contour parameters</a> </b>.</li>
+<li><u>Comparison option</u>: It can be select comparison operator between operand 1 and operand 2. Contours which result of this operation is TRUE will pass this command line.</li>
+<li><u>Compare width</u>: The second operand is selected here. It can be <b>Number </b>. In this case constant number must be write to the last column as the second operand. Other options are system variable which will be used as the second operand.</li>
+<li><u>Compare number</u>: This column is only activate when option <b>Number</b> was used in the previous column. Constant number  as the second operand will be write here.In this case contour parameter will be compare with constant number.</li>
+    </ol>
