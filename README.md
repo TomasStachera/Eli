@@ -13,14 +13,16 @@ Aplication works on Windows and Linux platforms. Application is written in C++.
 ### Requirements for compilation from source code
 * **Cmake:** Version 2.6 or higher
 * **C++ compiler**
-* **wxWidgets:** [wxWidgets](http://www.wxwidgets.org)
-* **OpenCV:** [OpenCv](http://opencv.org/)
+* **wxWidgets:** [wxWidgets](https://www.wxwidgets.org)
+* **OpenCV:** [OpenCv](https://opencv.org/)
+* **NSIS (Only for windows):** [NSIS](https://sourceforge.net/projects/nsis/)
 ### Compilation instructions
 #### Windows
 * Install Cmake
 * Install wxWidgets
 * Install OpenCv
 * Instal mingw compiler or other C++ compiler
+* Install NSIS for setup package generator
 * Open windows terminal
 * Clone Eli: **git clone https://github.com/TomasStachera/Eli**
 * Go to Eli directory: cd ../Eli
