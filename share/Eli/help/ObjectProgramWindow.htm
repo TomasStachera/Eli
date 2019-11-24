@@ -1,0 +1,117 @@
+<a name="Object Program"></a>
+<a href="EditObjectFind.htm">Edit Object find page </a> <br>  <a href="ObjectModule.htm">Object module page </a>
+<h1>Object program</h1>
+<b>This window is displayed when user click on Edit button on Object module window. If object was created, command window is empty.
+If Object program was created before and it is edit, program with commands will be display in the command  window. </b>
+<img src="pictures/object_programs.png" alt="Object module"><br><br>
+<h3> Object program explanation</h3>
+<ul>
+  <li>When is object program running is run step by step from the first line to the next line</li>
+  <li>Program must have at least <b> one</b> CONDITION command</li>
+  <li>Between two condition must be <b>one AND or OR</b> command</li>
+  <li>Program is run for all active contours</li>
+  <li>Result of condition command is <b>TRUE or FALSE</b> </li>
+  <li>AND or OR between condition do logical operation which result is TRUE or FALSE </li>
+  <li><b>It result of all program is TRUE </li> object (according Object name) is set to calculated contour</b>.</li>
+<li>MATH command can be place in any line on the program.</li>
+<li>Commands in brackets are calculated  separately and result of bracket operation are add to total results according logical math</li>
+<li>It can be used 10 brackets in one program</li>
+</ul>
+<br><br>
+<ul>
+  <li>Line <b>Object name</b> display  object name. This line is read only, object name can not be edited on this window</li>
+  <li>Line <b>Object description</b>display object description.This line is read only, object description can not be edited on this window </li>
+</ul>
+<h3>Insert line button</h3>
+Click on this button display list of command which can be insert. Select some command and click OK<br>
+New command will be insert to the line <b>next to cursor line</b>.<br>
+If you click Cancel on select command window no command will be insert.
+<h3>Edit line button </h3>
+This button will active only on line where is command <b>CONDITION or MATH </b><br>
+Click on this button display selected command window.
+<h3>Copy line button </h3>
+Click on this button copy block of commands to line <b>next to cursor line</b><br>
+<ul>
+  <li>Put cursor on the line where you want to put copied block</li>
+  <li>It can be copy block only before cursor line</li>
+  <li>Click on Copy line button</li>
+  <li>Dialog with start block line number will display</li>
+  <li>Select start block line </li>
+  <li>Dialog with end block line number will display</li>
+  <li>Select end block line number</li>
+  <li>Selected block will be copy to line next to cursor line.
+</ul>
+<h3>Delete line button</h3>
+Click on this button delete line where is put cursor.
+<ul>
+  <li>Put cursor on the line which you want to delete</li>
+  <li>Click on button Delete line</li>
+  <li>Confirmation dialog will display</li>
+  <li>If you click YES selected line will delete</li>
+  <li>If you click NO nothing happens </li>
+</ul>
+<h3>Update-Exit button</h3>
+Click on this button close Object program window and display dialog where you can select
+if you want to Save changes or not.
+<h3>Commands  description</h3>
+<h4>Command AND</h4>
+This command do logical <b> AND</b> between CONDITION  before AND command and CONDITION  after AND command.
+If both condition is TRUE result of and command is TRUE , if at least one condition is FALSE result is FALSE
+<h4>Command OR</h4>
+This command do logical <b>OR</b> between CONDITION before OR command and CONDITION after OR command.
+If at least one condition is TRUE result of OR command is TRUE, if both condition is false result of OR command is FALSE.
+<h4> Command ()</h4>
+This command is bracket command. It insert two lines. One is start bracket and second is end of bracket. Insert commands between those
+two lines and those lines will be executing in bracket.It can be maximal 10 brackets in one program.
+<h4>Command MATH</h4>
+This command do mathematical operation between contours parameters or system variables or temporary variables or constant numbers
+Result of this command is store to the system variable or temporary variable and it can be used during next line calculation (CONDITION command or next MATH command)<br>
+<img src="pictures/object_math_cmd.png" alt="MATH command"><br><br>
+<ul>
+  <li>Mathematical calculation is done between Parameter 1 and Parameter 2.</li>
+  <li><b>MATH operand</b> sets mathematical calculation</li>
+  <li><b>Result </b> window select where result of mathematical operation is stored.</li>
+  <ul><li>
+      <b>System variable</b>. It will store result to system variable. It can be select Variable 0 to Variable 99.
+This variable will be set in all eli program </li>
+
+    <li>Temporary variable </b>. It can be write any string (maximal 30 characters), and this string will be used as a temporary variable.Temporary variable can be use only in object find command.</li>
+
+</ul>
+<b>Parameters options:</b>
+<ul>
+  <li>Contour parameter: Description of contour parameter is here:<b><a href="ContourParameter.htm">Contour parameters</a> </b>.<br>
+    There are two more parameters on the end of list:
+    <ul>
+      <li><u>Number of inside contours</u>. Result is number of contour which are  inside of calculated contour</li>
+      <li><u>Number of outside contours</u>. Result is number of contour which are outside of calculated contour</li>
+  </ul></li>
+  <li>System variable. It can be select system variable which will be used as a parameter. It can be select Variable 0 to Variable 99. This variables can
+    be set in eli program or also before start eli program </li>
+  <li>Temporary variable.  It can be write any string (maximal 30 characters), and this string will be used as a temporary variable.Temporary variable can be use only in object find command. </li>
+  <li>Number. Constant number can be write to the line. This constant will be used as a parameter.</li>
+  </ul>
+  </ul>
+  <h4>Command CONDITION</h4>
+  This command do logical operation between Parameter 1 and Parameter 2. Type of logical operation is select in Comparison option. Result of this comparison
+  can be TRUE or FALSE<br>
+  <img src="pictures/object_condition_cmd.png" alt="CONDITION  command"><br><br>
+  Parameters options:
+<ul>
+  <li>Contour parameter: Description of contour parameter is here:<b><a href="ContourParameter.htm">Contour parameters</a> </b>.<br>
+    There are two more parameters on the end of list:
+    <ul>
+      <li><u>Number of inside contours</u>. Result is number of contour which are  inside of calculated contour</li>
+      <li><u>Number of outside contours</u>. Result is number of contour which are outside of calculated contour</li>
+  </ul></li>
+  <li>System variable. It can be select system variable which will be used as a parameter. It can be select Variable 0 to Variable 99. This variables can
+    be set in eli program or also before start eli program </li>
+  <li>Temporary variable.  It can be write any string (maximal 30 characters), and this string will be used as a temporary variable.Temporary variable can be use only in object find command. </li>
+  <li>Number. Constant number can be write to the line. This constant will be used as a parameter.</li>
+  </ul>
+  </ul>
+
+
+
+
+

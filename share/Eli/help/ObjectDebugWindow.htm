@@ -1,0 +1,48 @@
+<a name="Object Debug window"></a>
+<a href="EditObjectFind.htm">Edit Object find page </a> <br>  <a href="ObjectModule.htm">Object module page </a>
+<h1>Object debug window</h1>
+<b>This window is displayed when user click on Debug object button on Object module window. It will open debug window on object program according cursor position on object program window </b><br>
+<img src="pictures/object_debug.png" alt="Object debug"><br><br>
+<h3>Test program window </h3>
+Test program window displays selected object program.
+<h3>Command</h3>
+Window displays command expression of line where is put cursor in Test program window
+<h3>Status</h3>
+Window displays Actual status of debugging.
+<h3>Variable watch </h3>
+Window display 3 types of variables :
+<ul>
+  <li><u>Option</u>: It will select which type of variables should be displayed: Contour param, System variable,Temporary variable. Select one of this option display all possible variable in the next list box.</li>
+  <li>Click on variable which value you want to read and actual variable value will be display in the Value window</li>    
+  </ul>
+<h3>Total result </h3>
+It will display Total result (True or False) in the actual debug line. Total result is meaning, result which select if object is set on specified contour.
+</h3>Bracket result</h3>
+It will display result of actual bracket (True or False) if bracket was used on actual debug line.
+<h3>Choice Contour</h3>
+It can be select contours which parameters will be debugs. There are all active contours in the list
+<h3>Start/Stop button </h3>
+It will start of debug process if debug was not started or stop debug process if debug process was started
+<h3>Break button </h3>
+Put break on  selected test program line (select it by cursor). When is break on some line, debug program is stopped and waiting for Continue, Step or Stop button. It can be read actual variable value on this step
+<h3>Continue button </h3>
+This button is active when debug is in break mode. When Continue button is pressed, debug is continue till next break or till end of program.
+<h3>Step button </h3>
+This button is active when debug is in break mode. When Step button is pressed, debug execute one step (on the break line)and stop.
+<h2>Debug process </h2>
+    <ul>
+      <li> Select contour from Contour Choice which you want to debug </li>
+      <li>Put break on some line of the test program (Select some line and click on break button)</li>
+      <li> Click on start button</li>
+      <li>When program is on break line, read variables value, Total result </li>
+      <li>Press step button for execution break line or continue button </li>
+      <li>Program will continue to the next break or (next line if you press Step button)</li>
+      <li> Check again variable value and total result (or bracket result if bracket is activated)</li>
+      <li>Continue till the last line or press Start/Stop button if you want to finish debug </li>
+      <li>You can select other Contour for debug and continue process above or close Debug window for finish debug mode </li>
+      </ul>
+
+
+
+
+
