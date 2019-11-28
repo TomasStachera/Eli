@@ -1,0 +1,176 @@
+<a name="ContourParameter"></a>
+<a href="EditObjectFind.htm">Edit object find window page </a>
+<h1>Contour parameters</h1>
+<ol>
+<li><a href="#1">Bounding rectangle </a></li>
+<li><a href="#2">Contour area and perimeter </a></li>
+<li><a href="#3">Minimal area rectangle </a></li>
+<li><a href="#4">Minimal enclosing circle </a> </li>
+<li><a href="#5">Fit ellipse </a> </li>
+<li> <a href="#6">Moments </a>
+<ol>
+<li><a href="#7">Spatial moments </a></li>
+<li><a href="#8">Central moments </a></li>
+<li><a href="#9">Normalized Central moments </a></li>
+<li><a href="#10">HU moments </a></li>
+</ol> 
+
+</li>
+</ol>
+<h2 id="1">Bounding Rectangle</h2>
+Bounding rectangle is rectangle around all object. Bounding rectangle has 4 parameters:<br>
+<ol>
+   <li><u>Bounding rect X:</u> X coordinate in left top point of rectangle</li>
+   <li><u>Bounding rect Y:</u> Y coordinate in left top point of rectangle</li>
+   <li><u>Bounding rect width:</u> Width of rectangle</li>
+   <li><u>Bounding rect height:</u> Height of rectangle</li>
+</ol>
+<img src="pictures/bounding_rect.png" alt="bounding rectangle">
+<br>
+<h2 id="2"> Contour area and perimeter</h2>
+<b><u>Contour area</u> </b> is number of all pixels in the object represented by contour <br>
+<b><u>Perimeter</u></b> is length of contour  over object<br>
+<img src="pictures/contArea_perimeter.png" alt="Contour area and perimeter">
+<h2 id="3"> Minimal area rectangle </h2>
+It is minimal rectangle over all object. Rectangle also describe rotation of object
+Minimal area rectangle has 5 parameters:<br>
+<ol>
+   <li><u>Center X:</u> X coordinate center of rectangle</li>
+   <li><u>center Y:</u> Y coordinate center of rectangle</li>
+   <li><u>Size: width:</u> Width of rectangle</li>
+   <li><u>Size:height:</u> Height of rectangle</li>
+   <li><u>Angle</u>: Rotation angle of rectangle</li>
+</ol>
+<img src="pictures/min_area_rect.png" alt="Minimal area rectangle">
+<h2 id="4"> Minimal enclosing circle </h2>
+It is minimal circle over all object. 
+Minimal enclosing circle has 5 parameters:<br>
+<ol>
+   <li><u>Center X:</u> X coordinate center of circle</li>
+   <li><u>center Y:</u> Y coordinate center of circle</li>
+   <li><u>Radius:</u> radius of circle</li>
+</ol>
+<img src="pictures/min_enclos_circle.png" alt="Minimal enclosing circle">
+<h2 id="5"> Fit ellipse </h2>
+It is minimal ellipse over all object. Ellipse also describe rotation of object
+fit ellipse has 5 parameters:<br>
+<ol>
+   <li><u>Center X:</u> X coordinate center of ellipse</li>
+   <li><u>center Y:</u> Y coordinate center of ellipse</li>
+   <li><u>Size: width:</u> Width of ellipse</li>
+   <li><u>Size:height:</u> Height of ellipse</li>
+   <li><u>Angle</u>: Rotation angle of ellipse</li>
+</ol>
+<img src="pictures/fit_elipse.png" alt="Fit ellipse">
+<h2 id="6"> Moments </h2>
+There are four types of moments which are calculated on contours. It is  <b>Spatial moments,Central moments, Normalized cetral moments and Hu moments</b><br>
+The first three moments are calculated up to the 3rd order. There are 2 picture which helps explain moments calculation. There are two different object on each picture<br>
+On the picture is same object with various position:
+<ol>
+  <li><b>1:</b> Object A in vertical position</li>
+  <li><b>2:</b> Object A in horizontal position</li>
+  <li><b>3:</b> Object A rotated in 45 degrees </li>
+  <li><b>4:</b> Object A in vertical position scalled to 70% of size</li>
+  <li><b>11:</b> Object B in vertical position</li>
+  <li><b>12:</b> Object B in horzontal position</li>
+  <li><b>13:</b> Object B rotated in 45 degrees </li>
+  <li><b>14:</b> Object B in vertical position scalled to 70%of size </li>
+</ol>
+<img src="pictures/objectA2.png" alt="Object A"> <br>
+<img src="pictures/objectB2.png" alt="Object B"> <br>
+<h3 id="7">Spatial moments</h3>
+Spatial moments are calculated according follow formulla:<br>
+<img src="pictures/spatial_moments.png" alt="Spatial moments"> <br>
+Table bellow show spatial moments on both objects on picture above<br>
+<table style="width:100%">
+<tr><th></th><th>(0 0)</th><th>(1 0)</th><th>(0 1)</th><th>(1 1)</th><th>(2 0)</th><th>(0 2)</th><th>(3 0)</th><th>(2 1)</th><th>(1 2)</th><th>(0 3)</th><th></th></tr>
+<tr><th>ObjA 3</th><th>17737.5</th><th>4.99666e+06</th><th>5.62435e+06</th><th>1.53457e+09</th><th>1.46495e+09</th><th>1.84454e+09</th><th>4.45672e+11</th><th>4.3586e+11</th><th>4.88249e+11</th><th>6.23745e+11
+</th></tr><tr><th>ObjA 4</th><th>9929.5</th><th>5.07865e+06</th><th>2.87129e+06</th><th>1.46919e+09</th><th>2.60054e+09</th><th>8.64829e+08</th><th>1.33311e+12</th><th>7.52635e+11</th><th>4.42781e+11</th><th>2.69793e+11
+</th></tr><tr><th>ObjA 1</th><th>17759.5</th><th>1.93094e+06</th><th>4.24407e+06</th><th>4.63406e+08</th><th>2.19388e+08</th><th>1.12349e+09</th><th>2.57921e+10</th><th>5.29516e+10</th><th>1.235e+11</th><th>3.19615e+11
+</th></tr><tr><th>ObjA 2</th><th>17759.5</th><th>5.68349e+06</th><th>2.28613e+06</th><th>7.29661e+08</th><th>1.92813e+09</th><th>3.0373e+08</th><th>6.88084e+11</th><th>2.47358e+11</th><th>9.65996e+10</th><th>4.14146e+10
+</th></tr>
+<tr><th>ObjB 13</th><th>16650.5</th><th>4.5397e+06</th><th>4.74617e+06</th><th>1.2621e+09</th><th>1.27477e+09</th><th>1.39666e+09</th><th>3.67914e+11</th><th>3.45878e+11</th><th>3.62496e+11</th><th>4.23443e+11
+</th></tr><tr><th>ObjB 14</th><th>8188</th><th>3.73339e+06</th><th>1.88459e+06</th><th>8.60065e+08</th><th>1.70432e+09</th><th>4.51198e+08</th><th>7.78961e+11</th><th>3.92987e+11</th><th>2.06124e+11</th><th>1.11892e+11
+</th></tr><tr><th>ObjB 11</th><th>16549</th><th>1.40598e+06</th><th>3.5126e+06</th><th>3.01685e+08</th><th>1.27815e+08</th><th>8.17047e+08</th><th>1.22805e+10</th><th>2.77511e+10</th><th>7.10363e+10</th><th>2.03854e+11
+</th></tr><tr><th>ObjB 12</th><th>16554</th><th>4.89893e+06</th><th>1.73768e+06</th><th>5.10946e+08</th><th>1.52135e+09</th><th>1.90774e+08</th><th>4.92481e+11</th><th>1.57984e+11</th><th>5.5699e+10</th><th>2.17828e+10
+</th></tr>
+</table>
+<br>
+Spatial moments is raw moments. It used for calculation other types of moments<br>
+Spatial moments (0,0) is same value as contour area. If you look on the formulla it is just count of pixels
+<ul>
+<li> Spatial moments (0,0) can be used for compare objects which has different area. For example Object A and B has simillar area so (0,0) is not good option. It can be used for detection object 4 or 14, because the have different area</li>
+<li> Spatial moments (1,0) or (2,0) or (3,0) can detect horizontal objects (Object 2 and 12)</li>
+<li> Spatial moments (0,1) or (0,2) or (0,3) can detect verical objects  (Object 11 and 1) </li>
+<li> Spatial moments (1,1) can be used for detection differences between Object A and Object B, but it can be wrong results on rotated objects (13 and 3)  </li>
+</ul>
+<h3 id="8">Central moments</h3>
+Central moments are calculated according follow formulla:<br>
+<img src="pictures/central_moments.png" alt="Central moments"> <br>
+Central moments use the mass center calculated from spatial moments. Central moments (0,0) is same as a spatial moments (0,0), central moments (1,0) (0,1) is zero<br>
+Table bellow show central moments on both objects on the picture above.<br>
+<table style="width:100%">
+<tr><th></th><th>(2 0)</th><th>(1 1)</th><th>(0 2)</th><th>(3 0)</th><th>(2 1)</th><th>(1 2)</th><th>(0 3)</th><th></th></tr>
+<tr><th>ObjA 3</th><th>5.73947e+07</th><th>-4.98137e+07</th><th>6.11254e+07</th><th>6.57369e+08</th><th>-5.94336e+08</th><th>2.32032e+08</th><th>9.91759e+07
+</th></tr><tr><th>ObjA 4</th><th>2.96483e+06</th><th>605708</th><th>3.45458e+07</th><th>-2.75378e+07</th><th>2.28825e+07</th><th>9.63112e+07</th><th>-2.66864e+08
+</th></tr><tr><th>ObjA 1</th><th>9.44212e+06</th><th>1.95917e+06</th><th>1.09269e+08</th><th>-1.14698e+08</th><th>9.73089e+07</th><th>4.08835e+08</th><th>-1.09688e+09
+</th></tr><tr><th>ObjA 2</th><th>1.09269e+08</th><th>-1.95917e+06</th><th>9.44212e+06</th><th>1.09688e+09</th><th>4.08835e+08</th><th>-9.73089e+07</th><th>-1.14698e+08
+</th></tr>
+<tr><th>ObjB 13</th><th>3.70346e+07</th><th>-3.19304e+07</th><th>4.37821e+07</th><th>1.58183e+08</th><th>-7.96574e+07</th><th>-9.66333e+07</th><th>3.68412e+08
+</th></tr><tr><th>ObjB 14</th><th>2.04315e+06</th><th>769837</th><th>1.74324e+07</th><th>-571925</th><th>1.09706e+07</th><th>4.17462e+07</th><th>1.76256e+07
+</th></tr><tr><th>ObjB 11</th><th>8.36398e+06</th><th>3.25848e+06</th><th>7.14823e+07</th><th>367750</th><th>6.82476e+07</th><th>2.37686e+08</th><th>8.72112e+07
+</th></tr><tr><th>ObjB 12</th><th>7.15813e+07</th><th>-3.29803e+06</th><th>8.36821e+06</th><th>-1.09078e+08</th><th>2.38701e+08</th><th>-6.55965e+07</th><th>227269
+</th></tr>
+</table>
+<ul>
+ <li> Central moments (1 1) on the same moments are equal in horizontal and vertical position.(Object 1 and 2) (Object 11 and 12) but it is not same if is object rotated on some angle(Object 1 and 3)</li>
+ <li> Central moments can be used for detect different objects. (Obj A, Obj B) has different values</li>
+ <li> If object is same but scaled (Object 1 and 4)(Object 11 and 14) valeus are different, so if object is scaled is detected as different object </li>
+</ul>
+<h3 id="9">Normalized Central moments</h3>
+Normalized Central moments are calculated according follow formulla:<br>
+<img src="pictures/norm_central_moments.png" alt="Normalized Central moments"> <br>
+Normalized central moments use central moments which is devided with contour area powered according (i,j) . Normalized Central moments (0,0) is 1, normalized central moments (1,0) (0,1) is zero<br>
+Table bellow show central moments on both objects on the picture above.<br>
+<table style="width:100%">
+<tr><th></th><th>(2 0)</th><th>(1 1)</th><th>(0 2)</th><th>(3 0)</th><th>(2 1)</th><th>(1 2)</th><th>(0 3)</th><th></th></tr>
+<tr><th>ObjA 3</th><th>0.182426</th><th>-0.15833</th><th>0.194284</th><th>0.0156884</th><th>-0.0141841</th><th>0.00553753</th><th>0.00236687
+</th></tr><tr><th>ObjA 4</th><th>0.0300708</th><th>0.0061434</th><th>0.350381</th><th>-0.00280292</th><th>0.00232908</th><th>0.00980298</th><th>-0.0271626
+</th></tr><tr><th>ObjA 1</th><th>0.029937</th><th>0.00621169</th><th>0.346444</th><th>-0.00272884</th><th>0.00231513</th><th>0.00972683</th><th>-0.0260964
+</th></tr><tr><th>ObjA 2</th><th>0.346444</th><th>-0.00621169</th><th>0.029937</th><th>0.0260964</th><th>0.00972683</th><th>-0.00231513</th><th>-0.00272884
+</th></tr>
+<tr><th>ObjB 13</th><th>0.133583</th><th>-0.115173</th><th>0.157922</th><th>0.00442172</th><th>-0.00222668</th><th>-0.00270121</th><th>0.0102983
+</th></tr><tr><th>ObjB 14</th><th>0.030475</th><th>0.0114827</th><th>0.260016</th><th>-9.42746e-05</th><th>0.00180836</th><th>0.00688133</th><th>0.00290535
+</th></tr><tr><th>ObjB 11</th><th>0.03054</th><th>0.0118979</th><th>0.261009</th><th>1.04381e-05</th><th>0.00193713</th><th>0.00674644</th><th>0.00247539
+</th></tr><tr><th>ObjB 12</th><th>0.261212</th><th>-0.0120351</th><th>0.030537</th><th>-0.00309371</th><th>0.00677011</th><th>-0.00186047</th><th>6.44588e-06
+</th></tr>
+</table>
+<ul>
+<li>Normalized central moments has same value for same objects but scaled (Object 1 and 4) (Object 11 and 14), so it can be used for detect objects which is scalled </li>
+<li>Normalized central moments has different value for same object but in horizontal or vertical position </li>
+<li> Rotated objects has different value on same objects</li>
+</ul>
+<h3 id="10">HU moments</h3>
+HU moments are calculated according follow formulla:<br>
+<img src="pictures/hu_moments.png" alt="HU moments"> <br><br>
+Hu moments are calculated from Normalized central moments. There are 7 HU moments. The first six moments are invariant to the image scale,rotation and reflection.
+The seventh one is invariant only to the image scale, rotation. <b>Sign of seventh is changed according reflection.</b> <br>
+<table style="width:100%">
+<tr><th></th><th>HU0</th><th>HU1</th><th>HU2</th><th>HU3</th><th>HU4</th><th>HU5</th><th>HU6</th><th></th></tr>
+<tr><th>ObjA 3</th><th>0.37671</th><th>0.100415</th><th>0.00201858</th><th>0.000590186</th><th>6.42718e-07</th><th>0.00015517</th><th>-4.33658e-08
+</th></tr><tr><th>ObjA 4</th><th>0.380452</th><th>0.102749</th><th>0.00220382</th><th>0.000665705</th><th>8.04458e-07</th><th>0.000177569</th><th>-5.48277e-08
+</th></tr><tr><th>ObjA 1</th><th>0.376381</th><th>0.100331</th><th>0.00210997</th><th>0.000614522</th><th>6.96882e-07</th><th>0.000159366</th><th>-6.33078e-08
+</th></tr><tr><th>ObjA 2</th><th>0.376381</th><th>0.100331</th><th>0.00210997</th><th>0.000614522</th><th>6.96882e-07</th><th>0.000159366</th><th>-6.33078e-08
+</th></tr>
+<tr><th>ObjB 13</th><th>0.291505</th><th>0.0536514</th><th>0.000445148</th><th>6.8111e-05</th><th>3.56325e-09</th><th>-4.88411e-06</th><th>1.13119e-08
+</th></tr><tr><th>ObjB 14</th><th>0.290491</th><th>0.0532166</th><th>0.000436424</th><th>6.82831e-05</th><th>4.27595e-09</th><th>-4.00399e-06</th><th>1.09847e-08
+</th></tr><tr><th>ObjB 11</th><th>0.291549</th><th>0.0536821</th><th>0.000420337</th><th>6.51257e-05</th><th>3.473e-09</th><th>-4.61593e-06</th><th>1.02002e-08
+</th></tr><tr><th>ObjB 12</th><th>0.291749</th><th>0.0537905</th><th>0.000418437</th><th>7.04657e-05</th><th>5.20806e-09</th><th>-3.31515e-06</th><th>1.09217e-08
+</th></tr>
+</table>
+<ul>
+ <li>Normalized central moments has same value for All A objects (same objects with various rotation, scale)</li>
+ <li>Value between objects A and objects B are different , so HU moments can be used for separation of different shape of objects </li>
+ <li>If your objects change rotation or it is scale , use HU moments </li>
+ <li> Hu moments are the most used moments in object detection </li>
+</ul>
