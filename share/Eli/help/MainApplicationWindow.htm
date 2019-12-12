@@ -1,0 +1,163 @@
+<a name="MainApplicationWindow"></a>
+<a href="index.htm">Home page </a>
+<h1>Main application window</h1>
+<ul>
+<li><a href="#1">Program window </a></li>
+<li><a href="#2">Command selection window </a></li>
+<li><a href="#3">Command window </a></li>
+<li><a href="#4">Picture window </a> </li>
+<li><a href="#5">Output window </a> </li>
+<li><a href="#6">Vertical toolbar</a>
+<li><a href="#7">Horizontal toolbar </a></li>
+<li><a href="#8">Variable window </a></li>
+<li><a href="#9">Menu Cameras</a></li>
+<li><a href="#10">Calibration process </a></li>
+</ul> 
+<h3 >Main application window is displayed when Eli application  is executed</h3>
+<img src="pictures/main_window.png" alt="Main  window"><br><br>
+<h3 id="1">Program window</h3>
+Program window is area where is displayed eli program. Eli program consist from command lines. Each command line
+executes one command. Eli program is executed step by step from the first line to the last line ( There is one exception Jump command. Execution
+of this command jump program execution to any line in the program depends on jump condition) Each command do own operation. If you want to know
+what command do, click on the line with command  in the program window and press <b>F1</b>. Help window with documentation on selected command will
+display. When no eli program is loaded program window is empty. Program window is empty also when you click on New program button on tool bar or menu.
+<br><br><b>Add new command:</b>
+<ul>
+  <li>Select command in the <b>Command selection window</b></li>
+  <li>Click on button Add <img src="../icons/add_button.png" alt="Add  button"> on vertical toolbar or on menu Edit ->Add command or press <b>F9</b></li>
+  <li> Command will be added to the program window on the first line if program window was empty or <b>To the next line after the line where was cursor in the program window</b> </li>
+  <li>Command parameters will be display in the <b>Command window</b>.</li>
+  <li>Edit command parameters in the command window and click on button <br>
+    <b>Change</b> <img src="../icons/change_but.png" alt="Change  button"> on vertical toolbar or on menu Edit ->Change command or press <b>F10</b></li>
+  <li> Command parameter is changed </li>
+  <li><b><u>If you do not click on the Change button command parameters will not change.</u></b></li>
+  <li> Commands can be easy edited. Click on the line which you want to edit in the program window.</li>
+  <li>Command parameters is displayed in the Command window.</li>
+  <li>Edit command parameters and click on <b><u>Change button</u></b></li>
+  <li>If you want to delete some command click on the line which you want to delete and click on <br>
+    <b>Delete button</b>  <img src="../icons/delete_but.png" alt="Delete  button">on vertical toolbar or on menu Edit->Delete command .<br>
+    After confirmation selected line will be delete </li>
+  <li>If you want to copy some lines, click on the line after which you want to put copied line (or lines) and click on <br>
+    <b>Copy button</b>   <img src="../icons/copy_button.png" alt="Copy   button"> on vertical toolbar or on menu Edit->Copy commands or press <b>CTRL+C</b>
+  </li>
+  <li> Select start line of copied block on the next dialog window and end of block of the next dialog window (If you want to copy just one line start block and end block will have same line number) and selected block will be copied <b>to the next line after the line where was cursor in the program window</b>.
+  </li>
+</ul>
+<h3 id="2">Command selection window</h3>
+Command selection window contain list all available commands. Commands are divided   on the blocks according usage. At the start only block of commands are
+displayed on the command selection window. Click on the block display all commands on the block. Click on the command which you want to add and click on
+button  Add <img src="../icons/add_button.png" alt="Add  button"> on vertical toolbar or on menu Edit ->Add command or press <b>F9</b>
+<h3 id="3">Command window</h3>
+Command window display all commands parameters. Description of commands parameters can be found by click <b>F1 key </b> when command is selected in the program window. After change parameters in command window must be click on  button <b>Change</b> <img src="../icons/change_but.png" alt="Change  button"> on vertical toolbar or on menu Edit ->Change command or press <b>F10</b></li>
+<h3 id="4">Picture window</h3>
+Picture window can display result picture when it selects in command System_Result in the end of program. If Debug mode was activated and System_result commands was executed, picture window will show actual selected picture after each step or after stop on break.<br>
+Picture window also display picture from camera on <u>Cameras</u> menu.
+<h3 id="5">Output window</h3>
+Output window displays eli program description after loading of new command. It displays result variables value if those variables was selected in System_result command. It display also variables value if those value was selected in the variable window (Menu Debug->Variable window or press <b>F8 key</b>. Thsi window display also break information in debug mode.
+<h3 id="6">Vertical toolbar</h3>
+Vertical toolbar has same commands as in <b>Edit menu</b> <br>
+    <ul>
+      <li><b>Add button</b> <img src="../icons/add_button.png" alt="Add  button">.(<b>Key F9</b>) Click on this button add selected command from command window to the program window line after cursor or on the first line if program window is empty</li>
+      <li><b>Change button</b> <img src="../icons/change_but.png" alt="Change  button">.(<b>Key F10</b>) Click on this button save changes done in the command window. Click on this button always if you done any changes in the command window.</li>
+      <li><b>Delete button</b> <img src="../icons/delete_but.png" alt="Delete  button">. Click on this button delete command on the line where is place cursor. Before delete command you need confirm delete in the confirmation dialog.</li>
+      <li><b>Copy button </b> <img src="../icons/copy_button.png" alt="Copy   button"> (<b>Key CTRL+C</b>).Click on this command copy lines(or line) after line where is placed cursor on program window. At first you need to write start block command line number and at the second you need to write end block line number. If you want to copy just one line start block and end block number has same line number. <b>Only line before cursor can be copied.</b></li>
+      <li><b>Edit comments button </b>  <img src="../icons/coments.png" alt="commants  button"> displays window where eli program comments or description can be write. This comments will be display in the Output window when eli program is loaded.</li>
+    </ul>
+    <h3 id="7">Horizontal toolbar</h3>
+    Horizontal toolbar represents commands from menu File, Run and Debug. It has also  progress indicator if run loop mode was selected. There is status message in the last position which displays actual status of program.
+    <ul>
+      <li><b>Open  program</b> <img src="../icons/open.png" alt="Open program">.Same command as  from menu File->Open program.<br>
+	Dialog for open eli program will display after click on this button. Select eli program which you want open and click on Open button will load this program to program window. This program can be run or debug.</li>
+      <li><b>Save program</b> <img src="../icons/Save2.png" alt="Save program ">.Same command as from menu File->Save program.<br>
+	Dialog for save eli program will display after click on this button. Write name of test program and click on button Save. Loaded eli program will save to file. All changes done in loaded program must be save to eli file with click on this button. When you open new program or close application always Save eli program to file with this button. If not all changes done in loaded program will be lost.</li>
+      <li><b>New program</b>  <img src="../icons/new_button.png" alt="New  program ">.Same command as from menu File->New program. <br>
+	Click on new program button will erase program window and erase loaded eli program from application. Application is ready for create new program. <b><u> Do not forget save program before click on New program button</u></b></li>
+      <li><b>Run program</b> <img src="../icons/run_button.png" alt="Run   program ">. Same command as from menu Run->Run.<br> Click on this button will run loaded eli program from start to End line.Run is done without stop on breaks. After finish of program result with program execution time will display in the Output window and Picture window if some picture was selected in command System_Result </li>
+      <li><b>Set break</b> <img src="../icons/set_break_button.png" alt="Set break  button"> (<b>Key F3</b>). Same command as from menu Debug->Set break.<br> Click on this button set break in the line in program window where is set cursor. Red square is display on the line where is set break. It can be set more breaks to any lines. When is program in Debug mode, program is stop on the line where is activate break. Break line is not executed when program is stop on break.</li>
+      <li><b>Remove break</b> <img src="../icons/clear_break_button.png" alt="Clear  break  button"> (<b>Key F4</b>).Same command as from menu Debug->Remove Break.<br>
+	Click on this button remove break from line where is put  cursor in the program window. If break is not set on the line where is cursor, this command does not have affect. </li>
+      <li><b>Remove All break</b> <img src="../icons/clearAll_break_button.png" alt="Clear all  break  button">.Same command as from menu Debug->RemoveAll break.<br>
+	Click on this button remove all sets breaks in the program window. If there are not breaks in the program window , this command does not have affect.</li>
+      <li><b>Debug</b><img src="../icons/debug_button.png" alt="Debug  button"> (<b>Key F5</b>).Same command as from menu Debug->Debug.<br>
+	Click on this button run loaded eli program in Debug mode. If program is running in Debug mode, program will stop on line where is activated break. Line with break is not executed and program is waiting for next commands <u> Step, Continue or Stop debugger </u>. Break status is reported on the Output window and on Status message on the last position on horizontal toolbar. If no break was set, program is run till end of line. It has same function as Run command</li>
+      <li><b>Run One Step</b><img src="../icons/step_button.png" alt="Step  button"> (<b>Key F6</b>). Same command as from menu Debug->Step.<br>
+	This command is activated only if program is on debug mode and it stop on break or if Step command was executed before. Click on this command executes one line where is active cursor on the program window.<b> It command on the line has Edit window, This edit window is displays. </b> After execution of Step command, program goes on the next line. If last line is executed program will finish.</li>
+      <li><b>Continue</b><img src="../icons/cont_button.png" alt="Continue  button"> (<b>Key F7</b>).Same command as from menu Debug->Continue.<br>
+	This command is activated only if program is on debug mode and it stop on break or  Step command was executed before. Click on this command  continue program steps till next line break detected or till the end of the program.</li>
+      <li><b>Stop debugger</b><img src="../icons/stop_but.png" alt="Stop  button">. Same command as from menu Debug->Stop Debugger. <br>
+	This command is activated only if program is on debug mode and it stop on break or  Step command was executed before. Click on this program stop program execution without continuing to next steps.</li>
+      <li><b>Run loop</b><img src="../icons/run_loop_button.png" alt="Run loop  button">. Same command as from menu Run->Run loop. <br> 
+	Click on this command display dialog window where start loop line and repeat loop time can be selected:
+	<ul>
+	  <li> <u>Start line in next loop: </u> It can be selected line for loop start. It first time program start from the first line, but in the next loops program start from this line. It can be useful in watch video file(or read camera). The first line can be read video (it will run just one time) and next line can be read video frame.Read video frame will be done on each loop.</li>
+	  <li><u>Repeat loop time </u>. This value set time between start of each loop. This time should be more than program execution time (It can be read on result window after Run program execution).</li>
+	</ul>
+	When Run loop was started program will start from the first line to the last line, wait for repeat loop time and run program next time from start line in next loop, continue till the end of program,wait for repeat loop time and continue from start line and so on. Loop will be continue till:
+	<ul>
+	  <li>Error is  detected on some program line</li>
+	  <li>User click on Stop loop button </li>
+	</ul>
+      <li><b>Stop loop</b>.<img src="../icons/stop_loop.png" alt="Stop loop  button">. Same command as from menu Run->Stop loop. <br>
+	This button is active only if run loop was activated. Click on this button will stop loop running</li>	
+      </ul>
+    <h3 id="8">Variable window</h3>
+    Variable window is call from menu Debug->Variable window or <b>key F8</b>. After activation dialog window displays where it can be selected
+    which variable value will be read.It can be selected:
+    <ul>
+      <li><u>System variable</u>: It can be selected system variable (Variable 0 to Variable 99)</li>
+      <li><u>Strings</u>: It can be selected string variable (String 0 to String 9) </li>
+      <li><u>Objects</u>: It can be select all objects in the program. It can be select if you just want to read number of objects
+	or some of the object parameters.If Object parameters is selected choice Object Parameters is active. It can be select all object parameters</li>
+
+</ul>
+    After selection click on OK button and <b>actual value</b> of selected variable is display in the output window.
+
+    <h3 id="9">Menu Cameras</h3>
+    Menu is using for checking or calibrating  all connected cameras.
+    <ul>
+      <li><u>Find camera</u>. Click on this button find all connected cameras (This option works only on the Linux in current version). Result is display on the output window. </li>
+      <li><u>View camera </u>. Click on this menu display dialog for select camera. After selection click on OK button and picture from selected camera display  in the Picture window. Camera picture displays in loop according setting from menu Properties. Camera picture will be display till menu Stop Camera will be selected.</li>
+      <li><u>View camera undistort </u> Click on this menu display dialog for select camera, after camera selection  calibration file selection window will be displayed. It can be select camera calibration file, which will be use during undistort calculation. Undistorted image from camera will be display in the Picture window.Camera picture will be displayed till menu Stop Camera will be selected. </li>
+      <li><u>Snapshot</u> <b>Key F2</b>. This menu is active only if  View camera or View camera undistort is activated. Click on this menu makes picture from actual camera view and store it to according selection in Properties menu.</li>
+      <li><u>Stop camera </u>.  This menu is active only if  View camera or View camera undistort is activated. Click on this menu stopped view from selected camera.</li>
+      <li><u>Calibrate camera</u>. Click on this menu display camera calibration window<br>
+	<img src="pictures/calib_window.png" alt="Calibration window"><br>
+	<ul>
+          <li><b>Select camera </b>. Camera which will be calibrate can be selected on this window </li>
+	  <li><b>Calibration file </b>. Click on button path and save file dialog will open. Select calibration file where calibration constant will be save</li>
+	  <li><b>Reload frame [ms] </b>. Select delay between reading camera frames. Picture from camera is display in Picture window in main application window </li>
+	  <li><b>Calibration frame delay [ms] </b>. Select delay between calibration picture. After program found all chessboard corners calibration data will save and wait for this time to start next calibration process. It is time where calibration chessboard picture can move for the next position </li>
+	  <li><b>Square size</b> Size of square edge on chessboard picture in real unit (millimeters or inch). Measure this dimension with caliber on printed picture and put this value to that window </li>
+	  <li><b>Aspect ratio </b>. Use 1.0</li>
+	  <li><b>Number frames </b>. Select how many calibration picture will be done. Use at least 10 for proper calibration constant </li>
+	  <li><b>Start calibration </b>. Click on this button start calibration process</li>
+	  </ul>
+      </li>
+      <li><u>Camera properties </u>. Select camera properties during viewing of some cameras:
+	<ul>
+	  <li><u>Camera snapshot folder </u>. Select folder where snapshot (Key F2) will be stored if user click on snapshot menu or key F2 during camera view. </li>
+	  <li><u>File name </u>. File name of saved camera image from camera. File name has format: file name _ index. Index is incremented after each snapshot </li>
+	  <li><u>Start index </u>. Select start index for snapshot file. </li>
+	  <li><u> View camera loop time </u>. Select time between getting frame from camera during camera viewing. </li>
+	  <li><u>Update all</u>. Click on this button save all selected parameters </li>
+	  </ul>
+    </ul>
+    <h3 id="10">Calibration process </h3>
+    <ul>
+      <li>Print calibration picture from menu share <->Eli<->Calibration</li>
+	    <li>Put printed picture on fix surface </li>
+	    <li> Measure square edge dimension be vernier </li>
+	    <li>Click Calibrate camera menu </li>
+	    <li>Select camera </li>
+	    <li>Select calibration file</li>
+	    <li> Write square size </li>
+	    <li> Write number of frame </li>
+	    <li> Click Start calibration </li>
+	    <li>Calibration process is automate </li>
+	    <li> If camera found all corners on chessboard picture calibration frame is stored and camera wait for next calibration frame </li>
+	    <li> Move  calibration picture to the next position  and if camera found all corner on chessboard process will continue till all
+	      calibrated frame will be found (It is number of frames which is set) </li>
+	    <li> Finish of calibration will be reported on the output window </li>
+	    <li> Selected calibration program will be used on the read undistort camera commands </li>
+      </ul>
+    

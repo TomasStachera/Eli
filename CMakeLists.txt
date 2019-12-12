@@ -91,6 +91,7 @@ install(TARGETS Eli EliLib EliLibwx RUNTIME DESTINATION bin
                                     LIBRARY DESTINATION lib)
 install(DIRECTORY share/Eli/icons/ DESTINATION share/Eli/icons)
 install(DIRECTORY share/Eli/help/ DESTINATION share/Eli/help)
+install(DIRECTORY share/Eli/calibration/ DESTINATION share/Eli/calibration)
 if(WIN32)
 install(DIRECTORY build/dlls/ DESTINATION bin)
 install(FILES build/libEliLib.dll.a DESTINATION bin)

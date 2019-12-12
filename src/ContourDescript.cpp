@@ -8,7 +8,8 @@
 #include <wx/image.h>
 #include <wx/string.h>
 //*)
-
+#include <wx/hyperlink.h>
+#include <wx/wxhtml.h>
 #include <wx/dc.h>
 #include <wx/dcclient.h>
 #include <wx/msgdlg.h>
@@ -1234,4 +1235,47 @@ Function display help menu
 */
 void ContourDescript::OnToolBarItemHelpClicked(wxCommandEvent& event)
 {
+wxHtmlWindow *html;
+wxBoxSizer *topsizer;
+wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+wxString actual_dir=f.GetPath();
+#if defined(__UNIX__)
+actual_dir=actual_dir.BeforeLast('/');
+actual_dir+=wxT("/share/Eli");
+#elif defined(__WXMSW__)
+actual_dir=actual_dir.BeforeLast('\\');
+actual_dir+=wxT("\\share\\Eli");
+#endif
+
+    wxString page_name=actual_dir;
+page_name+=wxT("/help/");
+
+    page_name+=wxT("EditObjectFind.htm");
+
+    wxString help_name=_("Help window Object Find window");
+
+
+    wxDialog dlg(this, wxID_ANY, wxString(help_name));
+
+    topsizer = new wxBoxSizer(wxVERTICAL);
+
+    html = new wxHtmlWindow(&dlg, wxID_ANY, wxDefaultPosition, wxSize(780, 560), wxHW_SCROLLBAR_AUTO);
+    html -> SetBorders(0);
+    html -> LoadPage(page_name);
+    html -> SetSize(html -> GetInternalRepresentation() -> GetWidth(),560);
+
+    topsizer -> Add(html, 1, wxALL, 10);
+
+
+
+    wxButton *bu1 = new wxButton(&dlg, wxID_OK, _("OK"));
+    bu1 -> SetDefault();
+
+
+    topsizer -> Add(bu1, 0, wxALL | wxALIGN_RIGHT, 15);
+
+    dlg.SetSizer(topsizer);
+    topsizer -> Fit(&dlg);
+
+    dlg.ShowModal();
 }
