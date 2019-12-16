@@ -4,7 +4,7 @@
  * Author:    Tomas Stachera (tomas.stachera@gmail.com)
  * Created:   2011-09-27
  * Copyright: Tomas Stachera ()
- * License:
+ * License:The 3-Clause BSD License
  **************************************************************/
 
 #include "eliMain.h"
@@ -34,6 +34,7 @@
 #include <wx/filefn.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
+#include <wx/utils.h>
 #include "CameraProperties.h"
 #include "VariableWindow.h"
 
@@ -53,6 +54,8 @@ It must be instaled v4l-utils libraries
 #include <wx/versioninfo.h>
 
 #define ELI_VERSION_NUMBER "0.1-dev"
+
+
 
 //using namespace cv;
 
@@ -93,6 +96,7 @@ const long eliFrame::idCalibrateCamera = wxNewId();
 const long eliFrame::idCamProperties = wxNewId();
 const long eliFrame::idMenuAbout = wxNewId();
 const long eliFrame::idCommandHelp = wxNewId();
+const long eliFrame::idHelp = wxNewId();
 const long eliFrame::ID_STATUSBAR1 = wxNewId();
 const long eliFrame::idOpen = wxNewId();
 const long eliFrame::idSave = wxNewId();
@@ -341,6 +345,8 @@ actual_dir+=wxT("\\share\\Eli");
     Menu2 = new wxMenu();
     MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About"), _("Show info about this application"), wxITEM_NORMAL);
     Menu2->Append(MenuItem2);
+     help_menu= new wxMenuItem(Menu2, idHelp, _("Documentation"), _("Show documentation page"), wxITEM_NORMAL);
+      Menu2->Append(help_menu);
     CommandHelp = new wxMenuItem(Menu2, idCommandHelp, _("Command help\tF1"), _("Display command help selected command"), wxITEM_NORMAL);
     CommandHelp->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_HELP")),wxART_OTHER));
     Menu2->Append(CommandHelp);
@@ -437,6 +443,7 @@ actual_dir+=wxT("\\share\\Eli");
     Connect(idCalibrateCamera,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&eliFrame::OnMenuCalibrateCamera);
     Connect(idCamProperties,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&eliFrame::OnMenuItemProperties);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&eliFrame::OnAbout);
+    Connect(idHelp,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&eliFrame::OnMenuHelpMenu);
     Connect(idCommandHelp,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&eliFrame::OnCommandHelpSelected);
     Connect(idOpen,wxEVT_COMMAND_TOOL_CLICKED,(wxObjectEventFunction)&eliFrame::OnMenuOpenProgSelected);
     Connect(idSave,wxEVT_COMMAND_TOOL_CLICKED,(wxObjectEventFunction)&eliFrame::OnMenuSaveProgSelected);
@@ -599,6 +606,19 @@ void eliFrame::OnAbout(wxCommandEvent& event)
 {
    help_info dlg(this);
    dlg.ShowModal();
+}
+
+/**
+Function display documentation page
+**/
+void eliFrame::OnMenuHelpMenu(wxCommandEvent& event)
+{
+      wxString page_name=actual_dir;
+page_name+=wxT("/help/index.htm");
+  if(!wxLaunchDefaultBrowser(page_name))
+     {
+         wxMessageBox(wxT("Error load default we browser"),wxT("Error load default browser"),wxICON_ERROR);
+     }
 }
 
 /**********************************************************************************
@@ -3144,7 +3164,7 @@ pic+=wxT("/share/Eli/icons/empty.png");
 pic=pic.BeforeLast('\\');
 pic+=wxT("\\share\\Eli\\icons\\empty.png");
 #endif
-      
+
 
 
 
@@ -3789,7 +3809,7 @@ help_info::help_info(wxWindow* parent,wxWindowID id)
 	TextInfo = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	BoxSizer3->Add(TextInfo, 2, wxALL|wxEXPAND, 5);
 	BoxSizer4 = new wxBoxSizer(wxVERTICAL);
-	AutorBut = new wxButton(this, ID_BUTTON1, _("Autors"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	AutorBut = new wxButton(this, ID_BUTTON1, _("Authors and license"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	BoxSizer4->Add(AutorBut, 1, wxALL|wxEXPAND, 5);
 	OpenCvBut = new wxButton(this, ID_BUTTON2, _("OpenCV build info"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer4->Add(OpenCvBut, 1, wxALL|wxEXPAND, 5);
@@ -3837,6 +3857,20 @@ help_info::help_info(wxWindow* parent,wxWindowID id)
 	pom+=wxString::FromUTF8(CV_VERSION);
 	Lib_info->SetLabel(pom);
 
+   TextInfo->Clear();
+    wxString autor=wxT("Tomas Stachera");
+    wxString email=wxT("tomas.stachera@gmail.com");
+
+wxString  iinfx=wxT("Author: ");
+    iinfx+=autor;
+    iinfx+=_("\nEmail:");
+    iinfx+=email;
+    iinfx+=_("\n\nLicense: The 3-Clause BSD License\n");
+    iinfx+=_("Copyright (c) 2019,Tomas Stachera\n");
+    iinfx+=_("https://opensource.org/licenses/BSD-3-Clause");
+
+
+    TextInfo->WriteText(iinfx);
 }
 
 help_info::~help_info()
@@ -3850,12 +3884,15 @@ void help_info::OnAutorButClick(wxCommandEvent& event)
 {
     TextInfo->Clear();
     wxString autor=wxT("Tomas Stachera");
-    wxString email=wxT("tomas.stachera@gmail com");
+    wxString email=wxT("tomas.stachera@gmail.com");
 
-    wxString infx=wxT("Autor: ");
+    wxString infx=wxT("Author: ");
     infx+=autor;
     infx+=_("\nEmail:");
     infx+=email;
+    infx+=_("\n\nLicense: The 3-Clause BSD License\n");
+    infx+=_("Copyright (c) 2019,Tomas Stachera\n");
+    infx+=_("https://opensource.org/licenses/BSD-3-Clause");
 
     TextInfo->WriteText(infx);
 }

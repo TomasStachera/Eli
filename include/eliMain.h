@@ -4,7 +4,7 @@
  * Author:    Tomas Stachera (tomas.stachera@gmail.com)
  * Created:   2011-09-27
  * Copyright: Tomas Stachera ()
- * License:
+ * License: The 3-Clause BSD License
  **************************************************************/
 
 #ifndef ELIMAIN_H
@@ -173,6 +173,7 @@ class eliFrame: public wxFrame, INIT_CMD
         void OnMenuSnapshotCamera(wxCommandEvent& event);
         void OnMenuItemProperties(wxCommandEvent& event);
         //*)
+        void OnMenuHelpMenu(wxCommandEvent& event);
 
 
         int InsertCommands(void); // Function insert commands to commands list window
@@ -218,6 +219,7 @@ class eliFrame: public wxFrame, INIT_CMD
         static const long idCamProperties;
         static const long idMenuAbout;
         static const long idCommandHelp;
+        static const long idHelp;
         static const long ID_STATUSBAR1;
         static const long idOpen;
         static const long idSave;
@@ -263,6 +265,7 @@ class eliFrame: public wxFrame, INIT_CMD
         wxMenuItem* MenuItem11;
         wxMenuItem* MenuItem15;
         wxMenuItem* CommandHelp;
+        wxMenuItem* help_menu;
         wxPanel* Panel1;
         wxGrid* Grid1;
         wxMenuItem* MenuItem10;
