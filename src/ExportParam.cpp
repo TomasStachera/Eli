@@ -11,13 +11,31 @@
 #include <wx/msgdlg.h>
 #include <wx/utils.h>
 #include <wx/mimetype.h>
+#include <wx/textfile.h>
 
 //(*IdInit(ExportParam)
 const long ExportParam::ID_CHECKLISTBOX1 = wxNewId();
 const long ExportParam::ID_CHECKBOX1 = wxNewId();
 const long ExportParam::ID_BUTTON1 = wxNewId();
 const long ExportParam::ID_BUTTON2 = wxNewId();
+const long ExportParam::ID_BUTTON3 = wxNewId();
 //*)
+
+//(*IdInit(AlasesExp)
+const long AlasesExp::ID_BUTTON1 = wxNewId();
+const long AlasesExp::ID_BUTTON2 = wxNewId();
+const long AlasesExp::ID_CHOICE1 = wxNewId();
+const long AlasesExp::ID_CHOICE2 = wxNewId();
+const long AlasesExp::ID_TEXTCTRL1 = wxNewId();
+const long AlasesExp::ID_BUTTON3 = wxNewId();
+const long AlasesExp::ID_TEXTCTRL2 = wxNewId();
+const long AlasesExp::ID_BUTTON4 = wxNewId();
+//*)
+
+BEGIN_EVENT_TABLE(AlasesExp,wxDialog)
+	//(*EventTable(AlasesExp)
+	//*)
+END_EVENT_TABLE()
 
 BEGIN_EVENT_TABLE(ExportParam,wxDialog)
 	//(*EventTable(ExportParam)
@@ -51,6 +69,8 @@ ExportParam::ExportParam(wxWindow* parent,vector<int> cont_pos,vector<vector<vec
 	BoxSizer2->Add(CheckBox1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	Export = new wxButton(this, ID_BUTTON1, _("Export"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	BoxSizer2->Add(Export, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	alias=new wxButton(this, ID_BUTTON3, _("Alias"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+	BoxSizer2->Add(alias, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	CancelBut = new wxButton(this, ID_BUTTON2, _("Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer2->Add(CancelBut, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -60,6 +80,7 @@ ExportParam::ExportParam(wxWindow* parent,vector<int> cont_pos,vector<vector<vec
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ExportParam::OnExportClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ExportParam::OnCancelButClick);
+	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ExportParam::OnAliasButtonClick);
 	//*)
 	vector <double> pom1;
 	vector <vector<double> > pom2;
@@ -108,7 +129,7 @@ void ExportParam::OnExportClick(wxCommandEvent& event)
       wxString path=dialog.GetPath();
      wxString sv=path.BeforeLast('/');
       config.Write(wxT("EXPORT_DATA"),sv);
-   
+
      if((path.AfterLast('.').Length()>5)||(path.AfterLast('.').Length()<1))
        {
     wxMessageBox(_("Missing extension of exported file"),_("Export file error"),wxICON_ERROR,this);
@@ -185,6 +206,254 @@ return 0;
 
 }
 void ExportParam::OnCancelButClick(wxCommandEvent& event)
+{
+    EndModal(0);
+}
+
+void ExportParam::OnAliasButtonClick(wxCommandEvent& event)
+{
+  vector<wxString> contours_text;
+  contours_text.clear();
+  wxString cont_info;
+
+    for(unsigned i=0;i<cont_pos2.size();i++)
+  {
+      cont_info=_("Contour ");
+      cont_info << (unsigned int)cont_pos2[i];
+      contours_text.push_back(cont_info);
+  }
+
+AlasesExp dlg(this,contours_text);
+ dlg.ShowModal();
+}
+
+AlasesExp::AlasesExp(wxWindow* parent,vector<wxString> contours_inf,wxWindowID id,const wxPoint& pos,const wxSize& size)
+{
+	//(*Initialize(AlasesExp)
+	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer3;
+	wxBoxSizer* BoxSizer4;
+	wxBoxSizer* BoxSizer5;
+	wxStaticBoxSizer* StaticBoxSizer1;
+	wxStaticBoxSizer* StaticBoxSizer2;
+	wxStaticBoxSizer* StaticBoxSizer3;
+
+
+
+
+	Create(parent, id, _("Contour alias selection"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("id"));
+	SetClientSize(wxDefaultSize);
+	Move(wxDefaultPosition);
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	SelAliasFile = new wxButton(this, ID_BUTTON1, _("Select alias file"), wxDefaultPosition, wxSize(125,23), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	BoxSizer2->Add(SelAliasFile, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	ClearAlias = new wxButton(this, ID_BUTTON2, _("Clear Alias file"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	BoxSizer2->Add(ClearAlias, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
+	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Contour"));
+	Contour = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
+	StaticBoxSizer1->Add(Contour, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3->Add(StaticBoxSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Alias"));
+	Alais = new wxChoice(this, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
+	StaticBoxSizer2->Add(Alais, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3->Add(StaticBoxSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
+	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("New Alias"));
+	NewAlias = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(149,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	StaticBoxSizer3->Add(NewAlias, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer4->Add(StaticBoxSizer3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	AddAlias = new wxButton(this, ID_BUTTON3, _("Add"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+	BoxSizer4->Add(AddAlias, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+	TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+	BoxSizer5->Add(TextCtrl1, 3, wxALL|wxEXPAND, 5);
+	Exitbutton = new wxButton(this, ID_BUTTON4, _("Exit"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
+	BoxSizer5->Add(Exitbutton, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer5, 2, wxALL|wxEXPAND, 5);
+	SetSizer(BoxSizer1);
+	BoxSizer1->Fit(this);
+	BoxSizer1->SetSizeHints(this);
+
+	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AlasesExp::OnSelAliasFileClick);
+	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AlasesExp::OnClearAliasClick);
+	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AlasesExp::OnAddAliasClick);
+	Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AlasesExp::OnExitbuttonClick);
+	//*)
+		wxString pok;
+	 wxConfig config(wxT("Prog"),wxT("ELI"));
+    config.Read(wxT("EXPORT_DATA_ALIAS"),&pok);
+    aliases.clear();
+    Alais->Append(wxT("New Alias"));
+
+    for(unsigned i=0;i<contours_inf.size();i++)Contour->Append(contours_inf[i]);
+
+    wxTextFile filex(pok);
+    if(!filex.Exists())
+    {
+      wxMessageBox(wxT("Select  alias file at first"),wxT("Error open alias file"),wxICON_ERROR);
+    }
+    else
+    {
+        if(!filex.Open(pok))wxMessageBox(wxT("Can not open alias file"),wxT("Error open alias file"),wxICON_ERROR);
+       else
+       {
+        wxString str;
+       for ( wxString str = filex.GetFirstLine(); !filex.Eof(); str = filex.GetNextLine() )   if(str.Length()>0) Alais->Append(str); // add all lines
+         if(str.Length()>0) Alais->Append(str); //add last line
+
+      }
+    }
+
+
+}
+
+AlasesExp::~AlasesExp()
+{
+	//(*Destroy(AlasesExp)
+	//*)
+}
+
+
+void AlasesExp::OnSelAliasFileClick(wxCommandEvent& event)
+{
+      wxString caption=wxT("Select alias file");
+   wxString wildcard=wxT("TXT files (*.txt)|*.txt");
+
+     wxString pok;
+     wxString defaultDir;
+    wxConfig config(wxT("Prog"),wxT("ELI"));
+    config.Read(wxT("EXPORT_DATA_ALIAS"),&pok);
+    if(pok.Len()==0) defaultDir=wxT("/home");
+    else defaultDir=pok.BeforeLast('/');
+
+    wxString defaultFilename=pok.AfterLast('/');
+
+
+    wxFileDialog dialog(this,caption,defaultDir,defaultFilename,wildcard,wxFD_SAVE);
+    if(dialog.ShowModal()==wxID_OK)
+    {
+      wxString path=dialog.GetPath();
+      config.Write(wxT("EXPORT_DATA_ALIAS"),path);
+     wxTextFile filex(path);
+    if(!filex.Exists())
+    {
+     if(!filex.Create()) wxMessageBox(wxT("Can not create alias file (Check permission of selected folder)"),wxT("Error create alias file"),wxICON_ERROR);
+     else filex.Close();
+    }
+
+    }
+}
+
+void AlasesExp::OnClearAliasClick(wxCommandEvent& event)
+{
+ 		wxString pok;
+	 wxConfig config(wxT("Prog"),wxT("ELI"));
+    config.Read(wxT("EXPORT_DATA_ALIAS"),&pok);
+
+
+     wxTextFile filex(pok);
+    if(!filex.Exists())
+    {
+      wxMessageBox(wxT("Alias file not existt"),wxT("Error open alias file"),wxICON_ERROR);
+    }
+
+    if(!filex.Open(pok))
+    {
+        wxMessageBox(wxT("Can not open alias file"),wxT("Error open alias file"),wxICON_ERROR);
+        return;
+    }
+    filex.Clear();
+    filex.Write();
+    filex.Close();
+   Alais->Clear();
+}
+
+void AlasesExp::OnAddAliasClick(wxCommandEvent& event)
+{
+vector<wxString> datasx;
+wxString  contourx=Contour->GetStringSelection();
+wxString sel_alias=Alais->GetStringSelection();
+if(sel_alias==wxT("New Alias"))sel_alias=NewAlias->GetValue();
+
+datasx.clear();
+datasx.push_back(contourx);
+datasx.push_back(sel_alias);
+
+bool foundx=false;
+for(unsigned i=0;i<aliases.size();i++)
+{
+    if(aliases[i].size()!=2)
+    {
+        wxMessageBox(_("Error aliases vector dimension"),_("Alias vector dimension error"),wxICON_ERROR);
+        return;
+    }
+ if(!foundx)
+ {
+     if(aliases[i][0]==contourx)
+     {
+         foundx=true;
+         aliases[i][0]=sel_alias;
+     }
+ }
+}
+
+if(!foundx)
+{
+    aliases.push_back(datasx); //Add datas to structure
+    TextCtrl1->WriteText(contourx);
+    TextCtrl1->WriteText(wxT(" :"));
+    TextCtrl1->WriteText(sel_alias);
+    TextCtrl1->WriteText(wxT("\n"));
+}
+
+	wxString pok;
+	 wxConfig config(wxT("Prog"),wxT("ELI"));
+    config.Read(wxT("EXPORT_DATA_ALIAS"),&pok);
+
+if(Alais->GetStringSelection()==wxT("New Alias")) //Write to file new alias
+{
+     wxTextFile filex(pok);
+    if(!filex.Exists())
+    {
+      wxMessageBox(wxT("Alias file not existt"),wxT("Error open alias file"),wxICON_ERROR);
+    }
+
+    if(!filex.Open(pok))
+    {
+        wxMessageBox(wxT("Can not open alias file"),wxT("Error open alias file"),wxICON_ERROR);
+        return;
+    }
+  wxString str;
+  bool found_in_file=false;
+  //Check for duplicate name in the file
+       for ( wxString str = filex.GetFirstLine(); !filex.Eof(); str = filex.GetNextLine() )
+       {
+           if(!found_in_file)
+           {
+              if(str.Length()>0) if(str==sel_alias)found_in_file=true; // found alias name in the file
+
+           }
+       }
+         if(str.Length()>0) if(str==sel_alias)found_in_file=true; //found an the file
+
+     if(!found_in_file) //not found alias add it
+     {
+        filex.AddLine(sel_alias);
+        Alais->Append(sel_alias);
+     }
+    filex.Write();
+    filex.Close();
+}
+
+}
+
+void AlasesExp::OnExitbuttonClick(wxCommandEvent& event)
 {
     EndModal(0);
 }
