@@ -20,6 +20,12 @@ class AlasesExp: public wxDialog
 		AlasesExp(wxWindow* parent,vector<wxString> contours_inf,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~AlasesExp();
 
+		void GetAliasesArray(vector<vector<wxString> >&aliasesx)
+		{
+		    aliasesx.clear();
+		    for(unsigned i=0;i<aliases.size();i++)aliasesx.push_back(aliases[i]);
+		}
+
 		//(*Declarations(AlasesExp)
 		wxButton* AddAlias;
 		wxButton* ClearAlias;
@@ -66,6 +72,7 @@ class ExportParam: public wxDialog
 		ExportParam(wxWindow* parent,vector<int> cont_pos,vector<vector<vector<double> > > datx,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~ExportParam();
 
+
 		//(*Declarations(ExportParam)
 		wxButton* CancelBut;
 		wxCheckListBox* CheckListBox1;
@@ -91,9 +98,11 @@ class ExportParam: public wxDialog
 		void OnCancelButClick(wxCommandEvent& event);
 		void OnAliasButtonClick(wxCommandEvent& event);
 		//*)
+		bool CheckAliases(wxString contour,wxString &aliasesx);
 		int WriteDataToFile(wxString path);
        vector<vector<vector<double> > > datx2;
        vector<int> cont_pos2;
+       vector<vector<wxString> >aliases;
 		DECLARE_EVENT_TABLE()
 };
 

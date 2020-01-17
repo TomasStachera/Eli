@@ -1428,7 +1428,7 @@ void eliFrame::OnMenuSaveProgSelected(wxCommandEvent& event)
      wxString defaultDir;
     wxConfig config(wxT("Prog"),wxT("ELI"));
     config.Read(wxT("def_dir"),&pok);
-    if(pok.Len()==0) defaultDir=wxT("/home");
+    if(pok.Length()==0) defaultDir=wxT("/home");
     else defaultDir=pok;
 
     wxString defaultFilename=p_name;
@@ -1460,7 +1460,7 @@ void eliFrame::OnMenuOpenProgSelected(wxCommandEvent& event)
      wxString defaultDir,path;
     wxConfig config(wxT("Prog"),wxT("ELI"));
     config.Read(wxT("def_dir"),&pok);
-    if(pok.Len()==0) defaultDir=wxT("/home");
+    if(pok.Length()==0) defaultDir=wxT("/home");
     else defaultDir=pok;
 
 

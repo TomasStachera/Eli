@@ -185,6 +185,8 @@ int ExportParam::WriteDataToFile(wxString path)
   {
       line_info=_("Contour ");
       line_info << (unsigned int)cont_pos2[i];
+      wxString aliasxx;
+      if(CheckAliases(line_info,aliasxx)) line_info=aliasxx;
       for(unsigned j=0;j<datx2[i].size();j++)
       {
         if(CheckListBox1->IsChecked(j))
@@ -210,6 +212,32 @@ void ExportParam::OnCancelButClick(wxCommandEvent& event)
     EndModal(0);
 }
 
+/**
+Function check if contour was found in aliases array
+1.parameter: contour= name of contour
+2.parameter: aliasesx: pointer for found aliases string
+Function return true if aliases was found
+          return false if aliases was not found or if there is vector dimension error
+**/
+bool ExportParam::CheckAliases(wxString contour,wxString &aliasesx)
+{
+bool foundx=false;
+
+    for(unsigned i=0; i< aliases.size();i++)
+    {
+        if(!foundx)
+        {
+          if(aliases[i].size() != 2) return false;
+          if(aliases[i][0]==contour)
+          {
+              foundx=true;
+             aliasesx=aliases[i][1];
+          }
+        }
+    }
+return foundx;
+}
+
 void ExportParam::OnAliasButtonClick(wxCommandEvent& event)
 {
   vector<wxString> contours_text;
@@ -225,6 +253,7 @@ void ExportParam::OnAliasButtonClick(wxCommandEvent& event)
 
 AlasesExp dlg(this,contours_text);
  dlg.ShowModal();
+ dlg.GetAliasesArray(aliases);
 }
 
 AlasesExp::AlasesExp(wxWindow* parent,vector<wxString> contours_inf,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -356,7 +385,7 @@ void AlasesExp::OnClearAliasClick(wxCommandEvent& event)
 	 wxConfig config(wxT("Prog"),wxT("ELI"));
     config.Read(wxT("EXPORT_DATA_ALIAS"),&pok);
 
-
+if(wxMessageBox(wxT("Do you want to clear alias file?"),wxT("Clear Alias file"),wxICON_QUESTION|wxYES_NO)==wxNO) return;
      wxTextFile filex(pok);
     if(!filex.Exists())
     {
@@ -372,14 +401,35 @@ void AlasesExp::OnClearAliasClick(wxCommandEvent& event)
     filex.Write();
     filex.Close();
    Alais->Clear();
+    Alais->Append(wxT("New Alias"));
 }
 
 void AlasesExp::OnAddAliasClick(wxCommandEvent& event)
 {
 vector<wxString> datasx;
 wxString  contourx=Contour->GetStringSelection();
+if(contourx.Length()<1)
+{
+    wxMessageBox(wxT("Select contour for alias set"),wxT("Set alias error"),wxICON_WARNING);
+    return;
+}
 wxString sel_alias=Alais->GetStringSelection();
-if(sel_alias==wxT("New Alias"))sel_alias=NewAlias->GetValue();
+if(sel_alias.Length()<1)
+{
+  wxMessageBox(wxT("Select alias or select New alias"),wxT("Set alias error"),wxICON_WARNING);
+    return;
+}
+if(sel_alias==wxT("New Alias"))
+{
+    sel_alias=NewAlias->GetValue();
+
+ if(sel_alias.Length()<1)
+{
+  wxMessageBox(wxT("Empty new alias field"),wxT("Set alias error"),wxICON_WARNING);
+    return;
+}
+
+}
 
 datasx.clear();
 datasx.push_back(contourx);
@@ -398,7 +448,12 @@ for(unsigned i=0;i<aliases.size();i++)
      if(aliases[i][0]==contourx)
      {
          foundx=true;
-         aliases[i][0]=sel_alias;
+         aliases[i][1]=sel_alias;
+         TextCtrl1->WriteText(wxT("Change:"));
+         TextCtrl1->WriteText(contourx);
+         TextCtrl1->WriteText(wxT(" :"));
+          TextCtrl1->WriteText(sel_alias);
+         TextCtrl1->WriteText(wxT("\n"));
      }
  }
 }
@@ -437,7 +492,6 @@ if(Alais->GetStringSelection()==wxT("New Alias")) //Write to file new alias
            if(!found_in_file)
            {
               if(str.Length()>0) if(str==sel_alias)found_in_file=true; // found alias name in the file
-
            }
        }
          if(str.Length()>0) if(str==sel_alias)found_in_file=true; //found an the file
@@ -455,5 +509,6 @@ if(Alais->GetStringSelection()==wxT("New Alias")) //Write to file new alias
 
 void AlasesExp::OnExitbuttonClick(wxCommandEvent& event)
 {
+
     EndModal(0);
 }
