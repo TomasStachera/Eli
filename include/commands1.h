@@ -93,7 +93,7 @@ class Source_OpenFile:public command{
     public:
    Source_OpenFile(){};
    ~Source_OpenFile(){};
-  virtual int GetCmdNumberLines(void){return 3;}
+  virtual int GetCmdNumberLines(void){return 5;}
    virtual int GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2);
    virtual wxString ReturnClassname(void){return wxT("Source_OpenFile");}
   virtual int RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp);
@@ -123,7 +123,7 @@ class Source_ReadVideo:public command{
     public:
    Source_ReadVideo(){};
    ~Source_ReadVideo(){};
-   virtual int GetCmdNumberLines(void){return 4;}
+   virtual int GetCmdNumberLines(void){return 6;}
    virtual int GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2);
     virtual wxString ReturnClassname(void){return wxT("Source_ReadVideo");}
     virtual int RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp);

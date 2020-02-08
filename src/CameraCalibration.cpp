@@ -488,8 +488,13 @@ bool CameraCalib::GetUndistortionImage(Mat Image,Mat &retImage,double &pixels_pe
       if(cameraMatrix.size().height !=3) return false;
      if(distCoeffs.size().width!=1)return false;
      if(distCoeffs.size().height!=5)return false;
-
- pixels_per_unit=((cameraMatrix.at<double>(0,0)+cameraMatrix.at<double>(1,1))/2)/size_coef;
+/**
+Change pixels per unit calculation for compatibility pixels to unit calculation with ReadCamera, ReadeVideo and OpenFile commands
+Calculation formula: real_unit= pixels/ pixels_per_unit
+pixels_per_unit is equal to size coefficient set by user
+**/
+// pixels_per_unit=((cameraMatrix.at<double>(0,0)+cameraMatrix.at<double>(1,1))/2)/size_coef;
+     pixels_per_unit=size_coef;
 
   undistort(Image,retImage,cameraMatrix,distCoeffs);
     }

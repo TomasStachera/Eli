@@ -2173,7 +2173,11 @@ Class for flip or rotate tested image
    try
    {
 
-       if(mode==2) pd->imgx[sour_pic_pos]=rotateImage(pd->imgx[sour_pic_pos],angle);
+       if(mode==2)
+       {
+           if((angle>0.1)||(angle<-0.1)) // Fixed null angle rotation problem
+           pd->imgx[sour_pic_pos]=rotateImage(pd->imgx[sour_pic_pos],angle);
+       }
        else flip(pd->imgx[sour_pic_pos],pd->imgx[sour_pic_pos],mode);
    }
        catch( cv::Exception& e )

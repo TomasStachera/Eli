@@ -22,7 +22,19 @@ open Open file dialog, where user can select picture file </li>
 <li>Load file parameter: This parameter specify colorness and depth of the loaded image.CV_LOAD_IMAGE_UNCHANGED load image in same depth and colorness as loaded file.The colorness specifies whether the loaded image is to be converted to 3 channels (CV_LOAD_IMAGE_COLOR), 1 channel (CV_LOAD_IMAGE_GRAYSCALE), or left as it was in the input file (CV_LOAD_IMAGE_ANYCOLOR).
 Depth specifies whether the loaded image is to be converted to 8 bits per pixel per color channel as was customary in previous versions of OpenCV or left as they were in the input file. If CV_LOAD_IMAGE_ANYDEPTH is passed the pixel format can be 8 bit unsigned, 16 bit unsigned, 32 bit signed or 32 bit floating point.
  </li>
-<li>Load as picture. This parameter sets in which picture number file will be loaded.It can be select Picture_0 to Picture_19. This picture number will be use for work with image in test program.
+<li>Load as picture. This parameter sets in which picture number file will be loaded.It can be select Picture_0 to Picture_19. This picture number will be use for work with image in test program.</li>
+<li>
+Get undistortion chan: If you want to used real word units for get object parameter select undistortion channel for real world unit calculation. If some channel is selected set Size coeficient in the next option. If option <b>None</b> will be set on this option object parameters can be only in pixels unit.
+</li>
+<li>
+Size coefficient: Write size coefficient which will be used for real world unit calculation in object parameters.<br>
+How to find size coeficient:
+<ul>
+<li>Find object dimmension in pixels</li>
+<li> Measure  real object dimension in real world unit (for example mm) </li>
+<li>Calculate Size coeficient: <b>Object dimension in pixels / real object dimension </b> </li>
+</ul>
+</li>
 </ol>
 
 <h2>Error codes</h2>
@@ -30,6 +42,7 @@ Depth specifies whether the loaded image is to be converted to 8 bits per pixel 
 <li>Error code -11:File not exist. This error means that file in path selected in first parameter not exist. Check file name and file path.</li>
 <li>Error code -12:Bad file parameter.This error means error in second parameter. Check test program file if second parameter is select correctlly.</li>
 <li>Error code -13:Bad picture position number. This error means error in 3.command parameter. Check test program file if 3.parameter is select correctlly</li>
+<li>Error code -14:Bad undistortion channel was selected (Not from range 0 to 19) </li>
 <li>Error code -100:OpenCV error: This error is error inside OpenCv function cvLoadImage. Error decription is display in result window.</li>
 </ol>
 

@@ -20,12 +20,25 @@ Url adress: This parameter is use only whe option "Url" in first parameter is se
 <li>
 Select capture: This option is use for select capture structure for reading video stream. Selected capture will be use in command Source_QueryFrame for reading video frame. You can select Capture_0 to Capture_9.
 </li>
+<li>
+Get undistortion chan: If you want to used real word units for get object parameter select undistortion channel for real world unit calculation. If some channel is selected set Size coeficient in the next option. If option <b>None</b> will be set on this option object parameters can be only in pixels unit.
+</li>
+<li>
+Size coefficient: Write size coefficient which will be used for real world unit calculation in object parameters.<br>
+How to find size coeficient:
+<ul>
+<li>Find object dimmension in pixels</li>
+<li> Measure  real object dimension in real world unit (for example mm) </li>
+<li>Calculate Size coeficient: <b>Object dimension in pixels / real object dimension </b> </li>
+</ul>
+</li>
 </ol>
 
 <h2>Error codes</h2>
 <ol>
 <li>Error code -11:Bad capture position: This error means that select capture is not in range 0-9. Check eli test program if command Source_ReadVideo has  correct format. </li>
 <li>Error code -12: Capture is null: This error means that selected capture could not read video file. Check video file if exist, or if video codec of selected file is suported. </li>
+<li>Error code -13:Bad undistortion channel was selected (Not from range 0 to 19) </li>
 <li>Error code -100: OpenCV error: This error means that opencv function cvCreateFileCapture generated error. Explanation of this error will be display in result window.</li>
 
 </ol>

@@ -13,7 +13,7 @@ with all possible captures. You can select Capture_0 to Capture_9. Selected capt
 read of this command.
 </li>
 <li>Frame as picture: This option select picture  from picture array. Selected picture could be modified in the next program steps. You can select Picture_0 to Picture_19.  </li>
-<li>Get undistortion chan:Select undistortion channel where calibration data is stored. If you select option none real image from camera will be used without undistortion coeficients  </li>
+<li>Get undistortion chan:Select undistortion channel where calibration data is stored. <b>Use this option only if command Source_ReadCamera is used as a capture source!!!</b> Selected channel must be same as channel selected in Source_ReadCamera command. Output picture will be calculated with undistortion matrix in selected channel. If commands Source_ReadVideo is used as a capture source, select <b>None</b> channel even if Real word units will be used for objects parameters. Command Source_ReadVideo does not provide calibration file and select undistortion channel on this option will return error code -15. </li>
 </ol>
 <h2>Error codes</h2>
 

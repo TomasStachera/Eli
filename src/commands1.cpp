@@ -925,7 +925,7 @@ int System_Wait::RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectProg
 int Source_OpenFile::GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2)
 {
     if(line<0)return -1;
-    if(line>2) return -2;
+    if(line>4) return -2;
     if(line==0)
     {
     name=wxT("Path to picture file");
@@ -964,6 +964,32 @@ int Source_OpenFile::GetLineParam(int line,wxString &name,int &type,wxArrayStrin
         aray_str=arraystr;
         type2=0;
     }
+       if(line==3)
+    {
+        name=wxT("Get undistortion chan");
+         type=2;
+        wxArrayString arraystr;
+        wxString pom;
+        arraystr.Add(_("None"));
+        for(int i=0;i<20;i++)
+        {
+             pom=_("Chan_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
+
+        aray_str=arraystr;
+        type2=0;
+
+    }
+    if(line==4)
+    {
+
+        name=_("Size coefficient");
+        type=5;
+        fval=0.0;
+
+    }
 
 
     return 0;
@@ -979,7 +1005,16 @@ Function for load picture from file use OpenCV function cvLoadImage
      path=param.BeforeFirst('#');
      pom=param.AfterFirst('#');
      file_param=pom.BeforeFirst('#');
-     var_num=pom.AfterFirst('#');
+     pom=pom.AfterFirst('#');
+     var_num=pom.BeforeFirst('#');
+     pom=pom.AfterFirst('#');
+    wxString    uchan_str=pom.BeforeFirst('#'); //Undistortion channel string
+  float uch_size_coef=wxAtof(pom.AfterFirst('#')); //Size coeficient for specific channel
+
+     int uch=-1; //undistortion channel
+   if(uchan_str==_("None"))uch=-1;
+   else  uch=wxAtoi(uchan_str.AfterFirst('_'));
+
       if(!wxFile::Exists(path))return -1; //File not exist
       int i_param=-2;//file parameter init value
       if(file_param==_("CV_LOAD_IMAGE_UNCHANGED"))i_param=-1;
@@ -994,6 +1029,13 @@ Function for load picture from file use OpenCV function cvLoadImage
      {
 
      pd->imgx[picture_pos]=imread(String(path.mbc_str()),i_param);
+
+         if(uch>-1) //Undistortion channel activated
+    {
+       if((uch<0)||(uch>19)) return -4; // Bad undistortion channel
+        pd->pix_per_mm[uch]=uch_size_coef;
+    }
+
      }
     catch( cv::Exception& e )
    {
@@ -1080,7 +1122,7 @@ int Source_ReadCamera::GetLineParam(int line,wxString &name,int &type,wxArrayStr
     if(line==4)
     {
 
-        name=_("Size coeficient");
+        name=_("Size coefficient");
         type=5;
         fval=0.0;
 
@@ -1146,7 +1188,7 @@ Function open selected video file and read capture
  int Source_ReadVideo::GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2)
 {
        if(line<0)return -1;
-    if(line>3) return -2;
+    if(line>5) return -2;
 
     if(line==0)
     {
@@ -1191,6 +1233,32 @@ Function open selected video file and read capture
         aray_str=arraystr;
         type2=0;
     }
+    if(line==4)
+    {
+        name=wxT("Get undistortion chan");
+         type=2;
+        wxArrayString arraystr;
+        wxString pom;
+        arraystr.Add(_("None"));
+        for(int i=0;i<20;i++)
+        {
+             pom=_("Chan_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
+
+        aray_str=arraystr;
+        type2=0;
+
+    }
+    if(line==5)
+    {
+
+        name=_("Size coeficient");
+        type=5;
+        fval=0.0;
+
+    }
 
     return 0;
 }
@@ -1203,7 +1271,15 @@ Function open selected video file and read capture
    wxString path=pom.BeforeFirst('#'); // path to video file
    pom=pom.AfterFirst('#');
    wxString url=pom.BeforeFirst('#'); // url file for IP camera
-   wxString s_capture=pom.AfterFirst('#'); //capture field position
+   pom=pom.AfterFirst('#');
+   wxString s_capture=pom.BeforeFirst('#'); //capture field position
+   pom=pom.AfterFirst('#');
+wxString   uchan_str=pom.BeforeFirst('#'); //Undistortion channel string
+ float  uch_size_coef=wxAtof(pom.AfterFirst('#')); //Size coeficient for specific channel
+
+     int uch=-1; //undistortion channel
+   if(uchan_str==_("None"))uch=-1;
+   else  uch=wxAtoi(uchan_str.AfterFirst('_'));
 
    int capture_pos=wxAtoi(s_capture.AfterLast('_'));
 try
@@ -1220,6 +1296,12 @@ try
     {
               pd->capture[capture_pos].open(String(url.mbc_str()));
    if(!pd->capture[capture_pos].isOpened())return -2;
+    }
+
+    if(uch>-1) //Undistortion channel activated
+    {
+       if((uch<0)||(uch>19)) return -3; // Bad undistortion channel
+        pd->pix_per_mm[uch]=uch_size_coef;
     }
 
 }
