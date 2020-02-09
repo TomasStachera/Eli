@@ -63,11 +63,13 @@ class System_Results:public command{
   public:
    System_Results(){};
    ~System_Results(){};
-   virtual int GetCmdNumberLines(void){return 5;}
+   virtual int GetCmdNumberLines(void){return 10;}
    virtual int GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2);
    virtual wxString ReturnClassname(void){return wxT("System_Results");}
    virtual int RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp);
     virtual int Inicialize(void){return 0;}
+  private:
+    bool GetObjectVal(PDAT *pd,wxString obj_name,wxString obj_param,bool milim,int unch,vector<float> &fxval);
 };
 
 /**********************************************************************************

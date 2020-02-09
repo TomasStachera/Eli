@@ -733,7 +733,7 @@ Class System_Results
 int System_Results::GetLineParam(int line,wxString &name,int &type,wxArrayString &aray_str,wxString &str,int &ival,float &fval,bool &bval,int &type2)
 {
 if(line<0)return -1;
-if(line>4) return -2;//maximal number line is 5
+if(line>9) return -2;//maximal number line is 7
 if(line==0) //sets combobox for choosing picture which will be display
 {
      name=wxT("Displayed picture");
@@ -752,7 +752,7 @@ if(line==0) //sets combobox for choosing picture which will be display
 
 }
 
-if((line==1)||(line==3)) // testbox for result name
+if((line==1)||(line==3)||(line==5)) // testbox for result name
 {
     name=wxT("Result name");
     type=1;
@@ -781,9 +781,267 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
         aray_str=arraystr;
         type2=0;
 }
+
+
+
+if(line==6)
+{
+        name=wxT("Object Parameter");
+        type=2;
+        wxArrayString arraystr;
+        arraystr.Add(_("None"));
+        arraystr.Add(_("Rect X"));
+        arraystr.Add(_("Rect Y"));
+        arraystr.Add(_("Rect height"));
+        arraystr.Add(_("Rect width"));
+        arraystr.Add(_("Perimeter"));
+        arraystr.Add(_("Area"));
+        arraystr.Add(_("Min Rect X"));
+        arraystr.Add(_("MIn Rect Y"));
+        arraystr.Add(_("Min Rect height"));
+        arraystr.Add(_("Min Rect width"));
+        arraystr.Add(_("Min rect angle"));
+        arraystr.Add(_("Circle X"));
+        arraystr.Add(_("Circle Y"));
+        arraystr.Add(_("Circle radius"));
+        arraystr.Add(_("Fit_ellipse_center_X"));
+        arraystr.Add(_("Fit_ellipse_center_Y"));
+        arraystr.Add(_("Fit_ellipse_Height"));
+        arraystr.Add(_("Fit_ellipse_Width"));
+        arraystr.Add(_("Fit_ellipse_Angle"));
+        arraystr.Add(_("Derived_0"));
+        arraystr.Add(_("Derived_1"));
+        arraystr.Add(_("Derived_2"));
+        arraystr.Add(_("Derived_3"));
+        arraystr.Add(_("Derived_4"));
+        arraystr.Add(_("Derived_5"));
+        arraystr.Add(_("Derived_6"));
+        arraystr.Add(_("Derived_7"));
+        arraystr.Add(_("Derived_8"));
+        arraystr.Add(_("Derived_9"));
+
+        aray_str=arraystr;
+        type2=0;
+}
+
+if(line==7)
+{
+    name=wxT("Object name");
+    type=1;
+    str=wxT(" ");
+    type2=0;
+}
+
+  if(line==8)
+{
+        name=wxT("Unit");
+        type=2;
+        wxArrayString arraystr;
+        arraystr.Add(_("pixels"));
+        arraystr.Add(_("mm"));
+
+        aray_str=arraystr;
+        type2=0;
+}
+
+      if(line==9)
+    {
+         name=wxT("Undistortion chan");
+         type=2;
+        wxArrayString arraystr;
+        wxString pom;
+        for(int i=0;i<20;i++)
+        {
+             pom=_("Chan_");
+          pom<<i;
+          arraystr.Add(pom);
+        }
+
+        aray_str=arraystr;
+        type2=0;
+    }
+
     return 0;
 }
 
+bool System_Results::GetObjectVal(PDAT *pd,wxString obj_name,wxString parameterx,bool milim,int uch,vector<float> &fxval)
+{
+      int par_type=0;
+      fxval.clear();
+
+      if(parameterx==_("Rect X"))par_type=1; //Rectifier x point
+      if(parameterx==_("Rect Y"))par_type=2;
+      if(parameterx==_("Rect height"))par_type=3;
+      if(parameterx==_("Rect width"))par_type=4;
+      if(parameterx==_("Perimeter"))par_type=5;
+      if(parameterx==_("Area"))par_type=6;
+      if(parameterx==_("Min Rect X"))par_type=7;
+      if(parameterx==_("MIn Rect Y"))par_type=8;
+      if(parameterx==_("Min Rect height"))par_type=9;
+      if(parameterx==_("Min Rect width"))par_type=10;
+      if(parameterx==_("Min rect angle"))par_type=11;
+      if(parameterx==_("Circle X"))par_type=12;
+      if(parameterx==_("Circle Y"))par_type=13;
+      if(parameterx==_("Circle radius"))par_type=14;
+      if(parameterx==_("Fit_ellipse_center_X"))par_type=15;
+      if(parameterx==_("Fit_ellipse_center_Y"))par_type=16;
+      if(parameterx==_("Fit_ellipse_Height"))par_type=17;
+      if(parameterx==_("Fit_ellipse_Width"))par_type=18;
+      if(parameterx==_("Fit_ellipse_Angle"))par_type=19;
+      if(parameterx==_("Derived_0"))par_type=20;
+      if(parameterx==_("Derived_1"))par_type=21;
+      if(parameterx==_("Derived_2"))par_type=22;
+      if(parameterx==_("Derived_3"))par_type=23;
+      if(parameterx==_("Derived_4"))par_type=24;
+      if(parameterx==_("Derived_5"))par_type=25;
+      if(parameterx==_("Derived_6"))par_type=26;
+      if(parameterx==_("Derived_7"))par_type=27;
+      if(parameterx==_("Derived_8"))par_type=28;
+      if(parameterx==_("Derived_9"))par_type=29;
+  try
+  {
+   float valxf=0;
+
+        if(pd->obj.size()==0)return false;
+
+
+         for(unsigned int i=0;i<pd->obj.size();i++)
+          {
+           if(obj_name==pd->obj[i].object_name)
+           {
+               switch(par_type)
+               {
+                   case 1: //Rectifier X
+                    if(!milim) valxf=(float)pd->obj[i].bounding_rect_x;
+                    else valxf=(float)(pd->obj[i].bounding_rect_x/pd->pix_per_mm[uch]);
+
+                   break;
+                   case 2: //Rectifier Y
+                    if(!milim) valxf=(float)pd->obj[i].bounding_rect_y;
+                    else valxf=(float)(pd->obj[i].bounding_rect_y/pd->pix_per_mm[uch]);
+                   break;
+                   case 3://Rectifier height
+                    if(!milim) valxf=(float)pd->obj[i].bounding_rect_height;
+                    else valxf=(float)(pd->obj[i].bounding_rect_height/pd->pix_per_mm[uch]);
+                   break;
+                   case 4://Rectifier width
+                    if(!milim) valxf=(float)pd->obj[i].bounding_rect_width;
+                    else valxf=(float)(pd->obj[i].bounding_rect_width/pd->pix_per_mm[uch]);
+                   break;
+                   case 5: //Perimeter
+                    if(!milim) valxf=(float)pd->obj[i].perimeter;
+                    else valxf=(float)(pd->obj[i].perimeter/pd->pix_per_mm[uch]);
+                   break;
+                   case 6: //Area
+                   if(!milim) valxf=(float)pd->obj[i].contour_area;
+                   else valxf=(float)(pd->obj[i].contour_area/pd->pix_per_mm[uch]);
+                   break;
+                   case 7://Minimal rectifier X
+                     if(!milim) valxf=(float)pd->obj[i].min_area_rect_x;
+                     else valxf=(float)(pd->obj[i].min_area_rect_x/pd->pix_per_mm[uch]);
+                   break;
+                   case 8://Minimal rectifier Y
+                    if(!milim) valxf=(float)pd->obj[i].min_area_rect_y;
+                    else valxf=(float)(pd->obj[i].min_area_rect_y/pd->pix_per_mm[uch]);
+                   break;
+                   case 9://Minimal rectifier height
+                    if(!milim) valxf=(float)pd->obj[i].min_area_rect_height;
+                    else valxf=(float)(pd->obj[i].min_area_rect_height/pd->pix_per_mm[uch]);
+                   break;
+                   case 10://Minimal rectifier width
+                    if(!milim) valxf=(float)pd->obj[i].min_area_rect_width;
+                    else valxf=(float)(pd->obj[i].min_area_rect_width/pd->pix_per_mm[uch]);
+                   break;
+                   case 11: //Minimal rectifier angle
+                     valxf=(float)pd->obj[i].min_area_rect_angle;
+                   break;
+                   case 12://Circle X
+                    if(!milim) valxf=(float)pd->obj[i].min_enclosing_circle_center_X;
+                    else valxf=(float)(pd->obj[i].min_enclosing_circle_center_X/pd->pix_per_mm[uch]);
+                   break;
+                   case 13://Circle Y
+                   if(!milim) valxf=(float)pd->obj[i].min_enclosing_circle_center_Y;
+                    else valxf=(float)(pd->obj[i].min_enclosing_circle_center_Y/pd->pix_per_mm[uch]);
+                   break;
+                   case 14://Circle radius
+                   if(!milim) valxf=(float)pd->obj[i].min_enclosing_circle_radius;
+                   else valxf=(float)(pd->obj[i].min_enclosing_circle_radius/pd->pix_per_mm[uch]);
+                   break;
+                    case 15://Fit elipse center X
+                    if(!milim) valxf=(float)pd->obj[i].fit_elipse_center_X;
+                    else valxf=(float)(pd->obj[i].fit_elipse_center_X/pd->pix_per_mm[uch]);
+                   break;
+                   case 16://Fit elipse center Y
+                    if(!milim) valxf=(float)pd->obj[i].fit_elipse_center_Y;
+                    else valxf=(float)(pd->obj[i].fit_elipse_center_Y/pd->pix_per_mm[uch]);
+                   break;
+                   case 17://Fit_ellipse_Height
+                    if(!milim) valxf=(float)pd->obj[i].fit_elipse_height;
+                    else valxf=(float)(pd->obj[i].fit_elipse_height/pd->pix_per_mm[uch]);
+                   break;
+                    case 18://Fit_ellipse_width
+                    if(!milim) valxf=(float)pd->obj[i].fit_elipse_width;
+                    else valxf=(float)(pd->obj[i].fit_elipse_width/pd->pix_per_mm[uch]);
+                   break;
+                   case 19://Fit_ellipse_angle
+                    if(!milim) valxf=(float)pd->obj[i].fit_elipse_angle;
+                    else valxf=(float)(pd->obj[i].fit_elipse_angle/pd->pix_per_mm[uch]);
+                   break;
+                   case 20://Derived 0
+                    if(!milim) valxf=(float)pd->obj[i].derived[0];
+                    else valxf=(float)(pd->obj[i].derived[0]/pd->pix_per_mm[uch]);
+                   break;
+                   case 21://Derived 1
+                    if(!milim) valxf=(float)pd->obj[i].derived[1];
+                    else valxf=(float)(pd->obj[i].derived[1]/pd->pix_per_mm[uch]);
+                   break;
+                   case 22://Derived 2
+                    if(!milim) valxf=(float)pd->obj[i].derived[2];
+                    else valxf=(float)(pd->obj[i].derived[2]/pd->pix_per_mm[uch]);
+                   break;
+                   case 23://Derived 3
+                    if(!milim) valxf=(float)pd->obj[i].derived[3];
+                    else valxf=(float)(pd->obj[i].derived[3]/pd->pix_per_mm[uch]);
+                   break;
+                   case 24://Derived 4
+                    if(!milim) valxf=(float)pd->obj[i].derived[4];
+                    else valxf=(float)(pd->obj[i].derived[4]/pd->pix_per_mm[uch]);
+                   break;
+                   case 25://Derived 5
+                    if(!milim) valxf=(float)pd->obj[i].derived[5];
+                    else valxf=(float)(pd->obj[i].derived[5]/pd->pix_per_mm[uch]);
+                   break;
+                   case 26://Derived 6
+                    if(!milim) valxf=(float)pd->obj[i].derived[6];
+                    else valxf=(float)(pd->obj[i].derived[6]/pd->pix_per_mm[uch]);
+                   break;
+                   case 27://Derived 7
+                    if(!milim) valxf=(float)pd->obj[i].derived[7];
+                    else valxf=(float)(pd->obj[i].derived[7]/pd->pix_per_mm[uch]);
+                   break;
+                   case 28://Derived 8
+                   if(!milim) valxf=(float)pd->obj[i].derived[8];
+                    else valxf=(float)(pd->obj[i].derived[8]/pd->pix_per_mm[uch]);
+                   break;
+                   case 29://Derived 9
+                    if(!milim) valxf=(float)pd->obj[i].derived[9];
+                    else valxf=(float)(pd->obj[i].derived[9]/pd->pix_per_mm[uch]);
+                   break;
+                   default:
+                    return false;
+                    break;
+               }
+               fxval.push_back(valxf);
+           }
+          }
+  }
+    catch( cv::Exception& e )
+   {
+       SetOpenCVErrorMess(e.err,e.file,e.func,e.line,pd);
+       return false;
+   }
+    return true;
+}
 
  int System_Results::RunCommand(wxString param,PDAT *pd,int line,int edit,ObjectPrograms *obp)
  {
@@ -803,6 +1061,7 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
      if(pom2.BeforeFirst('#')!=_(" "))
      {
          pd->results+=pom2.BeforeFirst('#');
+         pd->results+=_(" : ");
      }
      pom=pom2.AfterFirst('#');
      if(pom.BeforeFirst('#')!=_("None"))
@@ -827,6 +1086,7 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
       if(pom2.BeforeFirst('#')!=_(" "))
      {
          pd->results+=pom2.BeforeFirst('#');
+         pd->results+=_(" : ");
      }
      pom=pom2.AfterFirst('#');
      if(pom.BeforeFirst('#')!=_("None"))
@@ -846,6 +1106,37 @@ if((line==2)||(line==4)) // combobox for choose variable which will be display
        pd->results<<pd->fval[v2];
          }
                 pd->results+=_("\n");
+     }
+     pom2=pom.AfterFirst('#');
+     if(pom2.Length()<2)return 0; //Compatibility with versions with no results
+     wxString name_of_par;
+     if(pom2.BeforeFirst('#')!=_(" "))
+     {
+         name_of_par=pom2.BeforeFirst('#');
+
+     }
+     pom=pom2.AfterFirst('#');
+     if(pom.BeforeFirst('#')!=_("None"))
+     {
+         wxString obj_param=pom.BeforeFirst('#');
+         pom=pom.AfterFirst('#');
+         wxString obj_name=pom.BeforeFirst('#');
+         pom=pom.AfterFirst('#');
+         bool milim=false;
+         if(pom.BeforeFirst('#')==_("mm"))milim=true;
+         else milim=false;
+         int unch=wxAtoi(pom.AfterFirst('#').AfterFirst('_'));
+         if((unch<0)||(unch>19)) return -4; // Bad undistortion channel
+         vector<float> fxval;
+         if(!GetObjectVal(pd,obj_name,obj_param,milim,unch,fxval)) return -5; //Error get Object value
+         for(unsigned i=0;i<fxval.size();i++)
+         {
+                pd->results+=name_of_par;
+         pd->results+=_(" : ");
+         pd->results<<fxval[i];
+         pd->results+=_("\n");
+         }
+
      }
 
 

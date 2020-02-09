@@ -12,6 +12,11 @@ Next option is Picture 0-19. Selected picture will be display in picture window.
 <li> Result name: Name of first result. This name will be displayed before first result. Selected variable in the next parameter will have "name"</li>
 <li>Result variable: Variable which will be display after Result name sets in previous parameter. You can select option "None", than any variable will be display.Next options are Variable_0 to Variable_99. The last option is String_0 to String_9. Value of selected variable or string will be display.</li>
 <li> Next 2 parameters are same as previous 2 parameters,it inserts next line with result</li>
+<li>Result name: Name of object  result. Name will be displayed before object result </li>
+<li>Object parameters: It can be selected which object parameters will be displayed in result window </li>
+<li>Object name: Name of object which parameter will be displayed </li>
+<li>Unit: It can be selected if object parameter will be displayed in pixels or real world units (option mm). It can not be only milimeters, it can be meters, inch or others units. Size coeficient must be setup for this unit in Source_ReadVideo, Source_ReadCamera or Source_OpenFile command. </li>
+<li>Undistortion chan: It must be select which channel will be used for real world unit calculation</li>
 </ol>
 <h2>Error codes</h2>
 
@@ -19,5 +24,6 @@ Next option is Picture 0-19. Selected picture will be display in picture window.
   <li>Error code -11:Bad picture name.Name of displayed picture has not correct format</li>
 <li>Error code -12:Bad variable 1 name.Variable 1 name has not correct format </li>
 <li>Error code -13:BAd variable 2 name. Variable 2 name has not correct format </li>
-
+<li>Error code -14: Bad undistortion channel. Check if undistortion channel was set </li>
+<li>Error code -15:Error get object value. It was error durring get object parameter. Check if object with given name exist </li>
     </ol>
