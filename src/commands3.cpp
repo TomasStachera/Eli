@@ -8,7 +8,7 @@
 using namespace cv;
 using namespace std;
 
-
+#define PI 3.14159265
 
 /*************************************************************************************
 Class for find contours on selected image
@@ -1797,29 +1797,29 @@ int Object_ParamMath::RunCommand(wxString param,PDAT *pd,int line,int edit,Objec
             resultx.push_back(varA[i]/varB[i]);
            break;
          case 5:
-            resultx.push_back(cos(varA[i]));
+            resultx.push_back(cos(varA[i]* PI / 180.0));
            break;
          case 6:
-           resultx.push_back(sin(varA[i]));
+           resultx.push_back(sin(varA[i]* PI / 180.0));
            break;
          case 7:
-           resultx.push_back(tan(varA[i]));
+           resultx.push_back(tan(varA[i]* PI / 180.0));
           break;
          case 8:
          if(varA[i]<-1) varA[i]=-1;
          if(varA[i]>1)varA[i]=1;
-           resultx.push_back(acos(varA[i]));
+           resultx.push_back(acos(varA[i])* PI / 180.0);
           break;
          case 9:
              if(varA[i]<-1)varA[i]=-1;
              if(varA[i]>1)varA[i]=1;
-            resultx.push_back(asin(varA[i]));
+            resultx.push_back(asin(varA[i])* PI / 180.0);
            break;
          case 10:
-            resultx.push_back(atan(varA[i]));
+            resultx.push_back(atan(varA[i])* PI / 180.0);
            break;
          case 11:
-           resultx.push_back(atan2(varA[i],varB[i]));
+           resultx.push_back(atan2(varA[i],varB[i])* PI / 180.0);
            break;
          case 12:
            resultx.push_back(cosh(varA[i]));

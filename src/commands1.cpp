@@ -1,6 +1,8 @@
 #include "commands1.h"
 #include<wx/msgdlg.h>
 
+#define PI 3.14159265
+
 /************************************************************************************
 Class System_Macro
 This class is use for execute macro commands. Macro is .eli program which is executed
@@ -662,27 +664,27 @@ int System_Math::GetLineParam(int line,wxString &name,int &type,wxArrayString &a
             pd->fval[posR]=varA/varB;
            break;
          case 5:
-            pd->fval[posR]=cos(varA);
+            pd->fval[posR]=cos(varA* PI / 180.0);
            break;
          case 6:
-           pd->fval[posR]=sin(varA);
+           pd->fval[posR]=sin(varA* PI / 180.0);
            break;
          case 7:
-           pd->fval[posR]=tan(varA);
+           pd->fval[posR]=tan(varA* PI / 180.0);
           break;
          case 8:
          if((varA<-1)||(varA>1)) return -6; //variable A out of range
-           pd->fval[posR]=acos(varA);
+           pd->fval[posR]=acos(varA)* PI / 180.0;
           break;
          case 9:
           if((varA<-1)||(varA>1)) return -6; //variable A out of range
-            pd->fval[posR]=asin(varA);
+            pd->fval[posR]=asin(varA)* PI / 180.0;
            break;
          case 10:
-            pd->fval[posR]=atan(varA);
+            pd->fval[posR]=atan(varA)* PI / 180.0;
            break;
          case 11:
-           pd->fval[posR]=atan2(varA,varB);
+           pd->fval[posR]=atan2(varA,varB)* PI / 180.0;
            break;
          case 12:
            pd->fval[posR]=cosh(varA);
