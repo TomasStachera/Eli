@@ -110,6 +110,9 @@ set(CPACK_CREATE_DESKTOP_LINKS "Eli")
 set(CPACK_NSIS_MODIFY_PATH "ON")
 #Set CPACK generator RPM for Fedora
 #Set CPACK generator NSIS for Windows
+#Set CPACK generator DEB for debian and Ubuntu
+#if DEB package will be used add follow line
+#set(CPACK_DEBIAN_PACKAGE_MAINTAINER "My")
 set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}")
 
