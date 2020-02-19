@@ -1,4 +1,7 @@
-Source_ReadVideo Read video#File#/home/tomas/Dokumenty/eli_samples/videos/multimeter.avi#http://#Capture_0
+/**
+This example show how to read value from multimeter by camera. Value from multimeter display is converted to float variable and display in result window. Run function Run loop, loop start line 2 and loop time 3000ms
+**/
+Source_ReadVideo Read video#File#/home/tomas/programming/Eli/Eli_examples/videos/multimeter.avi#http://#Capture_0#0#0
 Source_QueryFrame Get video picture#Capture_0#Picture_0#None
 Conversion_Color Convert to grayscale#Picture_0#Picture_1#RGB2GRAY
 Conversion_Roi Set ROI#Picture_1#Number#109#Number#120#Number#360#Number#191

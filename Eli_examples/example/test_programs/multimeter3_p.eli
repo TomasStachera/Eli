@@ -1,4 +1,7 @@
-Source_OpenFile Read file#/home/tomas/Dokumenty/eli_samples/pictures/multimeter/snapshot_31.jpg#CV_LOAD_IMAGE_UNCHANGED#Picture_0
+/**
+This example show how read multimeter value  by camera . Snapshot pictures from camera are using as a input.
+**/
+Source_OpenFile Read file#/home/tomas/programming/Eli/Eli_examples/test_pictures/multimeter/snapshot_23.jpg#CV_LOAD_IMAGE_UNCHANGED#Picture_0#0#0
 Conversion_Color Convert to grayscale#Picture_0#Picture_1#RGB2GRAY
 Conversion_Roi Set ROI#Picture_1#Number#109#Number#120#Number#360#Number#191
 Conversion_Canny Create binary image#Picture_1#Picture_1#Number#69#Number#79#3
