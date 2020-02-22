@@ -1,8 +1,9 @@
 /**
 Example 2
 Test program finds numbers on tested image
- if numbers on pictures are rotated
+if numbers on pictures are rotated
 Change path to input picture in the command Source_OpenFile in the line1
+After change command parameter button Change must be pressed !!!
 **/
 Source_OpenFile Load image#/home/tomas/Dokumenty/eli_documents/eli_test_picture/numbers/number_rot_pos45.png#CV_LOAD_IMAGE_UNCHANGED#Picture_0#0#0
 Source_CloneImage Clone picture 2 for displaying image#Picture_2#Picture_0

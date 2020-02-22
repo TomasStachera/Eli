@@ -1,6 +1,6 @@
 /**
 Program shows how can be measured dimension of objects on camera. It measures dimensions of 20 cents coin and 10 cents coin. Dimensions will be display on tested pictures and on output window. Dimensions are in mm. Select picture path to coin picture directory in the line 1. Source_OpenFile command
-
+After change command parameter button Change must be pressed !!!
 **/
 Source_OpenFile Read coin picture#/home/tomas/Dokumenty/eli_documents/eli_test_picture/coin/snapshot_3.jpg#CV_LOAD_IMAGE_UNCHANGED#Picture_0#Chan_0#4.7085
 Conversion_Color Convert to grayscale#Picture_0#Picture_1#RGB2GRAY

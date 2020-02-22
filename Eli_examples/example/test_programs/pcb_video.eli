@@ -1,0 +1,40 @@
+/**
+Program show how to find dimension of the edge of objects (empty printed circuit board) from the picture corner. Dimension from left top corner and object rotation is displayed in the output window. Select path to video on the command Source_ReadVideo on the 1. line. After change command parameter button Change must be pressed !!!
+
+**/
+Source_ReadVideo Read video#File#/home/tomas/programming/Eli/Eli_examples/videos/pcb.avi#http://#Capture_0#None#0.000000
+Source_QueryFrame Get video frame#Capture_0#Picture_0#None
+Conversion_Color Convert to grayscale picture#Picture_0#Picture_1#RGB2GRAY
+System_Results Display picture 1#Picture_1# #None# #None
+Conversion_Canny Covert to binary image#Picture_1#Picture_1#Number#90#Number#200#3
+Conversion_Morfology Apply dilatation#Picture_1#Picture_1#Dilate#5#RECT#3#3#0#0
+Conversion_MaskPicture Set mask#Picture_2#Binary#1#Picture_1#White#0,0,0#Black#0,0,0#0#0#None#None#R:3 0:3 265:339 265:339 0
+Conversion_AddWeighted Add weight#Picture_1#Picture_1#Number#1#Picture_2#Number#-1
+Contours_Find Find contours#Picture_1#Contour_0#Number#0#Number#0#None
+Object_Find Find object#Picture_1#Contour_0#Block_1#All#None#New
+Object_ParamMath Rotate angle to variable 10#PCB_EDGE#Min rect angle#+#Costant number#0#Variable_10
+System_Jump If angle is positive jump#After#2#1#End_condition#Variable_10#less#Number#45#And#Variable_10#more#Number#-45
+System_Math Calculate positive angle#Variable_10#+#Number#90#Variable_10
+System_Jump Jump if angle is negative#After#7#1#End_condition#Variable_10#less#Number#-0.001#Not_used#Variable_0#less#Number#0.000000
+Object_ParamMath Y-pos, positive angle#PCB_EDGE#Rect Y#+#Costant number#0.000000#Variable_2
+Object_ParamMath Get height to variable 1#PCB_EDGE#Rect height#+#Costant number#0.000000#Variable_1
+System_Math tangenth to variable 3#Variable_10#tan(A)#Number#0.000000#Variable_3
+System_Math Calc delta x#Variable_1#*#Variable_3#0.000000#Variable_1
+Object_ParamMath Rect X to variable 6#PCB_EDGE#Rect X#+#Costant number#0.000000#Variable_6
+System_Math Calculate X pos Var1#Variable_1#+#Variable_6#0.000000#Variable_1
+System_Jump Jump if angle is positive#After#8#1#End_condition#Variable_10#more#Number#-0.002#Not_used#Variable_0#less#Number#0.000000
+Object_ParamMath X-pos, negative angle#PCB_EDGE#Rect X#+#Costant number#0.000000#Variable_1
+Object_ParamMath Get width to var2#PCB_EDGE#Rect width#+#Costant number#0.000000#Variable_2
+System_Math Calc tangent to var 11#Variable_10#tan(A)#Number#0.000000#Variable_11
+System_Math Calc tangent to positive#Variable_11#*#Number#-1#Variable_11
+System_Math Calc delta Y#Variable_11#*#Variable_2#0.000000#Variable_2
+Object_ParamMath Rect Y to variable 6#PCB_EDGE#Rect Y#+#Costant number#0.000000#Variable_6
+System_Math Calculate Y pos Var2#Variable_2#+#Variable_6#0.000000#Variable_2
+System_Math Convert X-pos to mm#Variable_1#/#Number#4.785#Variable_1
+System_Math Covert Y-pos to mm#Variable_2#/#Number#4.785#Variable_2
+System_Results Display rotation#Picture_0#Rotation [degrees]#Variable_10#X-edge [mm]#Variable_1#0#0#0#0#0
+System_Results Display results#Picture_0#Y-edge [mm]#Variable_2# #None#0#0#0#0#0
+OBJECTBLOCK_1
+FILTER#1#1#6#2#500#-1
+OBJECT#PCB_EDGE#Find PCB edge
+TOBJECT#Contour areaa more than 1300#CONDITION#1#6#0.000000# #4#0#1300.000000# #2#0#

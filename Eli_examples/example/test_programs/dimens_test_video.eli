@@ -1,6 +1,6 @@
 /**
 Program shows how can be measured dimension of objects on camera. It measures dimensions of 20 cents coin and 10 cents coin. Dimensions will be display on tested pictures and on output window. Dimensions are in mm. Select  path for coin.avi file on the command Source_ReadVideo on the 1.line. Run program on Run_loop function (loop delay 3000ms, loop line=2)
-
+After change command parameter button Change must be pressed !!!
 **/
 Source_ReadVideo Read video file#File#/home/tomas/programming/Eli/Eli_examples/videos/coin.avi#http://#Capture_0#Chan_0#4.7085
 Source_QueryFrame Get video frame#Capture_0#Picture_0#None

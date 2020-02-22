@@ -1,5 +1,5 @@
 /**
-This example show how to read value from multimeter by camera. Value from multimeter display is converted to float variable and display in result window. Run function Run loop, loop start line 2 and loop time 3000ms
+This example show how to read value from multimeter by camera. Value from multimeter display is converted to float variable and display in result window. Run function Run loop, loop start line 2 and loop time 3000ms. Select path to video file on the command Sorce_ReadVideo on the line 1.After change command parameter button Change must be pressed !!!
 **/
 Source_ReadVideo Read video#File#/home/tomas/programming/Eli/Eli_examples/videos/multimeter.avi#http://#Capture_0#0#0
 Source_QueryFrame Get video picture#Capture_0#Picture_0#None

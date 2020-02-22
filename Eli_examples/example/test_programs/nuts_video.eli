@@ -1,0 +1,40 @@
+/**
+Program find how many nuts or bearings is on the picture from camera. Program explain basic eli functions for detecting objects on cameras (pictures, videos). Number of nuts or bearing will be showed in the output window. Each type of nut or bearing is marked on the tested picture. Green rectangle (Nuts M8), Blue rectangle (Bearings M5), red circle (Nuts M12),yellow circle (bearing M8). Select nut picture on the command Source_OpenFile on the 1. line of program. After change command parameter button Change must be pressed !!! Select Run in loop (llop time 500ms, next loop line=2)
+**/
+Source_ReadVideo Read video#File#/home/tomas/Dokumenty/eli_documents/eli_test_picture/nuts/pic2video/out2.mp4#http://#Capture_0
+Source_QueryFrame Get frame#Capture_0#Picture_0#None
+Conversion_Color Convert to grayscale image#Picture_0#Picture_1#RGB2GRAY
+System_Results Display picture 1#Picture_1# #None# #None# #None#0#0#0
+Conversion_Canny Create binary image#Picture_1#Picture_1#Number#128#Number#169#3
+Conversion_Morfology Dilate image#Picture_1#Picture_1#Dilate#3#ELLIPSE#3#3#0#0
+Contours_Find Find contours#Picture_1#Contour_0#Number#0#Number#0#None
+Object_Find Find objects#Picture_1#Contour_0#Block_1#Basic#None#New
+Object_Count Number of bearings M5 to Var0#Bearing_M5#Variable_0
+Object_Count Number of bearings M8 to Var1#Bearing_M8#Variable_1
+Object_Count Number of nuts M8 to Var2#Nut_M8#Variable_2
+Object_Count Number of nuts M12 to variable 3#Nut_M12#Variable_3
+Object_Draw Draw Bearing_M8#Picture_0#Bearing_M8#Circle#255,255,0#5
+Object_Draw Draw Nut_M12#Picture_0#Nut_M12#Circle#255,0,0#5
+Object_Draw Draw NUT M8#Picture_0#Nut_M8#Rectangle#16,236,64#5
+Object_Draw Draw Bearing M5#Picture_0#Bearing_M5#Rectangle#0,141,255#5
+System_Results Add results#Picture_0#Nuts M8: #Variable_2#Nuts M12: #Variable_3
+System_Results Add results#Picture_0#Bearings M5: #Variable_0#Bearings M8: #Variable_1
+OBJECTBLOCK_1
+FILTER#1#1#52#1#0#-1
+FILTER#1#0#14#2#15#-1
+OBJECT#Bearing_M5#Find object Bearing M5
+TOBJECT#circle radius less than 43#CONDITION#1#14#0.000000# #4#0#43.000000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 less than 0.16#CONDITION#1#27#0.000000# #4#0#0.160000# #3#0#
+OBJECT#Bearing_M8#Find object Bearing M8
+TOBJECT#circle radius more than 45#CONDITION#1#14#0.000000# #4#0#45.000000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 less than 0.16#CONDITION#1#27#0.000000# #4#0#0.160000# #3#0#
+OBJECT#Nut_M12#Find object Nut M12
+TOBJECT#circle radius more than 45#CONDITION#1#14#0.000000# #4#0#45.000000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 more than 0.16#CONDITION#1#27#0.000000# #4#0#0.160000# #2#0#
+OBJECT#Nut_M8#Find object Nut M8
+TOBJECT#circle radius less than 43#CONDITION#1#14#0.000000# #4#0#43.000000# #3#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT#Hu moments 0 more than 0.16#CONDITION#1#27#0.000000# #4#0#0.160000# #2#0#
