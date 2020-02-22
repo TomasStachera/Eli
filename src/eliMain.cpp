@@ -3059,7 +3059,7 @@ if(first_time_view)
      pxv=_("\nLoop Function time :");
       pxv<<tot_time;
       pxv+=_(" us");
-      TextCtrl1->WriteText(pxv);
+      if(tot_time > 0)TextCtrl1->WriteText(pxv);
       first_time_view=false;
 }
   if(view_cam_seque<5)
@@ -3390,7 +3390,7 @@ if(first_time_view)
      pxv=_("\nFunction time :");
       pxv<<tot_time;
       pxv+=_(" s");
-      TextCtrl1->WriteText(pxv);
+      if(tot_time>0)TextCtrl1->WriteText(pxv);
       first_time_view=false;
 }
 
