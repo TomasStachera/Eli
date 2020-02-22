@@ -1,0 +1,22 @@
+/**
+Program shows how can be measured dimension of objects on camera. It measures dimensions of 20 cents coin and 10 cents coin. Dimensions will be display on tested pictures and on output window. Dimensions are in mm. Select picture path to coin picture directory in the line 1. Source_OpenFile command
+
+**/
+Source_OpenFile Read coin picture#/home/tomas/Dokumenty/eli_documents/eli_test_picture/coin/snapshot_3.jpg#CV_LOAD_IMAGE_UNCHANGED#Picture_0#Chan_0#4.7085
+Conversion_Color Convert to grayscale#Picture_0#Picture_1#RGB2GRAY
+System_Results Display picture 1#Picture_1# #None# #None
+Conversion_Canny Covert to binary image#Picture_1#Picture_1#Number#90#Number#200#3
+Conversion_Morfology Dilate picture#Picture_1#Picture_1#Dilate#2#RECT#3#3#0#0
+Contours_Find Find contour#Picture_1#Contour_0#Number#0#Number#0#None
+Object_Find Find object#Picture_1#Contour_0#Block_1#All#None#New
+Object_Draw Draw coin#Picture_0#coin#Rectangle#255,255,0#2
+Object_Labels Draw height#Picture_0#coin#Right#1#Rect height#255,255,0#mm#2#1.000000#FONT_HERSHEY_SIMPLEX#Chan_0
+Object_Labels Draw width#Picture_0#coin#Top#4#Rect width#255,255,0#mm#2#1.000000#FONT_HERSHEY_SIMPLEX#Chan_0
+System_Results Display picture 0#Picture_0# #None# #None#Coin width#Rect width#coin#mm#Chan_0
+System_Results Display picture 0#Picture_0# #None# #None#Coin height#Rect height#coin#mm#Chan_0
+OBJECTBLOCK_1
+FILTER#1#1#52#1#0#-1
+OBJECT#coin#
+TOBJECT##CONDITION#1#3#0.000000# #4#0#50.000000# #2#0#
+TOBJECT##AND#0#0#0.000000##0#0#0.000000##0#0#
+TOBJECT##CONDITION#1#4#0.000000# #4#0#50.000000# #2#0#
