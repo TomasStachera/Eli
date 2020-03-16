@@ -53,7 +53,7 @@ It must be instaled v4l-utils libraries
 #include <wx/platform.h>
 #include <wx/versioninfo.h>
 
-#define ELI_VERSION_NUMBER "0.1-dev"
+#define ELI_VERSION_NUMBER "1.0"
 
 
 
@@ -3813,7 +3813,7 @@ help_info::help_info(wxWindow* parent,wxWindowID id)
 	BoxSizer4->Add(AutorBut, 1, wxALL|wxEXPAND, 5);
 	OpenCvBut = new wxButton(this, ID_BUTTON2, _("OpenCV build info"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer4->Add(OpenCvBut, 1, wxALL|wxEXPAND, 5);
-	HyperlinkCtrl1 = new wxHyperlinkCtrl(this, ID_HYPERLINKCTRL1, _("Home page"), _("www.google.com"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
+	HyperlinkCtrl1 = new wxHyperlinkCtrl(this, ID_HYPERLINKCTRL1, _("Home page"), _("www.tsproj.com/eli"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
 	wxFont HyperlinkCtrl1Font(12,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
 	HyperlinkCtrl1->SetFont(HyperlinkCtrl1Font);
 	BoxSizer4->Add(HyperlinkCtrl1, 1, wxALL|wxEXPAND, 5);
