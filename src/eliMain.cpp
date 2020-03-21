@@ -3544,6 +3544,20 @@ bool finish_calib;
             pd.Printf(_("Found %d frames\n"),num_frames);
             TextCtrl1->WriteText(pd);
             calib_timer->Start(cal_delay,wxTIMER_ONE_SHOT);
+            // Add only camera view function for view camera on pause between frame
+             if(Timer2!=NULL)
+             {
+               Timer2->Stop();
+                  delete Timer2;
+               Timer2=NULL;
+               }
+            Timer2=new wxTimer();
+              Timer2->SetOwner(this, ID_TIMER2);
+           Timer2->Start(rel_frame,false);
+           Connect(ID_TIMER2,wxEVT_TIMER,(wxObjectEventFunction)&eliFrame::OnTimer2Trigger);
+            undistor_view_flag=false;
+            first_time_view=false;
+            //
         }
         else calib_timer->Start(rel_frame,wxTIMER_ONE_SHOT);
 
@@ -3556,6 +3570,12 @@ bool finish_calib;
 
 void eliFrame::OnCalibTimerTrigger(wxTimerEvent& event)
 {
+if(Timer2!=NULL)
+{
+Timer2->Stop();
+delete Timer2;
+Timer2=NULL;
+}
     if(cam_calib==NULL)
     {
         calib_timer->Stop();

@@ -2,8 +2,8 @@
 #Tomas Stachera
 cmake_minimum_required (VERSION 2.6)
 project(Eli)
-SET (VERSION_MAJOR 0)
-SET (VERSION_MINOR 1)
+SET (VERSION_MAJOR 1)
+SET (VERSION_MINOR 0)
 # Create shared library
 SET(ELI_LIB ON CACHE BOOL "Create eli lib?")
 #Create gui application

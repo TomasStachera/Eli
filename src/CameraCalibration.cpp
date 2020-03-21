@@ -81,7 +81,7 @@ CameraCalibration::CameraCalibration(wxWindow* parent,wxWindowID id,const wxPoin
 	StaticBoxSizer6->Add(time_reload,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer4->Add(StaticBoxSizer6,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	StaticBoxSizer7 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Calibration frame delay[ms]"));
-	time_betw_calib=new wxTextCtrl(this, ID_TEXTCTRL4, _("2000"), wxDefaultPosition, wxSize(59,31), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+	time_betw_calib=new wxTextCtrl(this, ID_TEXTCTRL4, _("3000"), wxDefaultPosition, wxSize(59,31), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
 	StaticBoxSizer7->Add(time_betw_calib,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer4->Add(StaticBoxSizer7,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -154,6 +154,7 @@ void CameraCalibration::OnSetPathClick(wxCommandEvent& event)
     if(dialog.ShowModal()==wxID_OK)
     {
        path=dialog.GetPath();
+       if(path.AfterLast('.')!=wxT("yml"))path=path+wxT(".yml");
      wxString sv=path.BeforeLast('/');
       config.Write(wxT("def_dir"),sv);
       CalibrationFilePath->Clear();
