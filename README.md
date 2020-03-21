@@ -46,7 +46,7 @@ Find part **Declare wxWidgets directory** *and change this directory according y
 * Open terminal
 * Install Cmake
 * Install wxWidgets (wxGtk). Instal from your distribution repositories or from source code
-* Install OpenCv. Instal from your distribution repositories or from source code. If you want to use Read/Write video file commands install it with FFMPEG support. Check if your distribution package is compiled with FFMPEG. If not, compile it from source code. You can use also OpenCv CV without FFMPEG support but Read Wirite video file commands will not working, other command will works.
+* Install OpenCv. Instal from your distribution repositories or from source code. If you want to use Read/Write video file commands install it with FFMPEG support. Check if your distribution package is compiled with FFMPEG. If not, compile it from source code. You can use also OpenCv CV without FFMPEG support but some types of video file  will not working.Videos in example directory will work also without FFMPEG support.
 * Install gcc (g++) compiller
 * Clone Eli: **git clone https://github.com/TomasStachera/Eli**
 * Go to Eli directory: cd ../Eli
