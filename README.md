@@ -10,7 +10,7 @@ Library can executed .eli program with user application
 ![Screenshot Logo](/share/Eli/help/pictures/screenshot_1.png)
 ### OS support
 Aplication works on Windows and Linux platforms. Application is written in C++.
-### Home page: tsproj.com\Eli
+### Home page: [tsproj.com/Eli](https://tsproj.com/Eli)
 ### Requirements for compilation from source code
 * **Cmake:** Version 2.6 or higher
 * **C++ compiler**
