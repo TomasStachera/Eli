@@ -24,7 +24,7 @@ class editPicture: public wxDialog
 {
 	public:
 
-		editPicture(wxWindow* parent,int _mode,wxArrayString names,float v1,float v2,float v3,float v4,float v5,float v6,Mat img,Mat img1,Mat img2,CvScalar col=CV_RGB(0,0,0),wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		editPicture(wxWindow* parent,int _mode,wxArrayString names,float v1,float v2,float v3,float v4,float v5,float v6,Mat img,Mat img1,Mat img2,Scalar col=CV_RGB(0,0,0),wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~editPicture();
 
 		//(*Declarations(editPicture)
@@ -83,7 +83,7 @@ class editPicture: public wxDialog
 		void DrawRectRegion(int x1,int y1,int x2,int y2);
 		void UpdateData(void);
 		int Threshold(int value,int method);
-		int FloodFill(int x,int y,CvScalar new_collor,float loDiff,float upDiff,int flags);
+		int FloodFill(int x,int y,Scalar new_collor,float loDiff,float upDiff,int flags);
 		int FCanny(int thres1,int thres2,int aperture);
 		int Corners(int type,float f1,float f2,float f3);
 		float x_ratio,y_ratio; //ration between width(height) of image and panel dimension
@@ -95,7 +95,7 @@ class editPicture: public wxDialog
 
 		Mat displayed_Image;
 		int x_size,y_size;
-		CvScalar colour;
+		Scalar colour;
 		bool isDisplayedImage;
 
 		DECLARE_EVENT_TABLE()

@@ -30,7 +30,7 @@ BEGIN_EVENT_TABLE(editPicture,wxDialog)
 	EVT_KEY_DOWN(editPicture::OnLeftClick)
 END_EVENT_TABLE()
 
-editPicture::editPicture(wxWindow* parent,int _mode,wxArrayString names,float v1,float v2,float v3,float v4,float v5,float v6,Mat img,Mat img1,Mat img2,CvScalar col,wxWindowID id,const wxPoint& pos,const wxSize& size)
+editPicture::editPicture(wxWindow* parent,int _mode,wxArrayString names,float v1,float v2,float v3,float v4,float v5,float v6,Mat img,Mat img1,Mat img2,Scalar col,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
     mode=_mode;
     wxString n1,n2,n3,n4,n5,n6;
@@ -975,7 +975,7 @@ int editPicture::Threshold(int value,int method)
     return 0;
 }
 
-int editPicture::FloodFill(int x,int y,CvScalar new_collor,float loDiff,float upDiff,int flags)
+int editPicture::FloodFill(int x,int y,Scalar new_collor,float loDiff,float upDiff,int flags)
 {
 if((flags!=4)||(flags!=8)) flags=4;
 if(x<0)x=0;
